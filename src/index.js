@@ -1,3 +1,5 @@
+import { html } from "lit-html";
+
 import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
@@ -30,22 +32,28 @@ const navigatePage = (event) => {
 
 const route = () => {
   const path = window.location.pathname;
-  const content = document.querySelector("#content");
-  const downloadPage = new Page("#content", download());
+  const content = document.querySelector("#app");
+  const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
 
   switch (path) {
     case "/":
-      content.innerHTML = "<h1>Home</h1>";
+      content.innerHTML = html`<h1>홈</h1>`.strings;
       break;
-    case "/about":
-      content.innerHTML = "<h1>About</h1>";
+    case "/board":
+      content.innerHTML = html`<h1>게시판</h1>`.strings;
       break;
-    case "/download":
-      downloadPage.render();
+    case "/absent-mng":
+      // downloadPage.render();
+      content.innerHTML = html`<h1>부재 관리</h1>`.strings;
       break;
-    case "/support":
-      content.innerHTML = supportPage.render();
+    case "/my-page":
+      // content.innerHTML = supportPage.render();
+      content.innerHTML = html`<h1>마이 페이지</h1>`.strings;
+      break;
+    case "/staff-info":
+      // content.innerHTML = supportPage.render();
+      content.innerHTML = html`<h1>직원 정보</h1>`.strings;
       break;
     default:
       content.innerHTML = pageNotFound();
