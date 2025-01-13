@@ -1,0 +1,126 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {  
+  display: flex; 
+}  
+
+.loginDecoration {
+  width: 5vw;
+  height: 100vh;
+  background-color: #E0E0E0;
+}
+
+.vpLeft { 
+  height: 100vh;
+  width: 45vw;   
+  background-color: pink; 
+}   
+
+.vpLeftWrap{
+  box-sizing: border-box;
+  /* width: calc(100% - 30%) ; */
+}
+
+.vpRight { 
+  width: 50vw;   
+  height: 100vh;   
+  background-color: powderblue; 
+  flex-direction: column;
+  align-items: center;  
+  justify-content: center; 
+  padding-top: 200px;
+}  
+
+.title {
+  text-align: center;
+  align-items: center;  
+  justify-content: center; 
+  background-color: powderblue;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 5%;
+  display: flex;
+  gap: 3%;
+}
+
+.employer {   
+  border-bottom: 1px solid gray;  
+  width: 20vw;   
+  height: 5vh;   
+  display: flex;   
+  justify-content: space-between;   
+  align-items: center;   
+  margin: auto;
+}  
+
+.employer > .staff, .manager { 
+  width: 100%;   
+  height: 30px;   
+  text-align: center;   
+  align-items: center; 
+  justify-content: center;
+  padding-top: 2%;
+  border-radius: 30%;
+}  
+
+.employer > .staff:hover,.manager:hover { 
+  cursor: pointer;
+  scale: 1.2;
+  transition: .5s;
+}  
+
+.employer > .staff:active,.manager:active {
+  background-color: pink;
+  transition-duration: .3s;
+}
+
+
+.login { 
+  width: 300px;  
+  padding: 20px 0 0 0; 
+  vertical-align: middle;   
+  justify-content: space-between;   
+  align-items: center;   
+  margin: 0 auto; 
+}  
+
+.idContainer, .pwContainer { 
+  width: 300px;   
+  justify-content: center;   
+  align-items: center;   
+  margin: auto; 
+}  
+
+.pwContainer {   
+  width: 300px;   
+  height: 50px;   
+  justify-content: center;  
+  align-items: center;   
+  display: flex; }  
+  
+.idText, .pwText {   
+  width: 200px;   
+  height: 25px;   
+  margin: 0 auto;   
+  display: block; 
+}  
+
+.loginBtnContainer {  
+  width: 100%;   
+  display: flex;   
+  justify-content: center;   
+  margin-top: 15px;  
+}  
+
+.loginBtn {   
+  width: 200px;   
+  height: 30px;   
+}  
+
+.loginBtn:hover {   
+  cursor: pointer; 
+}    
