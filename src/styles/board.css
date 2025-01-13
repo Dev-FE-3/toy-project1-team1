@@ -1,0 +1,87 @@
+/* 스크롤 가능한 갤러리 컨테이너 */
+.scrollable-gallery-container {
+  width: calc(100% - 200px); /* 네비게이션 바의 너비를 제외한 나머지 영역 */
+  width: 100%;
+  height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* 갤러리 레이아웃 */
+.gallery {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    33.3%
+  ); /* 한 줄에 3개씩, 각 항목의 너비는 33.3% */
+  gap: 10px;
+}
+
+/* 갤러리 항목 스타일 */
+.gallery-card {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+  overflow: hidden;
+}
+
+/* 갤러리 카드 안의 이미지 스타일 */
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지를 카드 크기에 맞게 비율 유지하며 채우기 */
+  object-position: center; /* 이미지가 중앙에 오도록 설정 */
+}
+
+/* h1 스타일 */
+#h1 {
+  color: white;
+  padding: 20px;
+  font-weight: bold;
+}
+
+/* 탭 버튼 스타일 */
+.tabs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.data-board {
+  margin: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+
+  border-radius: 4px;
+}

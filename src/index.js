@@ -4,6 +4,7 @@ import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
+import boardPage from "./pages/Board";
 
 const app = () => {
   init();
@@ -41,7 +42,7 @@ const route = () => {
       content.innerHTML = html`<h1>홈</h1>`.strings;
       break;
     case "/board":
-      content.innerHTML = html`<h1>게시판</h1>`.strings;
+      content.innerHTML = boardPage();
       break;
     case "/absent-mng":
       // downloadPage.render();
