@@ -15,7 +15,7 @@
 
 /* MainLayout */
 main {
-  width: 100vh;
+  width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -88,4 +88,9 @@ nav > div:not(.logo) > ul > li > a:hover {
 
 nav > div:not(.logo) > ul > li > a > span {
   font-size: 12px;
+}
+
+/* index.html에 <main>테그 width가 지정되어있지 않는것 같음 */
+#app {
+  width: 80vw;
 }

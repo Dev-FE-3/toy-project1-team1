@@ -4,6 +4,7 @@ import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
+import absenceMng from "./pages/Absence-mng";
 
 const app = () => {
   init();
@@ -33,6 +34,7 @@ const navigatePage = (event) => {
 const route = () => {
   const path = window.location.pathname;
   const content = document.querySelector("#app");
+  const absenceMngPage = new Page("#app", absenceMng());
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
 
@@ -45,7 +47,9 @@ const route = () => {
       break;
     case "/absent-mng":
       // downloadPage.render();
-      content.innerHTML = html`<h1>부재 관리</h1>`.strings;
+      // content.innerHTML = html`<h1>부재 관리</h1>`.strings;
+      absenceMngPage.render();
+
       break;
     case "/my-page":
       // content.innerHTML = supportPage.render();
