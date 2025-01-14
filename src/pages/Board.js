@@ -102,18 +102,23 @@ export default function boardPage() {
       `; // 페이지 번호 버튼을 동적으로 생성
 
     return `
-        <table class="data-board">
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>작성일자</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
-        ${pagination}
+        <div class="board__table-container">
+          <div class="board__btn-container">
+            <a id="btnAddDataBoard" class="btn btn-gray" href="/board/data/create">게시물 작성</a>
+          </div>
+          <table class="data-board">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일자</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+          ${pagination}
+        </div>
       `;
   };
 

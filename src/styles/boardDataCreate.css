@@ -1,0 +1,26 @@
+.board-data-create {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.board-data-create-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.board-data-create-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+form {
+  background-color: #e1e1e1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: black;
+  height: 100%;
+}

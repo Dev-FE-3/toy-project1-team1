@@ -1,3 +1,15 @@
+/* COMMON */
+.btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.btn.btn-gray {
+  background-color: #929292;
+  color: white;
+}
+
 /* 스크롤 가능한 갤러리 컨테이너 */
 .scrollable-gallery-container {
   width: calc(100% - 200px); /* 네비게이션 바의 너비를 제외한 나머지 영역 */
@@ -103,4 +115,15 @@ table.data-board thead {
   cursor: pointer;
 
   border-radius: 4px;
+}
+
+.board__table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.board__btn-container {
+  display: flex;
+  justify-content: flex-end;
 }
