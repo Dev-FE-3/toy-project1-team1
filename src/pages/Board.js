@@ -1,68 +1,71 @@
+import { html } from "lit-html";
+import "../styles/board.css";
+
+// 자료게시판 데이터
+// 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
+// 내림차순으로 넘버링할지 오름차순으로 할지는 추후 결정
+const dataBoardItems = [
+  { no: 1, title: "A", author: "A", date: "2025-01-01" },
+  { no: 2, title: "B", author: "B", date: "2025-01-02" },
+  { no: 3, title: "C", author: "C", date: "2025-01-03" },
+  { no: 4, title: "D", author: "D", date: "2025-01-04" },
+  { no: 5, title: "E", author: "E", date: "2025-01-05" },
+  { no: 6, title: "F", author: "F", date: "2025-01-06" },
+  { no: 7, title: "G", author: "G", date: "2025-01-07" },
+];
+
+// 공지게시판 데이터
+// 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
+const noticeBoardItems = [
+  {
+    img: "",
+    title: "Notice A",
+    content: "Content A",
+  },
+  {
+    img: "",
+    title: "Notice B",
+    content: "Content B",
+  },
+  {
+    img: "",
+    title: "Notice C",
+    content: "Content C",
+  },
+  {
+    img: "",
+    title: "Notice D",
+    content: "Content D",
+  },
+  {
+    img: "",
+    title: "Notice E",
+    content: "Content E",
+  },
+  {
+    img: "",
+    title: "Notice F",
+    content: "Content F",
+  },
+  {
+    img: "",
+    title: "Notice G",
+    content: "Content G",
+  },
+];
+
 export default function boardPage() {
   let currentTab = "공지게시판"; // 초기 탭은 공지게시판으로 설정
   let currentPage = 1; // 자료게시판의 초기 페이지는 1로 설정
   const itemsPerPage = 6; // 자료게시판의 한 페이지당 항목 수
 
-  // 자료게시판 데이터
-  // 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
-  // 내림차순으로 넘버링할지 오름차순으로 할지는 추후 결정
-  const dataBoardItems = [
-    { no: 1, title: "A", author: "A", date: "2025-01-01" },
-    { no: 2, title: "B", author: "B", date: "2025-01-02" },
-    { no: 3, title: "C", author: "C", date: "2025-01-03" },
-    { no: 4, title: "D", author: "D", date: "2025-01-04" },
-    { no: 5, title: "E", author: "E", date: "2025-01-05" },
-    { no: 6, title: "F", author: "F", date: "2025-01-06" },
-    { no: 7, title: "G", author: "G", date: "2025-01-07" },
-  ];
-
-  // 공지게시판 데이터
-  // 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
-  const noticeBoardItems = [
-    {
-      img: "",
-      title: "Notice A",
-      content: "Content A",
-    },
-    {
-      img: "",
-      title: "Notice B",
-      content: "Content B",
-    },
-    {
-      img: "",
-      title: "Notice C",
-      content: "Content C",
-    },
-    {
-      img: "",
-      title: "Notice D",
-      content: "Content D",
-    },
-    {
-      img: "",
-      title: "Notice E",
-      content: "Content E",
-    },
-    {
-      img: "",
-      title: "Notice F",
-      content: "Content F",
-    },
-    {
-      img: "",
-      title: "Notice G",
-      content: "Content G",
-    },
-  ];
-
   // Tab 생성
   const renderTabs = () => `
-      <div class="tabs">
-        <button class="tab-button" data-tab="공지게시판">공지게시판</button>
-        <button class="tab-button" data-tab="자료게시판">자료게시판</button>
-      </div>
-    `;
+    <div class="tabs">
+      <button class="tab-button" data-tab="공지게시판">공지게시판</button>
+      <button class="tab-button" data-tab="자료게시판">자료게시판</button>
+    </div>
+  `;
 
   // 자료 게시판 render
   const renderDataBoard = () => {
@@ -168,10 +171,11 @@ export default function boardPage() {
     updateUI();
   });
 
-  // html
   return `
-      <h1 id="h1">게시판</h1>
+    <div class="board-container">
+      <h1 class="board-title">게시판</h1>
       ${renderTabs()}
       <div id="board-content">${renderContent()}</div>
-    `;
+    </div>
+  `;
 }

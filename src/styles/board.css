@@ -44,31 +44,50 @@
 }
 
 /* h1 스타일 */
-#h1 {
-  color: white;
-  padding: 20px;
+.board-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.board-title {
+  color: black;
   font-weight: bold;
+  font-size: 24px;
 }
 
 /* 탭 버튼 스타일 */
 .tabs {
   display: flex;
+  flex-direction: row;
   gap: 20px;
-  margin-bottom: 20px;
 }
 
 .tab-button {
-  color: white;
+  color: #777;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 0;
   font-weight: bold;
   cursor: pointer;
   border-radius: 6px;
   transition: background-color 0.3s;
 }
 
-.data-board {
-  margin: 20px;
+.tab-button.active {
+  color: black;
+}
+
+/* 자료 게시판 테이블 */
+table.data-board {
+  width: 100%;
+  color: black;
+}
+
+table.data-board thead {
+  border-top: 3px solid #c5c5c5;
+  border-bottom: 1px solid #c5c5c5;
 }
 
 .pagination {
