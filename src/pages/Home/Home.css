@@ -1,62 +1,27 @@
-*{box-sizing: border-box;}
 h2 {font-size: 1.4rem;}
 h3 {font-size: 1.5rem;}
-body {
+
+/* Home Main */
+#app {
+  width: 100%;
+  color: #000;
+  background-color: #f4f4f4;
+}
+
+.home-main {
+  width: 78%;
+  height: 100%;
   font-family: "Noto Sans KR", serif;
-  font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  background-color: #878787;
-  margin: 0;
-}
-
-.container {
-  max-width: 1809px;
-  min-width: 1500px;
-  width: 90%;
-  height: 100vh;
-  display: flex;
-  margin: 0 auto;
-}
-
-/*Aside*/
-.aside {
-  width: 20%;
-  height: 100%;
-  background-color: #DEDEDE;
-}
-.aside > .logo {
-  width: 100%;
-  padding: 2rem;
-  display: flex;
-}
-.aside > .logo > p {
-  font-size: 1.8rem;
-}
-.aside > nav > ul {
-  padding: 2rem;
-}
-.aside > nav > ul > li {
-  font-size: 1.3rem;
-  padding: .8rem;
-}
-.aside > nav > ul > li:hover {
-  background-color: #a9a9a9;
-  border-radius: .5rem;
-}
-
-/*Home Main*/
-.home-main {
-  width: 80%;
-  height: 100%;
-  background-color: #F5F5F5;
-  padding: 2.5rem 7rem;
+  padding: 1rem 3rem;
 }
 
 /*Home Main - Header*/
 .home-main > header {
   display: flex;
   justify-content: space-between;
+  min-width: 60rem;
 }
 .home-main > header > h1, .time {
   font-size: 2.25rem;
@@ -69,12 +34,13 @@ body {
   height: 2.5rem;
   background-color: #a9a9a9;
   margin-right: 1rem;
+  margin-top: .5rem;
 }
 
 /*Home Main - Contents*/
 .contents {
   width: 100%;
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -87,16 +53,90 @@ body {
   gap: 2rem;
 }
 
+/*Profile*/
+.profile {
+  border-radius: 1.2rem;
+  padding: 2.4rem 3rem;
+  width: 33rem;
+  height: 30rem;
+  background-color: #EAEAEA;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+.profile > .personal-info {
+  display: flex;
+  justify-content: space-between;
+  gap:2rem;
+}
+.profile > .personal-info > .profile-photo-box {
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 100px;
+}
+.profile > .personal-info > .info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1.5rem 0;
+}
+.profile > .personal-info > .info-box > .name {
+  font-size: 2.6rem;
+  font-weight: 600;
+}
+.profile > .personal-info > .info-box > .work {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #404040;
+}
+.profile > .personal-info > .info-box > .work-state {
+  display: flex;
+  gap: 1rem;
+  color: #787878;
+}
+.profile > .personal-info > .info-box > .work-state > .state-icon {
+  width: 1rem;
+  height: 1rem;
+  background-color: #b2b2b2;
+  border-radius: 50%;
+  margin: auto 0;
+}
+.profile > .work-time-check {
+  border-top: 3px solid #E3E3E3;
+  display: flex;
+  justify-content: center;
+  padding: 0 2.5rem;
+  gap: 5.5rem;
+}
+.profile > .work-time-check > div {
+  padding-top: 1.3rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.profile > .work-time-check > div > p {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+.profile > .work-time-button {
+  display: inline;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  width: 6.5rem;
+  background-color: #E3E3E3;
+  border-radius: .4rem;
+}
+
 /*Notice*/
 .contents > .section-top > .notice {
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   width: 35rem;
   height: 30rem;
-  /* background-color: #EAEAEA; */
 }
 .notice >.notice-inner {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   gap: 2rem;
 }
 .notice >.notice-inner > .gallery {
@@ -129,13 +169,12 @@ body {
 
 /*File*/
 .contents >.section-bottom > .file {
-  padding: 1.5rem 0;
   width: 35rem;
   height: 15rem;
   /* background-color: #EAEAEA; */
 }
 .file > ul{
-  margin-top: 0.9rem;
+  margin-top: 0.5rem;
   font-size: 1.1rem;
 }
 .file > ul > li {
@@ -147,73 +186,3 @@ body {
 .file > ul > li:last-child {
   border: none;
 }
-/*Profile*/
-.profile {
-  border-radius: 1.2rem;
-  padding: 2.5rem 3.2rem;
-  width: 33rem;
-  height: 30rem;
-  background-color: #EAEAEA;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-}
-.profile > .personal-info {
-  display: flex;
-  justify-content: space-between;
-  gap:2rem;
-}
-.profile > .personal-info > .profile-photo-box {
-  width: 200px;
-  height: 200px;
-  background-color: #fff;
-  border-radius: 100px;
-}
-.profile > .personal-info > .info-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 1.5rem 0;
-}
-.profile > .personal-info > .info-box > .name {
-  font-size: 3rem;
-  font-weight: 600;
-}
-.profile > .personal-info > .info-box > .work {
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-.profile > .personal-info > .info-box > .work-state {
-  display: flex;
-  gap: 1rem;
-}
-.profile > .personal-info > .info-box > .work-state > .state-icon {
-  width: 1rem;
-  height: 1rem;
-  background-color: #b2b2b2;
-  border-radius: 50%;
-}
-.profile > .work-time-check {
-  border-top: 3px solid #E3E3E3;
-  display: flex;
-  justify-content: center;
-  gap: 5.5rem;
-}
-.profile > .work-time-check > div {
-  padding-top: 2rem;
-  text-align: center;
-  font-size: 1.2rem;
-}
-.profile > .work-time-check > div > p {
-  margin-top: 1rem;
-  font-size: 1.6rem;
-}
-.profile > .work-time-button {
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  width: 7rem;
-  background-color: #E3E3E3;
-  border-radius: .4rem;
-}
-
