@@ -4,6 +4,7 @@ import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
+import home from "./pages/Home/Home"
 
 const app = () => {
   init();
@@ -33,12 +34,14 @@ const navigatePage = (event) => {
 const route = () => {
   const path = window.location.pathname;
   const content = document.querySelector("#app");
+  const homePage = new Page("#app",home());
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
 
   switch (path) {
     case "/":
-      content.innerHTML = html`<h1>홈</h1>`.strings;
+      homePage.render();
+      // content.innerHTML = html`<h1>홈</h1>`.strings;
       break;
     case "/board":
       content.innerHTML = html`<h1>게시판</h1>`.strings;
