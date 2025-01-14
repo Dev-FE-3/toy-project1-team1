@@ -2,7 +2,7 @@ body {
   display: flex;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box;;
 }
 
 ul>li {
@@ -11,7 +11,7 @@ ul>li {
 
 .navDecoration {
   width: 5vw;
-  height: 100vh;
+  height: 100%;
   background-color: #E0E0E0; ;
 }
 
@@ -21,30 +21,36 @@ ul>li {
   background-color: pink;
 }
 
+.myPageWrap {
+  width: 80vw;
+  height: 100vh;
+}
+
 .myPage {
   font-weight: bold;
   font-size: 300%;
-  background-color: #E0E0E0; ;
   width: 20vw;
   height: 20vh;
 }
 
 .nurseImage {
+  margin-top: 15%;
   margin-left: 10%;
   display: flex;
 }
 
-.nurseInfo{
+ul> .nurseInfo{
   background-color: #E0E0E0; ;
-  width: 20vw;
+  width: 200px;
   height: 20vh;
-  margin: 5%;
+  margin: 10%;
   align-items: center;
   text-align: center;
   justify-content: center;
 }
 
 ul>.nurseName {
+  width: 100%;
   font-weight: bold;
   font-size: 250%;
 }
@@ -54,21 +60,22 @@ ul>.nurseName {
   width: 20vw;
   display: flex;
   background-color: #E0E0E0; 
-  margin-right: 20%;
+  margin-left: 10%;
   padding-bottom: 1%;
   border-bottom: 1px solid gray; ;
 }
 
 .dutyStart, .dutyFinish{
   width: 40vw;
-  margin-right: 10%;
+  margin: 10 0 0;
+  padding-top: 8%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
 }
 
-.dutyStart{
-  justify-content: space-between;
+.startTime, .finishTime{
+  margin-top: 5%;
 }
 
 .myPageHeader {
@@ -85,28 +92,36 @@ ul>.nurseName {
 }
 
 .info{
+  height: 50vh;
   display: flex;
   flex-wrap: wrap; 
-  padding: 3% 0 0 1%;
-  margin: 0 auto;
+  padding: 2% 0 0 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .firstDate,.secondDate {
  justify-content: space-around;
  display: flex;
  flex-grow: 1;
- margin-bottom: 5vh;
  margin-right: 4vh;
 } 
 
-.dataOfJoining, .rank, .email{
-  background-color:#E0E0E0; ;
+.dataOfJoining, .rank, .email, .phoneNumber, .HomeAddress, .birthDate{
+  background-color:none; ;
   width: 20vw;
-  height: 25vh;
+  height: 20vh;
+  font-size: 150%;
+  margin-top: 3%;
 }
 
-.phoneNumber, .HomeAddress, .birthDate {
-  background-color:#E0E0E0; ;
-  width: 20vw;
-  height: 25vh;
+.detailInfo{ 
+  padding-top: 3%;
+}
+
+.detailInfo::before {
+  content: '';
+  display: flex;
+  border: 1px solid black;
+  margin-bottom: 5%;
 }
