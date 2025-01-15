@@ -1,11 +1,9 @@
 .myPageContainer {
-  background-color: #fff;
-}
-
-.myPageContainer {
   padding: 5vh 2vw 0;
   width: 80vw;
   height: 100vh;
+  background-color: #fff;
+  position: relative;
 }
 
 .myPage-title {
@@ -29,29 +27,25 @@
   border-radius: 50%;
   position: relative;
   margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.nurseImageIcon {
+/* .nurseImageIcon {
   position: absolute;
   bottom: 0;
   right: 0;
   width: 5vw;
   height: 5vw;
-  background-color: #fff;
+  background-color: violet;
   border-radius: 50%;
   transform: translate(20%, 20%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.imgEditor:hover {
-  cursor: pointer;
-}
+} */
 
 .nurseInfo {
   flex: 1;
-  margin-left: 30px;
+  margin-left: 30vw;
 }
 
 ul > .nurseName {
@@ -143,55 +137,73 @@ ul > .nurseWorking::before {
   flex-shrink: 0;
 }
 
-/* .upload-btn {
-  padding: 8px 16px;
-  background-color: #4caf50;
-  color: white;
+.upload-btn,
+.delete-btn {
+  align-items: center;
+  justify-content: center;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-}
-
-.upload-btn:hover {
-  background-color: #45a049;
+  display: inline-flex;
 }
 
 .upload-btn {
-  display: inline-block;
-  padding: 8px 16px;
   background-color: #4caf50;
   color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
+  height: 50px;
+  width: 100px;
 }
 
-#image-show {
+.delete-btn {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  width: 100px;
+  height: 50px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
   margin-top: 10px;
-  width: 200px;
-  height: 200px;
 }
 
-#image-show img {
-  max-width: 100%;
-  max-height: 100%;
+.profile-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-#fileName {
-  margin-top: 5px;
-  font-size: 12px;
-  color: #666;
-}
-
-#preview-image {
-  border-radius: 50%; /* 원형 이미지로 만들기 */
-/* border: 2px solid #ddd;
-} */
-
-.nurseImage {
+.nurseImageIcon {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  left: 20%;
+  top: 20vh; /* 뷰포트 높이의 20% 위치 */
+  transform: translateX(-50%); /* 중앙 정렬을 위한 이동 */
+}
+
+.image-preview {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #757575;
+  font-size: 14px;
+  border: 2px solid #ddd;
 }
