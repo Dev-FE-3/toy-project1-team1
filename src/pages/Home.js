@@ -4,35 +4,36 @@ import TimeUtil from "../components/TimeUtil.js";
 export default class Home {
   constructor() {
     this.timeUtil = new TimeUtil();
-    this.updateTime = this.updateTime.bind(this);
+    this.timeUtil.updateTime();
   }
 
-  updateTime() {
-    // 시간을 갱신할 때마다 시간과 날짜 부분만 업데이트
-    const currentTime = this.timeUtil.currentTime;
-    const currentDate = this.timeUtil.currentDate;
-
-    // DOM에서 시간과 날짜 부분만 찾아서 업데이트
-    document.querySelector(".hour-min").textContent = currentTime;
-    document.querySelector("#date").textContent = currentDate;
+  changeState = () => {
+    if (document.querySelector(".work-time-button").textContent === '근무 시작'){
+      document.querySelector(".work-time-button").textContent = '근무 종료'
+      document.querySelector(".state-text").textContent = '근무 중'
+      document.querySelector("#startWork").textContent = this.timeUtil.currentTime;
+    } else {
+      document.querySelector(".work-time-button").textContent = '근무 시작'
+      document.querySelector(".state-text").textContent = '근무 전'
+      document.querySelector("#finishWork").textContent = this.timeUtil.currentTime;
+    }
+  }
+  
+  checkTime () {
+    document.querySelector(".work-time-button").addEventListener('click', this.changeState)
   }
 
   render() {
-    const currentTime = this.timeUtil.currentTime;
-    const currentDate = this.timeUtil.currentDate;
-
-    // 처음 렌더링할 때만 전체 구조를 렌더링
-    setInterval(() => {
-      this.updateTime();
-    }, 1000); // 1초마다 시간 갱신
-
+    setTimeout(() => {
+      this.checkTime();
+    }, 1000);
     return `
     <div class="home-main">
       <header>
-        <h1 id = "date"></h1>
+        <h1 id = "date">${this.timeUtil.currentDate}</h1>
         <div class="time">
           <div class="time-icon"></div>
-          <div class="hour-min"></div>
+          <div class="hour-min">${this.timeUtil.currentTime}</div>
         </div>
       </header>
       <div class="contents">
@@ -45,18 +46,18 @@ export default class Home {
                 <p class="work">직무</p>
                 <div class="work-state">
                   <div class="state-icon"></div>
-                  <span class="state-text">근무 중</span>
+                  <span class="state-text">근무 전</span>
                 </div>
               </div>
             </div>
             <div class="work-time-check">
-              <div class="time-start">
+              <div>
                 근무 시작
-                <p>09 : 00</p>
+                <p id ="startWork">00 : 00</p>
               </div>
-              <div class="time-end">
+              <div>
                 근무 종료
-                <p>09 : 00</p>
+                <p id ="finishWork">00 : 00</p>
               </div>
             </div>
             <a class="work-time-button">근무 시작</a>
