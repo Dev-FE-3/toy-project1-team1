@@ -2,13 +2,22 @@ export default class TimeUtil {
   constructor() {
     this.currentTime = this.getCurrentTime();
     this.currentDate = this.getCurrentDate();
-    this.startTimeUpdate();
+    this.updateTime();
   }
 
-  startTimeUpdate() {
+  updateTime () {
     setInterval(() => {
       this.currentTime = this.getCurrentTime();
     }, 1000);
+    setInterval(() => {
+      this.putTime();
+    }, 1000);
+  }
+
+  putTime() {
+    this.getCurrentTime();
+    document.querySelector(".hour-min").textContent = this.currentTime;
+    document.querySelector("#date").textContent = this.currentDate;
   }
 
   getCurrentDate() {
