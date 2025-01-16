@@ -4,6 +4,7 @@ import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
+import staffInfo from "./pages/StaffInfo";
 
 const app = () => {
   init();
@@ -35,6 +36,7 @@ const route = () => {
   const content = document.querySelector("#app");
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
+  const staffInfoPage = new Page("#app", staffInfo());
 
   switch (path) {
     case "/":
@@ -52,8 +54,7 @@ const route = () => {
       content.innerHTML = html`<h1>마이 페이지</h1>`.strings;
       break;
     case "/staff-info":
-      // content.innerHTML = supportPage.render();
-      content.innerHTML = html`<h1>직원 정보</h1>`.strings;
+      staffInfoPage.render();
       break;
     default:
       content.innerHTML = pageNotFound();
