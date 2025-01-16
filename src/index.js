@@ -49,7 +49,6 @@ const route = () => {
       // downloadPage.render();
       // content.innerHTML = html`<h1>부재 관리</h1>`.strings;
       absenceMngPage.render();
-
       break;
     case "/my-page":
       // content.innerHTML = supportPage.render();
