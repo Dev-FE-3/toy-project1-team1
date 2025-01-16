@@ -174,7 +174,7 @@ export default function staffInfo() {
   };
 
   setTimeout(() => {
-    setupUI();
+    updateUI();
   });
 
   return `
