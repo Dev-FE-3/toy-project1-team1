@@ -6,6 +6,7 @@ import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
+import Home from "./pages/Home"
 
 const app = () => {
   init();
@@ -35,6 +36,7 @@ const navigatePage = (event) => {
 const route = () => {
   const path = window.location.pathname;
   const content = document.querySelector("#app");
+  const homePage = new Home();
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
   const myPagePage = new Page("#app", myPage());
@@ -43,6 +45,9 @@ const route = () => {
   switch (path) {
     case "/":
       mylogin.render();
+      break;
+    case "/home":
+      content.innerHTML = homePage.render();
       break;
     case "/board":
       content.innerHTML = html`<h1>게시판</h1>`.strings;
