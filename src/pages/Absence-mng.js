@@ -83,7 +83,7 @@ export default function absenceMng() {
   }, 1000);
 
   return html`
-    <div class="container">
+    <div class="abs-container">
       <h1 class="row1">부재 관리</h1>
 
       <div class="row2">
