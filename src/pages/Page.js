@@ -1,10 +1,10 @@
 export default class Page {
   constructor(container, contents) {
-    this.container = document.querySelector(container)
-    this.contents = contents
+    this.container = document.querySelector(container);
+    this.contents = contents;
   }
 
   render() {
-    this.container.innerHTML = this.contents
+    this.container.innerHTML = this.contents;
   }
 }
