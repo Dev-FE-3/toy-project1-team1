@@ -5,6 +5,8 @@ import "../styles/Absence-mng.css";
 export default function absenceMng() {
   let isDropClick = false;
   let isReqClick = false;
+  let isStartDateClick = false;
+  let isEndDateClick = false;
 
   setTimeout(() => {
     const dropDownBtn = document.getElementById("drop-down-btn");
@@ -13,6 +15,16 @@ export default function absenceMng() {
     const vacationReqBtn = document.getElementById("vacation-request-btn");
     const submitModal = document.getElementById("submit-continer");
     const submitModalBack = document.getElementById("submit-modal-back");
+
+    const startDateBtn = document.querySelector(".start-day-input");
+    const endtDateBtn = document.querySelector(".end-day-input");
+
+    const inputStartDateElement = document.querySelector(
+      'input[name="start-date"]',
+    );
+    const inputEndDateElement = document.querySelector(
+      'input[name="end-date"]',
+    );
 
     const onClickDropBtn = () => {
       if (isDropClick) {
@@ -27,7 +39,6 @@ export default function absenceMng() {
     const onClickReqBtn = () => {
       if (isReqClick) {
         isReqClick = false;
-        console.log("부재신청 클릭");
         submitModal.style.display = "none";
       } else {
         isReqClick = true;
@@ -35,9 +46,40 @@ export default function absenceMng() {
       }
     };
 
+    const onClickStartDataBtn = () => {
+      if (isStartDateClick) {
+        isStartDateClick = false;
+      } else {
+        isStartDateClick = true;
+        inputStartDateElement.showPicker();
+      }
+    };
+
+    const onClickEndtDataBtn = () => {
+      if (isEndDateClick) {
+        isEndDateClick = false;
+      } else {
+        isEndDateClick = true;
+        inputEndDateElement.showPicker();
+      }
+    };
+
+    document.querySelector(".days").addEventListener("click", function (event) {
+      const target = event.target;
+
+      if (target.tagName === "LI") {
+        document
+          .querySelectorAll(".days li")
+          .forEach((li) => li.classList.remove("selected"));
+        target.classList.add("selected");
+      }
+    });
+
     dropDownBtn.addEventListener("click", onClickDropBtn);
     vacationReqBtn.addEventListener("click", onClickReqBtn);
     submitModalBack.addEventListener("click", onClickReqBtn);
+    startDateBtn.addEventListener("click", onClickStartDataBtn);
+    endtDateBtn.addEventListener("click", onClickEndtDataBtn);
   }, 1000);
 
   return html`
@@ -98,27 +140,82 @@ export default function absenceMng() {
             <tr class="row3__item">
               <td>휴가</td>
               <td>승인완료</td>
-              <td>2025.01.02</td>
-              <td>2024.12.29</td>
+              <td>2024.11.07</td>
+              <td>2024.10.13</td>
             </tr>
             <tr class="row3__item">
               <td>병가</td>
               <td>승인완료</td>
-              <td>2025.01.02</td>
-              <td>2024.12.29</td>
-            </tr>
-            <tr class="row3__item">
+              <td>2024.07.02</td>
+              <td>2024.06.15</td>
+              </tr>
+              <tr class="row3__item">
               <td>연차</td>
               <td>승인완료</td>
-              <td>2025.01.02</td>
-              <td>2024.12.29</td>
+              <td>2024.03.18</td>
+              <td>2024.02.02</td>
             </tr>
           </table>
         </div>
 
+
         <div class="row3__calendar">
-          <!-- 모형으로 만들지 진짜 달력을 만들지 -->
+          <div class="nav">
+            <button class="material-icons"> chevron_left </button>
+            <p class="current-date">2025.1</p>
+            <button class="material-icons"> chevron_right </span>
+          </div>
+
+          <div class="calendar">
+            <ul class="weeks">
+              <li>일</li>
+              <li>월</li>
+              <li>화</li>
+              <li>수</li>
+              <li>목</li>
+              <li>금</li>
+              <li>토</li>
+            </ul>
+            <ul class="days">
+              <li class="inactive">29</li>
+              <li class="inactive">30</li>
+              <li class="inactive">31</li>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+              <li>13</li>
+              <li>14</li>
+              <li>15</li>
+              <li>16</li>
+              <li>17</li>
+              <li>18</li>
+              <li>19</li>
+              <li>20</li>
+              <li>21</li>
+              <li>22</li>
+              <li>23</li>
+              <li>24</li>
+              <li>25</li>
+              <li>26</li>
+              <li>27</li>
+              <li>28</li>
+              <li>29</li>
+              <li>30</li>
+              <li>31</li>
+              <li class="inactive">1</li>
+            </ul>
+          </div>
         </div>
+
       </div>
 
       <div id="submit-continer" style="display:none">
@@ -140,8 +237,8 @@ export default function absenceMng() {
 
           <div class="start-day">
             <div class="title">시작일</div>
-            <div class="item">
-              <input type="date" />
+            <div class="item start-day-input">
+              <input name="start-date" type="date" />
             </div>
           </div>
 
@@ -154,8 +251,8 @@ export default function absenceMng() {
 
           <div class="end-day">
             <div class="title">종료일</div>
-            <div class="item">
-              <input type="date" />
+            <div class="item end-day-input">
+              <input name="end-date" type="date" />
             </div>
           </div>
 
