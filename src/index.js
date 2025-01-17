@@ -4,7 +4,7 @@ import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
-import home from "./pages/Home/Home"
+import Home from "./pages/Home"
 
 const app = () => {
   init();
@@ -34,13 +34,13 @@ const navigatePage = (event) => {
 const route = () => {
   const path = window.location.pathname;
   const content = document.querySelector("#app");
-  const homePage = new Page("#app",home());
+  const homePage = new Home();
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
 
   switch (path) {
     case "/":
-      homePage.render();
+      content.innerHTML = homePage.render();
       // content.innerHTML = html`<h1>홈</h1>`.strings;
       break;
     case "/board":
@@ -51,8 +51,8 @@ const route = () => {
       content.innerHTML = html`<h1>부재 관리</h1>`.strings;
       break;
     case "/my-page":
-      // content.innerHTML = supportPage.render();
-      content.innerHTML = html`<h1>마이 페이지</h1>`.strings;
+      content.innerHTML = supportPage.render();
+      // content.innerHTML = html`<h1>마이 페이지</h1>`.strings;
       break;
     case "/staff-info":
       // content.innerHTML = supportPage.render();
