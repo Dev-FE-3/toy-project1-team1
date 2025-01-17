@@ -1,5 +1,7 @@
 import { html } from "lit-html";
 
+import myPage from "./pages/MyPage";
+import login from "./pages/Login";
 import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
@@ -35,10 +37,12 @@ const route = () => {
   const content = document.querySelector("#app");
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
+  const myPagePage = new Page("#app", myPage());
+  const mylogin = new Page("main", login());
 
   switch (path) {
     case "/":
-      content.innerHTML = html`<h1>홈</h1>`.strings;
+      mylogin.render();
       break;
     case "/board":
       content.innerHTML = html`<h1>게시판</h1>`.strings;
@@ -48,8 +52,7 @@ const route = () => {
       content.innerHTML = html`<h1>부재 관리</h1>`.strings;
       break;
     case "/my-page":
-      // content.innerHTML = supportPage.render();
-      content.innerHTML = html`<h1>마이 페이지</h1>`.strings;
+      myPagePage.render();
       break;
     case "/staff-info":
       // content.innerHTML = supportPage.render();
