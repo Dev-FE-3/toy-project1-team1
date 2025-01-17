@@ -39,6 +39,7 @@ export default function myPage() {
       const previewImage = document.getElementById("preview-image");
       const deleteBtn = document.getElementById("delete-btn");
       const placeholder = document.getElementById("placeholder");
+      const uploadBtn = document.querySelector(".upload-btn");
 
       if (previewImage && e.target) {
         // 이미지 미리보기 표시
@@ -50,6 +51,8 @@ export default function myPage() {
 
         // 플레이스홀더 숨기기
         if (placeholder) placeholder.style.display = "none";
+
+        if (uploadBtn) uploadBtn.style.display = "none";
       }
     };
 
@@ -71,6 +74,7 @@ export default function myPage() {
     const previewImage = document.getElementById("preview-image");
     const deleteBtn = document.getElementById("delete-btn");
     const placeholder = document.getElementById("placeholder");
+    const uploadBtn = document.querySelector(".upload-btn");
 
     if (previewImage) {
       // 이미지 미리보기 초기화
@@ -82,6 +86,8 @@ export default function myPage() {
       // 삭제 버튼 숨기기
       deleteBtn.style.display = "none";
     }
+
+    if (uploadBtn) uploadBtn.style.display = "block";
 
     if (placeholder) {
       // 이미지 없음 플레이스홀더 다시 표시
@@ -131,7 +137,7 @@ export default function myPage() {
              class="upload-btn"
              onclick="window.onUploadButtonClick()"
            >
-             <i class="material-icons">edit</i>
+             <i class="material-icons edit">edit</i>
            </button>
            <!-- 이미지 삭제 버튼 - 이미지가 있을 때만 표시 -->
            <button
