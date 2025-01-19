@@ -1,62 +1,62 @@
 import "../styles/board.css";
 
+// 자료게시판 데이터
+// 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
+// 내림차순으로 넘버링할지 오름차순으로 할지는 추후 결정
+const dataBoardItems = [
+  { no: 1, title: "A", author: "A", date: "2025-01-01" },
+  { no: 2, title: "B", author: "B", date: "2025-01-02" },
+  { no: 3, title: "C", author: "C", date: "2025-01-03" },
+  { no: 4, title: "D", author: "D", date: "2025-01-04" },
+  { no: 5, title: "E", author: "E", date: "2025-01-05" },
+  { no: 6, title: "F", author: "F", date: "2025-01-06" },
+  { no: 7, title: "G", author: "G", date: "2025-01-07" },
+];
+
+// 공지게시판 데이터
+// 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
+const noticeBoardItems = [
+  {
+    img: "",
+    title: "Notice A",
+    content: "Content A",
+  },
+  {
+    img: "",
+    title: "Notice B",
+    content: "Content B",
+  },
+  {
+    img: "",
+    title: "Notice C",
+    content: "Content C",
+  },
+  {
+    img: "",
+    title: "Notice D",
+    content: "Content D",
+  },
+  {
+    img: "",
+    title: "Notice E",
+    content: "Content E",
+  },
+  {
+    img: "",
+    title: "Notice F",
+    content: "Content F",
+  },
+  {
+    img: "",
+    title: "Notice G",
+    content: "Content G",
+  },
+];
+
 export default function board() {
   let currentTab = "공지게시판"; // 초기 탭은 공지게시판으로 설정
   let currentPage = 1; // 자료게시판의 초기 페이지는 1로 설정
   const itemsPerPage = 6; // 자료게시판의 한 페이지당 항목 수
-
-  // 자료게시판 데이터
-  // 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
-  // 내림차순으로 넘버링할지 오름차순으로 할지는 추후 결정
-  const dataBoardItems = [
-    { no: 1, title: "A", author: "A", date: "2025-01-01" },
-    { no: 2, title: "B", author: "B", date: "2025-01-02" },
-    { no: 3, title: "C", author: "C", date: "2025-01-03" },
-    { no: 4, title: "D", author: "D", date: "2025-01-04" },
-    { no: 5, title: "E", author: "E", date: "2025-01-05" },
-    { no: 6, title: "F", author: "F", date: "2025-01-06" },
-    { no: 7, title: "G", author: "G", date: "2025-01-07" },
-  ];
-
-  // 공지게시판 데이터
-  // 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
-  const noticeBoardItems = [
-    {
-      img: "",
-      title: "Notice A",
-      content: "Content A",
-    },
-    {
-      img: "",
-      title: "Notice B",
-      content: "Content B",
-    },
-    {
-      img: "",
-      title: "Notice C",
-      content: "Content C",
-    },
-    {
-      img: "",
-      title: "Notice D",
-      content: "Content D",
-    },
-    {
-      img: "",
-      title: "Notice E",
-      content: "Content E",
-    },
-    {
-      img: "",
-      title: "Notice F",
-      content: "Content F",
-    },
-    {
-      img: "",
-      title: "Notice G",
-      content: "Content G",
-    },
-  ];
 
   // Tab 생성
   const renderTabs = () => `
@@ -94,20 +94,26 @@ export default function board() {
     const pagination = `
         <div class="pagination">
           <!-- 이전 페이지로 이동 -->
-          <button class="pagination-button" data-page="${currentPage - 1}" ${currentPage === 1 ? "disabled" : ""}>&lt;</button>
+          <button class="pagination-button" data-page="${currentPage - 1}" ${
+            currentPage === 1 ? "disabled" : ""
+          }>&lt;</button>
     
           <!-- 페이지 번호 표시 -->
           ${Array.from({ length: endPage - startPage + 1 }, (_, i) => {
             const page = startPage + i; // 페이지 번호
             return `
-              <button class="pagination-button" data-page="${page}" ${page === currentPage ? 'class="active"' : ""}>
+              <button class="pagination-button" data-page="${page}" ${
+                page === currentPage ? 'class="active"' : ""
+              }>
                 ${page}
               </button>
             `;
           }).join("")}
     
           <!-- 다음 페이지로 이동 -->
-          <button class="pagination-button" data-page="${currentPage + 1}" ${currentPage === totalPages ? "disabled" : ""}>&gt;</button>
+          <button class="pagination-button" data-page="${currentPage + 1}" ${
+            currentPage === totalPages ? "disabled" : ""
+          }>&gt;</button>
         </div>
       `;
 
@@ -162,7 +168,23 @@ export default function board() {
       : renderDataBoard();
   };
 
-  // 기존의 updateUI 함수 안에서 페이지네이션 버튼을 위한 코드 추가
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".tab-button");
+
+    // 첫 번째 탭에 'active' 클래스 추가 (페이지 로딩 시)
+    tabs[0].classList.add("active");
+
+    tabs.forEach((button) => {
+      button.addEventListener("click", () => {
+        // 모든 탭에서 'active' 클래스 제거
+        tabs.forEach((btn) => btn.classList.remove("active"));
+
+        // 클릭한 탭에만 'active' 클래스 추가
+        button.classList.add("active");
+      });
+    });
+  });
+
   const updateUI = () => {
     document.querySelector("#board-content").innerHTML = renderContent();
 
@@ -191,23 +213,6 @@ export default function board() {
     }
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const tabs = document.querySelectorAll(".tab-button");
-
-    // 첫 번째 탭에 'active' 클래스 추가 (페이지 로딩 시)
-    tabs[0].classList.add("active");
-
-    tabs.forEach((button) => {
-      button.addEventListener("click", () => {
-        // 모든 탭에서 'active' 클래스 제거
-        tabs.forEach((btn) => btn.classList.remove("active"));
-
-        // 클릭한 탭에만 'active' 클래스 추가
-        button.classList.add("active");
-      });
-    });
-  });
-
   setTimeout(() => {
     const tabButtons = document.querySelectorAll(".tab-button");
     tabButtons.forEach((button) =>
@@ -216,6 +221,7 @@ export default function board() {
         tabButtons.forEach((btn) => btn.classList.remove("active"));
         // 클릭한 버튼에만 active 클래스 추가
         e.target.classList.add("active");
+
         currentTab = e.target.dataset.tab;
         currentPage = 1; // 탭 변경 시 페이지 초기화
         updateUI();

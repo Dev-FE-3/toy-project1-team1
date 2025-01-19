@@ -5,6 +5,7 @@ import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
 import board from "./pages/Board";
+import boardDataCreatePage from "./pages/BoardDataCreate";
 
 const app = () => {
   init();
@@ -56,6 +57,9 @@ const route = () => {
     case "/staff-info":
       // content.innerHTML = supportPage.render();
       content.innerHTML = html`<h1>직원 정보</h1>`.strings;
+      break;
+    case "/board/data/create":
+      content.innerHTML = boardDataCreatePage();
       break;
     default:
       content.innerHTML = pageNotFound();

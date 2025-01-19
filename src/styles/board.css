@@ -26,7 +26,6 @@ section {
   display: flex;
 }
 
-/* tab button */
 .tab-button {
   color: black;
   font-size: 14px;
@@ -56,9 +55,9 @@ section {
 }
 
 .create-post-button:hover {
-  background-color: #ccc;
+  background-color: #ccc; /* 활성화된 탭의 배경 색 */
+  color: #333; /* 텍스트 색 */
   font-weight: bold;
-  color: black;
 }
 
 /* gallery container */
@@ -133,17 +132,17 @@ section {
   flex-grow: 1;
   border-collapse: collapse;
   width: 100%;
-  text-align: center;
 }
 
+.data-board th,
 .data-board td {
-  padding: 15px 20px;
+  padding: 20px;
+  text-align: center;
 }
 
 .data-board thead th {
   font-weight: bold; /* 헤더 강조 */
   border-bottom: 1px solid black;
-  padding: 10px 20px;
 }
 
 .pagination-container {
@@ -155,20 +154,18 @@ section {
 
 /* 페이지네이션 버튼 */
 .pagination-button {
-  font-size: 14px;
   margin: 0 4px;
-  /* padding: 8px 12px; */
-  padding: 5px 10px;
+  padding: 8px 12px;
   cursor: pointer;
   height: 40px; /* 고정 높이 설정 */
   display: inline-flex; /* 버튼을 인라인으로 배치 */
   align-items: center; /* 세로 가운데 정렬 */
   justify-content: center; /* 가로 가운데 정렬 */
   border-radius: 6px;
+  font-size: 14px;
 }
 
 .pagination-button.active {
-  background-color: #ccc;
-  color: black; /* 활성화된 페이지 글자색 */
+  background-color: #ccc; /* 활성화된 탭의 배경 색 */
   font-weight: bold;
 }
