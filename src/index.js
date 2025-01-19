@@ -4,7 +4,7 @@ import Page from "./pages/Page";
 import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
-import boardPage from "./pages/Board";
+import board from "./pages/Board";
 
 const app = () => {
   init();
@@ -36,13 +36,14 @@ const route = () => {
   const content = document.querySelector("#app");
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
+  const boardPage = new Page("#app", board());
 
   switch (path) {
     case "/":
       content.innerHTML = html`<h1>홈</h1>`.strings;
       break;
     case "/board":
-      content.innerHTML = boardPage();
+      boardPage.render();
       break;
     case "/absent-mng":
       // downloadPage.render();
