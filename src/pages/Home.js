@@ -8,14 +8,22 @@ export default class Home {
   }
 
   changeState = () => {
-    if (document.querySelector(".work-time-button").textContent === '근무 시작'){
-      document.querySelector(".work-time-button").textContent = '근무 종료'
-      document.querySelector(".state-text").textContent = '근무 중'
-      document.querySelector("#startWork").textContent = this.timeUtil.currentTime;
+    const currentTime = this.timeUtil.getCurrentTime();
+    const workTimeButton = document.querySelector(".work-time-button");
+    const workState = document.querySelector(".state-text");
+
+    if (workTimeButton.textContent === '근무 시작'){
+      window.localStorage.setItem('endTime','00 : 00');
+      workTimeButton.textContent = '근무 종료'
+      workState .textContent = '근무 중'
+      document.querySelector("#startWork").textContent = currentTime;
+      window.localStorage.setItem('startTime',currentTime);
+
     } else {
-      document.querySelector(".work-time-button").textContent = '근무 시작'
-      document.querySelector(".state-text").textContent = '근무 전'
-      document.querySelector("#finishWork").textContent = this.timeUtil.currentTime;
+      workTimeButton.textContent = '근무 시작'
+      workState .textContent = '근무 전'
+      document.querySelector("#finishWork").textContent = currentTime;
+      window.localStorage.setItem('endTime',currentTime);
     }
   }
   

@@ -5,6 +5,18 @@ export default function myPage() {
     window.history.go(-1);
   };
 
+  // localStorge를 활용한 근무 시간 변경
+  const changeState = () => {
+    const startTime = window.localStorage.getItem('startTime');
+    const endTime = window.localStorage.getItem('endTime');
+    document.getElementById("startWork").textContent = startTime;
+    document.getElementById("finishWork").textContent = endTime;
+  }
+
+  setTimeout(() => {
+    changeState();
+  }, 100);
+
   // * 이미지 업로드 버튼 클릭 시 실행되는 함수
   // * 파일 선택을 위한 input 요소를 동적으로 생성하고 클릭 이벤트를 발생시킴
 
@@ -162,11 +174,11 @@ export default function myPage() {
        <div class="workTime">
          <div class="dutyStart">
            근무시작
-           <div class="startTime">09:00</div>
+           <div id="startWork">00 : 00</div>
          </div>
          <div class="dutyFinish">
            근무종료
-           <div class="finishTime">00:00</div>
+           <div id="finishWork">00 : 00</div>
          </div>
        </div>
      </div>
