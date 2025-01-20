@@ -16,8 +16,10 @@ export default class TimeUtil {
 
   putTime() {
     this.getCurrentTime();
-    document.querySelector(".hour-min").textContent = this.currentTime;
-    document.querySelector("#date").textContent = this.currentDate;
+    if (document.querySelector(".hour-min")){
+      document.querySelector(".hour-min").textContent = this.currentTime;
+      document.querySelector("#date").textContent = this.currentDate;
+    }
   }
 
   getCurrentDate() {
