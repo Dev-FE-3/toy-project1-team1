@@ -12,29 +12,45 @@ export default class Home {
     const workTimeButton = document.querySelector(".work-time-button");
     const workState = document.querySelector(".state-text");
 
-    if (workTimeButton.textContent === '근무 시작'){
-      window.localStorage.setItem('endTime','00 : 00');
-      workTimeButton.textContent = '근무 종료'
-      workState .textContent = '근무 중'
-      document.querySelector("#startWork").textContent = currentTime;
+    if (workTimeButton.textContent === '근무 시작' ){
+      window.localStorage.setItem('workState','working');
       window.localStorage.setItem('startTime',currentTime);
-
+      window.localStorage.setItem('endTime','00 : 00');
+      document.getElementById("startWork").textContent = window.localStorage.getItem('startTime');
+      document.getElementById("finishWork").textContent = window.localStorage.getItem('endTime');;
+      workTimeButton.textContent = '근무 종료'
+      workState.textContent = '근무 중'
     } else {
-      workTimeButton.textContent = '근무 시작'
-      workState .textContent = '근무 전'
-      document.querySelector("#finishWork").textContent = currentTime;
+      window.localStorage.setItem('workState','beforeWork')
       window.localStorage.setItem('endTime',currentTime);
+      document.getElementById("finishWork").textContent = window.localStorage.getItem('endTime');
+      workTimeButton.textContent = '근무 시작'
+      workState.textContent = '근무 전'
     }
   }
   
   checkTime () {
+    const currentTime = this.timeUtil.getCurrentTime();
+    const workTimeButton = document.querySelector(".work-time-button");
+    const workState = document.querySelector(".state-text");
+
+    if(window.localStorage.getItem('workState') === 'working'){
+      window.localStorage.setItem('workState','working');
+      window.localStorage.setItem('startTime',currentTime);
+      window.localStorage.setItem('endTime','00 : 00');
+      document.getElementById("startWork").textContent = window.localStorage.getItem('startTime');
+      document.getElementById("finishWork").textContent = window.localStorage.getItem('endTime');;
+      workTimeButton.textContent = '근무 종료'
+      workState.textContent = '근무 중'
+    }
+
     document.querySelector(".work-time-button").addEventListener('click', this.changeState)
   }
 
   render() {
     setTimeout(() => {
       this.checkTime();
-    }, 1000);
+    }, 0);
     return `
     <div class="home-main">
       <header>
