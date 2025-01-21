@@ -1,3 +1,20 @@
+/* 애니메이션 */
+
+@eyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loginWrap * {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* 로그인페이지 */
+
 * {
   padding: 0;
   margin: 0;
@@ -113,7 +130,8 @@
   margin-top: 3%;
 }
 
-.loginBtn {
+.staffLoginBtn,
+.managerLoginBtn {
   margin-top: 30px;
   border-radius: 8px;
   width: 15vw;
@@ -124,11 +142,14 @@
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: 0.25s;
   color: #fff;
+  justify-content: center;
+  text-align: center;
 }
 
-.loginBtn:hover {
+.staffLoginBtn:hover,
+.managerLoginBtn:hover {
   font-weight: bold;
-  transition: 0.5s;
+  transition: 0.3s;
 }

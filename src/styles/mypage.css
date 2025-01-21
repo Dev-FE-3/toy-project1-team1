@@ -1,15 +1,35 @@
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.myPageContainer > *:not(.nurseImageIcon) {
+  animation: fadeIn 0.6s ease-out;
+}
+.nurseImageIcon {
+  animation: fadeIn 0.3s;
+}
+
+/* 마이페이지 */
+
 .myPageContainer {
-  padding: 5vh 2vw 0;
+  padding: 80px 50px;
   width: 80vw;
   height: 100vh;
-  background-color: #fff;
+  background-color: #0066cc;
   position: relative;
 }
 
 .myPage-title {
   font-weight: bold;
   font-size: 24px;
-  margin: 0 2% 3vh;
+  margin: 0 2% 1%;
+  color: white;
 }
 
 .myPageHeader {
@@ -20,10 +40,62 @@
   gap: 100px;
 }
 
+.headerWrap {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.back,
+.disabledEditBtn {
+  margin-left: 20px;
+  background-color: #ffd700;
+  border: 2px solid white;
+  width: 5vw;
+  height: 5vh;
+  cursor: pointer;
+  border-radius: 0.5em;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.back:hover,
+.disabledEditBtn:hover {
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.disabledEditBtn {
+  width: 8vw;
+}
+
+.upload-btn,
+.delete-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.detailInfoEdit {
+  font-weight: normal;
+  width: 100%;
+  height: 5vh;
+  margin-top: 10px;
+  padding: 3%;
+  border-radius: 0.5em;
+  font-size: 16px;
+  border: none;
+  text-align: left;
+  padding-left: 15px;
+  line-height: normal;
+  color: #2f2f2f;
+  background-color: #ffd700;
+  border: 2px solid white;
+}
+
 .nurseImage {
   width: 15vw;
   height: 15vw;
-  background-color: #d3d3d3;
   border-radius: 50%;
   position: relative;
   margin-left: 10%;
@@ -32,39 +104,111 @@
   align-items: center;
 }
 
-/* .nurseImageIcon {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 5vw;
-  height: 5vw;
-  background-color: violet;
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
-  transform: translate(20%, 20%);
-} */
+  border: 2px solid #0066cc;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 16px;
+  border: 2px solid #ffd700;
+}
+
+.image-preview {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.nurseImageIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 18%;
+  top: 25vh;
+  transform: translateX(-50%);
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.upload-btn,
+.delete-btn {
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  position: absolute;
+  right: 0;
+  top: 150px;
+  z-index: 1;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: none;
+}
+
+.upload-btn:hover,
+.delete-btn:hover {
+  text-shadow: 0 0 1px currentColor;
+  transition: 0.3s;
+}
+
+.upload-btn {
+  background-color: #ffd700;
+  color: black;
+}
+
+.delete-btn {
+  background-color: black;
+  color: white;
+}
 
 .nurseInfo {
   flex: 1;
   margin-left: 30vw;
+  margin-bottom: 10vh;
 }
 
 ul > .nurseName {
+  width: 10vw;
   font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 1vh;
+  margin-top: 11vh;
+  color: white;
 }
 
 ul > .nurseLank {
   font-size: 16px;
+  color: white;
 }
 
 ul > .nurseWorking {
-  font-weight: bold;
   margin-top: 1vh;
   font-size: 12px;
   display: flex;
   align-items: center;
   gap: 2%;
+  color: white;
 }
 
 ul > .nurseWorking::before {
@@ -82,24 +226,39 @@ ul > .nurseWorking::before {
   display: flex;
   padding-bottom: 2vh;
   border-bottom: 2px solid #d3d3d3;
-  margin-right: 5%;
+  margin-right: 100px;
+  color: white;
 }
 
 .dutyStart,
 .dutyFinish {
   flex: 1;
   text-align: center;
-  font-size: 1.2vw;
+  font-size: 24px;
 }
 
 .startTime,
 .finishTime {
   margin-top: 2vh;
-  font-size: 1.4vw;
+  font-size: 16px;
 }
 
 .info {
-  padding: 2vh 2vw;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.info-column {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 2vw;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2vh;
 }
 
 .firstDate,
@@ -115,119 +274,36 @@ ul > .nurseWorking::before {
 .phoneNumber,
 .HomeAddress,
 .birthDate {
-  width: 30%;
-  padding: 2vh 0;
+  padding: 1vh 0;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #0066cc;
+  color: white;
 }
 
-.detailInfo {
+.infoWrap {
+  margin-top: 1vh;
+}
+
+.dot {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 1vw;
-  margin-top: 1vh;
-  border-top: 1px solid #d3d3d3;
-  padding-top: 1vh;
 }
 
-.detailInfo::before {
+.dot::before {
   content: "";
+  display: inline-block;
   width: 0.3vw;
   height: 0.3vw;
   background-color: #d3d3d3;
   border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.upload-btn,
-.delete-btn {
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  display: inline-flex;
   position: absolute;
-  right: 0;
-  top: 150px;
-  z-index: 1;
+  left: -20px;
+  top: 55%;
+  transform: translateY(-10%);
 }
 
-.upload-btn {
-  background-color: #d3d3d3;
-  color: black;
-  height: 50px;
-  width: 100px;
-}
-
-.delete-btn {
-  background-color: black;
-  color: white;
-  border: none;
-  width: 100px;
-  height: 50px;
-}
-
-.button-container {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.profile-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #ddd;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.nurseImageIcon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  left: 20%;
-  top: 20vh; /* 뷰포트 높이의 20% 위치 */
-  transform: translateX(-50%); /* 중앙 정렬을 위한 이동 */
-}
-
-.image-preview {
-  width: 200px;
-  height: 200px;
-  position: relative;
-}
-
-.placeholder {
-  width: 100%;
-  height: 100%;
-  background-color: #e0e0e0;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #757575;
-  font-size: 14px;
-  border: 2px solid #ddd;
-}
-
-.back {
-  background-color: #e0e0e0;
-  width: 5vw;
-  height: 4vh;
-  border-radius: 4px;
-  border: none;
-  margin-left: 30px;
-}
-
-.back:hover {
-  cursor: pointer;
-}
-
-.upload-btn,
-.delete-btn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.hide-dot::before {
+  display: none;
 }
