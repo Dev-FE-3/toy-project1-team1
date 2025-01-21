@@ -1,4 +1,4 @@
-import "../styles/board.css";
+import "../styles/board-1.css";
 
 // 자료게시판 데이터
 // 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
@@ -65,6 +65,7 @@ export default function board() {
         <button class="tab-button active" data-tab="공지게시판">공지게시판</button>
         <button class="tab-button" data-tab="자료게시판">자료게시판</button>
       </div>
+      <a id="btnAddDataBoard" class="create-post-button" href="/board/data/create">게시물 작성</a>
     </div>
   `;
 

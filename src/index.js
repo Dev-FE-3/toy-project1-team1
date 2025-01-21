@@ -27,8 +27,28 @@ const navigatePage = (event) => {
   const anchor = event.target.closest("a");
 
   if (anchor && anchor.href) {
+    // 메뉴의 active 클래스를 업데이트
+    updateActiveMenu();
     history.pushState(null, null, anchor.href);
     route();
+  }
+};
+
+const updateActiveMenu = () => {
+  const allMenuItems = document.querySelectorAll("nav ul li a");
+  const currentPath = window.location.pathname;
+
+  // 모든 메뉴에서 active 클래스를 제거
+  allMenuItems.forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  // 현재 경로에 해당하는 메뉴에 active 클래스를 추가
+  const activeMenu = Array.from(allMenuItems).find(
+    (item) => item.getAttribute("href") === currentPath,
+  );
+  if (activeMenu) {
+    activeMenu.classList.add("active");
   }
 };
 
@@ -38,6 +58,8 @@ const route = () => {
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
   const boardPage = new Page("#app", board());
+
+  updateActiveMenu();
 
   switch (path) {
     case "/":
