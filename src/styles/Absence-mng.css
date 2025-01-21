@@ -10,7 +10,7 @@
   /* padding: 70px 100px; */
 
   color: black;
-
+  /* background-color:; */
   display: flex;
   gap: 30px;
   flex-direction: column;
@@ -144,9 +144,6 @@
   margin: 0px 0px;
 }
 
-.row3__item td:first-child {
-}
-
 .row3__item td:nth-child(2) {
   margin-left: 57px;
 }
@@ -261,6 +258,13 @@
   z-index: -1;
 }
 
+.days li:nth-child(5)::before {
+  background-color: #6d6d6d !important;
+}
+.days li:nth-child(5) {
+  color: #fff;
+}
+
 .days li:hover::before {
   background-color: #f2f2f2;
 }
@@ -321,9 +325,6 @@
   font-weight: bold;
 }
 
-.type-of-vacation {
-}
-
 input[type="date"],
 #kind {
   border: none;
@@ -332,10 +333,6 @@ input[type="date"],
   background-color: #f5f5f5;
   /* appearance: none; */
   text-align: center;
-}
-input[type="date"]:focus,
-#kind:focus {
-  /* outline: none; */
 }
 
 #kind {
@@ -367,8 +364,6 @@ input[type="date"]:focus,
   color: #8b95a1;
 }
 
-.submit-btn {
-}
 .submit-btn__item {
   width: 100%;
   display: flex;

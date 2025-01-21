@@ -7,7 +7,7 @@ import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
 import absenceMng from "./pages/Absence-mng";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 
 const app = () => {
   init();

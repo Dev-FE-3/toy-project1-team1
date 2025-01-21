@@ -11,10 +11,12 @@ export default function absenceMng() {
   setTimeout(() => {
     const dropDownBtn = document.getElementById("drop-down-btn");
     const dorpDownMenu = document.querySelector(".row3__drop-menu");
+    const rows = document.querySelectorAll(".row3__item");
 
     const vacationReqBtn = document.getElementById("vacation-request-btn");
     const submitModal = document.getElementById("submit-continer");
     const submitModalBack = document.getElementById("submit-modal-back");
+    // const submitApplyBtn = document.getElementById("submit-modal-apply");
 
     const startDateBtn = document.querySelector(".start-day-input");
     const endtDateBtn = document.querySelector(".end-day-input");
@@ -26,6 +28,8 @@ export default function absenceMng() {
       'input[name="end-date"]',
     );
 
+    // const absenceForm = document.querySelector(".submit-modal");
+
     const onClickDropBtn = () => {
       if (isDropClick) {
         isDropClick = false;
@@ -36,14 +40,54 @@ export default function absenceMng() {
       }
     };
 
+    const onSelectVacationType = (event) => {
+      const selectedType = event.target.textContent;
+
+      // 각 row의 휴가 종류에 맞게 표시 여부 설정
+      rows.forEach((row) => {
+        const vacationType = row.children[0].textContent;
+        if (selectedType === "전체" || vacationType === selectedType) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+      onClickDropBtn();
+    };
+
+    // 드롭다운 메뉴 항목에 클릭 이벤트 추가
+    const dropMenuItems = document.querySelectorAll(".row3__drop-menu div");
+    dropMenuItems.forEach((item) => {
+      item.addEventListener("click", onSelectVacationType);
+    });
+
     const onClickReqBtn = () => {
-      if (isReqClick) {
-        isReqClick = false;
-        submitModal.style.display = "none";
-      } else {
-        isReqClick = true;
-        submitModal.style.display = "";
-      }
+      isReqClick = !isReqClick;
+      submitModal.style.display = isReqClick ? "flex" : "none";
+      console.log(isReqClick ? "모달 창 온" : "모달 창 닫힘");
+    };
+
+    // 왜 안될까~~~~
+    const handleFormSubmit = (event) => {
+      console.log("ㅎㅇㅎ");
+      event.preventDefault();
+      console.log("Form submit event triggered");
+      console.log(event.target);
+
+      const formData = new FormData(event.target);
+      const typeOfVacation = formData.get("type-of-vacation");
+      const startDate = formData.get("start-date");
+      const endDate = formData.get("end-date");
+      const reason = formData.get("reason");
+
+      console.log("Form Data:", {
+        typeOfVacation,
+        startDate,
+        endDate,
+        reason,
+      });
+
+      event.target.reset();
     };
 
     const onClickStartDataBtn = () => {
@@ -80,6 +124,21 @@ export default function absenceMng() {
     submitModalBack.addEventListener("click", onClickReqBtn);
     startDateBtn.addEventListener("click", onClickStartDataBtn);
     endtDateBtn.addEventListener("click", onClickEndtDataBtn);
+
+    if (submitModal && submitModal.tagName === "FORM") {
+      // 왜 안될까~~~~2
+      submitModal.addEventListener("submit", handleFormSubmit);
+      // submitModal.addEventListener("click", handleFormSubmit);
+      // console.dir(submitModal);
+      // console.log("추가됨");
+      // console.log(getEventListeners(submitModal));
+      // getEventListeners(document);
+    } else {
+      console.error("submitModal is not a valid FORM element");
+    }
+
+    // submitModal.addEventListener("submit", handleFormSubmit);
+    // submitApplyBtn.addEventListener("click", handleFormSubmit);
   }, 1000);
 
   return html`
@@ -119,6 +178,7 @@ export default function absenceMng() {
                 <span id="drop-down-btn">▼</span>
                 <!-- 드롭다운 메뉴 -->
                 <div class="row3__drop-menu" style="display : none">
+                  <div>전체</div>
                   <div>연차</div>
                   <div>반차</div>
                   <div>휴가</div>
@@ -137,24 +197,48 @@ export default function absenceMng() {
               <td>2025.01.02</td>
               <td>2024.12.29</td>
             </tr>
+            
             <tr class="row3__item">
               <td>휴가</td>
               <td>승인완료</td>
               <td>2024.11.07</td>
               <td>2024.10.13</td>
             </tr>
+            
             <tr class="row3__item">
               <td>병가</td>
               <td>승인완료</td>
-              <td>2024.07.02</td>
               <td>2024.06.15</td>
-              </tr>
-              <tr class="row3__item">
+              <td>2024.06.15</td>
+            </tr>
+            
+            <tr class="row3__item">
               <td>연차</td>
               <td>승인완료</td>
               <td>2024.03.18</td>
               <td>2024.02.02</td>
             </tr>
+            
+            <tr class="row3__item">
+              <td>반차</td>
+              <td>승인완료</td>
+              <td>2024.02.03</td>
+              <td>2024.02.03</td>
+            </tr>
+
+            <tr class="row3__item">
+              <td>연차</td>
+              <td>승인완료</td>
+              <td>2024.01.29</td>
+              <td>2024.01.15</td>
+            </tr>
+
+            <tr class="row3__item">
+              <td>휴가</td>
+              <td>승인완료</td>
+              <td>2024.01.10</td>
+              <td>2024.01.03</td>
+            </tr> 
           </table>
         </div>
 
@@ -218,7 +302,7 @@ export default function absenceMng() {
 
       </div>
 
-      <div id="submit-continer" style="display:none">
+      <form id="submit-continer" style="display:none">
         <div class="submit-modal">
           <h1 class="main-title">부재 신청</h1>
 
@@ -257,17 +341,18 @@ export default function absenceMng() {
           </div>
 
           <div class="reason">
-            <textarea placeholder="휴가 사유를 입력해주세요"></textarea>
+            <textarea name="reason" placeholder="휴가 사유를 입력해주세요"></textarea>
           </div>
 
           <div class="submit-btn">
             <div class="item submit-btn__item">
-              <button id="submit-modal-back">취소</button>
-              <button>휴가 신청하기</button>
+              <button type="button" id="submit-modal-back">취소</button>
+              <button type="button" id="submit-modal-apply">휴가 신청하기</button>
             </div>
           </div>
         </div>
-      </div>
+      </form>
+
     </div>
   `.strings;
 }
