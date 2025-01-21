@@ -8,8 +8,7 @@ section {
 
 /* h1 */
 #h1 {
-  color: black;
-  /* padding: 0 20px; */
+  color: #000000;
   font-weight: bold;
   font-size: 24px;
 }
@@ -88,6 +87,7 @@ section {
   flex-direction: column;
   background-color: #fff;
   height: 300px;
+  border: 1px solid black;
 }
 
 /* 카드 이미지 */
@@ -95,6 +95,7 @@ section {
   width: 100%;
   height: 75%; /* 상단 3/4 비율 */
   object-fit: cover; /* 이미지가 카드 크기에 맞게 비율 유지하며 채우기 */
+  border-bottom: 1px solid black;
 }
 
 /* 카드 내용 */
@@ -131,8 +132,9 @@ section {
 .data-board {
   flex-grow: 1;
   border-collapse: collapse;
-  width: 100%;
+  width: 95%;
   text-align: center;
+  margin: 0 auto; /* 테이블을 중앙 정렬 */
 }
 
 .data-board td {
@@ -170,4 +172,9 @@ section {
 .pagination-button.active {
   background-color: #ccc; /* 활성화된 탭의 배경 색 */
   font-weight: bold;
+}
+
+.pagination-button:hover {
+  background-color: #ccc; /* 활성화된 탭의 배경 색 */
+  color: #333; /* 텍스트 색 */
 }
