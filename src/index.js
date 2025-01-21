@@ -6,6 +6,7 @@ import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
 import board from "./pages/Board";
 import boardDataCreatePage from "./pages/BoardDataCreate";
+import staffInfo from "./pages/StaffInfo";
 
 const app = () => {
   init();
@@ -58,6 +59,7 @@ const route = () => {
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
   const boardPage = new Page("#app", board());
+  const staffInfoPage = new Page("#app", staffInfo());
 
   updateActiveMenu();
 
@@ -77,8 +79,7 @@ const route = () => {
       content.innerHTML = html`<h1>마이 페이지</h1>`.strings;
       break;
     case "/staff-info":
-      // content.innerHTML = supportPage.render();
-      content.innerHTML = html`<h1>직원 정보</h1>`.strings;
+      staffInfoPage.render();
       break;
     case "/board/data/create":
       content.innerHTML = boardDataCreatePage();
