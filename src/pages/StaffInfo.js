@@ -1,5 +1,3 @@
-import { html } from "lit-html";
-
 import "../styles/staffinfo-1.css";
 
 const staffInfoList = [
@@ -97,18 +95,12 @@ const staffInfoList = [
 ];
 
 export default function staffInfo() {
-  let currentPage = 1;
-  const itemsPerPage = 5;
-
+  // 직원 테이블 렌더링
   const renderStaffInfoTable = () => {
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const visibleItems = staffInfoList.slice(start, end);
-
-    const rows = visibleItems
+    const rows = staffInfoList
       .map(
         (item) => `
-        <tr>
+        <tr data-id="${item.no}" class="staff-row">
           <td>${item.no}</td>
           <td><span class="profile-image"><span class="material-icons">person</span></span></td>
           <td>${item.name}</td>
@@ -120,45 +112,9 @@ export default function staffInfo() {
       )
       .join("");
 
-    const totalPages = Math.ceil(staffInfoList.length / itemsPerPage);
-
-    //   const pagination = `
-    //   <div class="pagination">
-    //     ${Array.from({ length: totalPages }, (_, i) => {
-    //       const page = i + 1;
-    //       return `
-    //         <button class="pagination-button" data-page="${page}">
-    //           ${page}
-    //         </button>
-    //       `;
-    //     }).join("")}
-    //   </div>
-    // `;
-
-    const pagination = `
-      <div class="pagination">
-        <!-- 이전 페이지로 이동 -->
-        <button class="pagination-button" data-page="${currentPage - 1}" ${
-          currentPage === 1 ? "disabled" : ""
-        }>&lt;</button>
-
-        <!-- 페이지 번호 표시 -->
-        ${Array.from({ length: totalPages }, (_, i) => {
-          const page = 1 + i; // 페이지 번호
-          return `<button class="pagination-button" data-page="${page}" ${
-            page === currentPage ? 'class="active"' : ""
-          }>${page}</button>`;
-        }).join("")}
-
-        <!-- 다음 페이지로 이동 -->
-        <button class="pagination-button" data-page="${currentPage + 1}" ${
-          currentPage === totalPages ? "disabled" : ""
-        }>&gt;</button>
-      </div>`;
-
     return `
-      <div class="board__table-container">
-        <table class="data-board">
+      <div class="staff-container">
+        <table class="staff-board">
           <thead>
             <tr>
               <th>No.</th>
@@ -173,63 +129,31 @@ export default function staffInfo() {
             ${rows}
           </tbody>
         </table>
-        <div class="pagination-container">
-          ${pagination}
-        </div>
       </div>
     `;
   };
 
-  const renderContent = () => {
-    return renderStaffInfoTable();
-  };
-
-  // const updateUI = () => {
-  //   document.querySelector("#staffinfo-content").innerHTML = renderContent();
-
-  //   const paginationButtons = document.querySelectorAll(".pagination-button");
-  //   paginationButtons.forEach((button) =>
-  //     button.addEventListener("click", (e) => {
-  //       currentPage = parseInt(e.target.dataset.page, 10);
-  //       updateUI();
-  //     }),
-  //   );
-  // };
-
-  const updateUI = () => {
-    document.querySelector("#staffinfo-content").innerHTML = renderContent();
-
-    const paginationButtons = document.querySelectorAll(".pagination-button");
-
-    paginationButtons.forEach((button) => {
-      // 페이지 번호 클릭 시 처리
-      button.addEventListener("click", (e) => {
-        const page = parseInt(e.target.dataset.page, 10);
-        const totalPages = Math.ceil(staffInfoList.length / itemsPerPage);
-
-        if (page >= 1 && page <= totalPages) {
-          currentPage = page;
-          updateUI(); // UI 업데이트
-        }
+  // 이벤트 연결 함수
+  const bindClickEvents = () => {
+    setTimeout(() => {
+      // DOM 삽입 이후 이벤트 연결
+      const rows = document.querySelectorAll(".staff-row");
+      rows.forEach((row) => {
+        row.addEventListener("click", () => {
+          const staffId = row.getAttribute("data-id");
+          // window.location.href = `/staff-1?id=${staffId}`;
+          window.location.href = `https://www.google.com`;
+        });
       });
-
-      // active 클래스 적용
-      if (button.dataset.page == currentPage) {
-        button.classList.add("active");
-      } else {
-        button.classList.remove("active");
-      }
     });
   };
 
-  setTimeout(() => {
-    updateUI();
-  });
+  bindClickEvents(); // DOM 이벤트 연결
 
   return `
     <div class="container">
-      <h1 class="row1">직원 정보</h1>
-      <div id="staffinfo-content">${renderContent()}</div>
+      <h1>직원 정보</h1>
+      ${renderStaffInfoTable()}
     </div>
   `;
 }

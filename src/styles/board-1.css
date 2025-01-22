@@ -154,7 +154,7 @@ section {
 
 .data-board thead th {
   font-weight: bold; /* 헤더 강조 */
-  border-bottom: 1px solid #3a8c8c; /* 수정: 테두리 색상 변경 */
+  border-bottom: 2px solid #d2e7e7; /* 수정: 로고 아래 경계선 색상 변경 */
 }
 
 .pagination-container {
@@ -187,4 +187,10 @@ section {
   background-color: #e9f5f5; /* 수정: 버튼 호버 시 배경색 변경 */
   color: #3a8c8c; /* 수정: 텍스트 색상 유지 */
   font-weight: bold;
+}
+
+table.staff-board tbody tr:hover {
+  background-color: #e9f5f5; /* 호버 시 배경색 */
+  color: #3a8c8c; /* 텍스트 색상 */
+  cursor: pointer; /* 클릭 가능한 커서 */
 }
