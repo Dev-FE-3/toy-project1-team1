@@ -16,7 +16,7 @@ export default class TimeUtil {
 
   putTime() {
     this.getCurrentTime();
-    if (document.querySelector(".hour-min")){
+    if (window.location.pathname === '/home'){
       document.querySelector(".hour-min").textContent = this.currentTime;
       document.querySelector("#date").textContent = this.currentDate;
     }
