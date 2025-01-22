@@ -20,7 +20,7 @@ const toggleLoginButtons = (type) => {
   }
 };
 
-setTimeout(() => {
+const init = () => {
   const staffBtn = document.querySelector(".staff");
   const managerBtn = document.querySelector(".manager");
 
@@ -35,9 +35,11 @@ setTimeout(() => {
   });
 
   toggleLoginButtons("staff");
-}, 0);
+};
 
 export default function login() {
+  setTimeout(init, 0);
+
   return `
 
    <div class="container">
@@ -69,8 +71,8 @@ export default function login() {
 
     <!-- login button -->
     <div class="loginBtnContainer">
-       <button class="staffLoginBtn" onclick="window.location.href='/home'">로그인</button>
-       <button class="managerLoginBtn" onclick="window.location.href='/staff-info'">로그인</button> 
+       <button class="staffLoginBtn" onclick="window.location.href='/home'">직원으로 로그인</button>
+       <button class="managerLoginBtn" onclick="window.location.href='/staff-info'">관리자로 로그인</button> 
        </div>
   </div>
 </div>

@@ -1,10 +1,11 @@
 import "../styles/mypage.css";
 
-// DOM이 완전히 로드된 후에 초기화
 function initializePage() {
   const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
   const disablededitbtn = document.querySelector(".disabledEditBtn");
   const doted = document.querySelectorAll(".dot");
+
+  let isEditing = false;
 
   detailInfoedits.forEach((input) => {
     const savedValue = localStorage.getItem(input.id);
@@ -13,58 +14,32 @@ function initializePage() {
     }
   });
 
-  let isEditing = false;
-
   if (detailInfoedits && disablededitbtn) {
     disablededitbtn.addEventListener("click", function () {
       if (!isEditing) {
-        // 수정모드가 꺼져 있을때 실행 // 이제 킬거임.
-        // 각 input 의 스타일변경
         detailInfoedits.forEach((input) => {
           input.disabled = false;
-          input.readOnly = false;
-          input.style.color = "#666";
-          input.style.borderColor = "#3a8c8c";
-          input.style.backgroundColor = "#e9f5f5";
+          input.style.border = "2px solid orangered";
+          input.style.transition = "0.6s";
+          input.style.color = "black";
+          doted.forEach((dot) => {
+            dot.classList.add("hide-dot");
+            disablededitbtn.value = "저장";
+            disablededitbtn.style.transition = "0.6s";
+            disablededitbtn.style.width = "5%";
+          });
         });
-
-        // dot 숨기기
-        doted.forEach((dot) => {
-          dot.classList.add("hide-dot");
-        });
-
-        // 버튼 스타일 변경
-
-        disablededitbtn.value = "저장";
-        disablededitbtn.style.color = "#3a8c8c";
-        disablededitbtn.style.display = "block";
-        disablededitbtn.style.transition = "0.6s";
-        disablededitbtn.style.width = "5%";
       } else {
-        // 수정모드가 켜져 있을때 실행 // 이제 끌거임
         detailInfoedits.forEach((input) => {
-          input.readOnly = true;
           input.disabled = true;
-          input.style.borderColor = "transparent";
-          localStorage.setItem(input.id, input.value);
-        });
+          input.style.border = "2px solid white";
+          doted.forEach((dot) => {
+            dot.classList.remove("hide-dot");
+            disablededitbtn.value = "개인정보 수정";
+            disablededitbtn.style.width = "8vw";
 
-        // 버튼 스타일 원복
-        disablededitbtn.value = "개인정보 수정";
-        disablededitbtn.style.width = "8vw";
-        disablededitbtn.style.backgroundColor = "#fff";
-        // disablededitbtn.style.color = "#3a8c8c";
-
-        disablededitbtn.onmouseenter = () => {
-          disablededitbtn.style.backgroundColor = "#e9f5f5";
-        };
-        disablededitbtn.onmouseleave = () => {
-          disablededitbtn.style.backgroundColor = "#fff";
-        };
-
-        // dot 보이기
-        doted.forEach((dot) => {
-          dot.classList.remove("hide-dot");
+            localStorage.setItem(input.id, input.value);
+          });
         });
       }
 
@@ -74,7 +49,6 @@ function initializePage() {
 }
 
 export default function myPage() {
-  // 전페이지로 이동
   window.goBack = function () {
     window.history.go(-1);
   };
@@ -142,6 +116,7 @@ export default function myPage() {
   }, 100);
 
   return `
+  <div class="ccc">
   <div class="myPageContainer">
   <div class="headerWrap">
   <h1 class="myPage-title">마이페이지</h1>
@@ -195,7 +170,7 @@ export default function myPage() {
         <div class="infoWrap">
           입사일
           <span class="dot">
-            <input class="detailInfoEdit" id="dataOfJoining" type="text" disabled value="2025.01.01">
+            <input class="detailInfoEdit" id="dataOfJoining" type="text" disabled value="2025.1.1   /  신입 간호사로 입사">
           </span>
         </div>
       </li>
@@ -252,6 +227,7 @@ export default function myPage() {
       </li>
     </ul>
   </div>
+</div>
 </div>
 `;
 }

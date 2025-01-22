@@ -19,9 +19,9 @@
 
 .myPageContainer {
   padding: 80px 50px;
-  width: 80vw;
+  width: 100%;
   height: 100vh;
-  background-color: #0066cc;
+  background-color: #fff;
   position: relative;
 }
 
@@ -29,7 +29,7 @@
   font-weight: bold;
   font-size: 24px;
   margin: 0 2% 1%;
-  color: white;
+  color: #333;
 }
 
 .myPageHeader {
@@ -48,35 +48,29 @@
 
 .back,
 .disabledEditBtn {
+  background-color: #fff;
   margin-left: 20px;
-  background-color: #ffd700;
-  border: 2px solid white;
-  width: 5vw;
-  height: 5vh;
   cursor: pointer;
-  border-radius: 0.5em;
+  border: 1px solid #d2e7e7;
+  border-radius: 6px;
   font-size: 16px;
-  margin-bottom: 4px;
+  padding: 5px 10px;
+  color: #3a8c8c;
 }
 
 .back:hover,
 .disabledEditBtn:hover {
+  background-color: #e9f5f5;
+  color: #3a8c8c;
   font-weight: bold;
-  transition: 0.3s;
 }
 
 .disabledEditBtn {
   width: 8vw;
 }
 
-.upload-btn,
-.delete-btn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
 .detailInfoEdit {
+  background-color: #fff;
   font-weight: normal;
   width: 100%;
   height: 5vh;
@@ -84,13 +78,14 @@
   padding: 3%;
   border-radius: 0.5em;
   font-size: 16px;
-  border: none;
   text-align: left;
   padding-left: 15px;
   line-height: normal;
-  color: #2f2f2f;
-  background-color: #ffd700;
-  border: 2px solid white;
+  color: #333;
+  border: 1px solid transparent;
+  display: inline-block;
+  visibility: visible;
+  transition: all 0.6s ease;
 }
 
 .nurseImage {
@@ -109,23 +104,21 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #0066cc;
   position: absolute;
   top: 0;
   left: 0;
+  border: 2px solid #3a8c8c;
 }
 
 .placeholder {
   width: 100%;
   height: 100%;
-  background-color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
   font-size: 16px;
-  border: 2px solid #ffd700;
+  border: 2px solid #3a8c8c;
 }
 
 .image-preview {
@@ -152,9 +145,11 @@
 
 .upload-btn,
 .delete-btn {
+  background-color: #fff;
+  color: #3a8c8c;
+  border: 1px solid #3a8c8c;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   display: inline-flex;
@@ -165,23 +160,14 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  border: none;
+  border-radius: 50%;
 }
 
 .upload-btn:hover,
 .delete-btn:hover {
-  text-shadow: 0 0 1px currentColor;
-  transition: 0.3s;
-}
-
-.upload-btn {
-  background-color: #ffd700;
-  color: black;
-}
-
-.delete-btn {
-  background-color: black;
-  color: white;
+  background-color: #e9f5f5;
+  color: #3a8c8c;
+  font-weight: bold;
 }
 
 .nurseInfo {
@@ -192,14 +178,12 @@
 
 ul > .nurseName {
   width: 10vw;
-  font-size: 40px;
+  font-size: 24px;
   margin-top: 11vh;
-  color: white;
 }
 
 ul > .nurseLank {
-  font-size: 16px;
-  color: white;
+  font-size: 14px;
 }
 
 ul > .nurseWorking {
@@ -208,26 +192,24 @@ ul > .nurseWorking {
   display: flex;
   align-items: center;
   gap: 2%;
-  color: white;
+  color: #333;
 }
 
 ul > .nurseWorking::before {
   content: "";
   width: 0.5vw;
   height: 0.5vw;
-  background-color: #d3d3d3;
   border-radius: 50%;
   margin-right: 10px;
 }
 
 .workTime {
-  font-size: 16px;
+  font-size: 14px;
   width: 25vw;
   display: flex;
   padding-bottom: 2vh;
-  border-bottom: 2px solid #d3d3d3;
-  margin-right: 100px;
-  color: white;
+  border-bottom: 2px solid #3a8c8c;
+  margin-right: 150px;
 }
 
 .dutyStart,
@@ -277,8 +259,11 @@ ul > .nurseWorking::before {
   padding: 1vh 0;
   font-weight: bold;
   font-size: 16px;
-  background-color: #0066cc;
-  color: white;
+  color: #333;
+}
+
+.dataOfJoining {
+  width: 230px;
 }
 
 .infoWrap {
@@ -287,23 +272,27 @@ ul > .nurseWorking::before {
 
 .dot {
   position: relative;
-  display: flex;
+  display: block;
   align-items: center;
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 
 .dot::before {
-  content: "";
+  content: "•";
+  opacity: 1;
+  transition: opacity 0.5s;
   display: inline-block;
   width: 0.3vw;
   height: 0.3vw;
-  background-color: #d3d3d3;
+  color: #3a8c8c;
   border-radius: 50%;
   position: absolute;
-  left: -20px;
-  top: 55%;
+  left: -4x;
+  top: 35%;
   transform: translateY(-10%);
 }
 
 .hide-dot::before {
-  display: none;
+  opacity: 0;
 }
