@@ -61,13 +61,13 @@ export default class Home {
         </div>
       </header>
       <div class="contents">
-        <div class="section-top">
+        <div class="section-left">
           <div class="profile">
             <div class="personal-info">
               <a href="/my-page" class="profile-photo-box"></a>
               <div class="info-box">
-                <p class="name">이름</p>
-                <p class="work">직무</p>
+                <p class="name">조유나</p>
+                <p class="work">간호사</p>
                 <div class="work-state">
                   <div class="state-icon"></div>
                   <span class="state-text">근무 전</span>
@@ -84,8 +84,14 @@ export default class Home {
                 <p id ="finishWork">00 : 00</p>
               </div>
             </div>
-            <a class="work-time-button">근무 시작</a>
+            <button class="work-time-button">근무 시작</button>
           </div>
+          <div class="doctor-schedule">
+            <h2>휴진</h2>
+            <p>김철수님은<br />오늘 휴진입니다.</p>
+          </div>
+        </div>
+        <div class="section-right">
           <div class="notice">
             <h2>공지 게시판 <a href="/board">></a></h2>
             <div class="notice-inner">
@@ -104,12 +110,6 @@ export default class Home {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="section-bottom">
-          <div class="doctor-schedule">
-            <h2>휴진</h2>
-            <p>김철수님은<br />오늘 휴진입니다.</p>
           </div>
           <div class="file">
             <h2>자료 게시판 <a href="/board">></a></h2>
