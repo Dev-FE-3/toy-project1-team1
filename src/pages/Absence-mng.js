@@ -9,17 +9,19 @@ export default function absenceMng() {
   let isEndDateClick = false;
 
   setTimeout(() => {
+    const table = document.getElementById("row3__table");
     const dropDownBtn = document.getElementById("drop-down-btn");
     const dorpDownMenu = document.querySelector(".row3__drop-menu");
-    const rows = document.querySelectorAll(".row3__item");
 
     const vacationReqBtn = document.getElementById("vacation-request-btn");
     const submitModal = document.getElementById("submit-continer");
     const submitModalBack = document.getElementById("submit-modal-back");
-    // const submitApplyBtn = document.getElementById("submit-modal-apply");
+    const submitApplyBtn = document.getElementById("submit-modal-apply");
 
     const startDateBtn = document.querySelector(".start-day-input");
     const endtDateBtn = document.querySelector(".end-day-input");
+
+    const calendar = document.querySelector(".days");
 
     const inputStartDateElement = document.querySelector(
       'input[name="start-date"]',
@@ -28,8 +30,7 @@ export default function absenceMng() {
       'input[name="end-date"]',
     );
 
-    // const absenceForm = document.querySelector(".submit-modal");
-
+    // 부재 신청 내역 종류 토글 버튼
     const onClickDropBtn = () => {
       if (isDropClick) {
         isDropClick = false;
@@ -40,12 +41,14 @@ export default function absenceMng() {
       }
     };
 
+    // 부재 신청 내역에 대한 필터링 함수
     const onSelectVacationType = (event) => {
-      const selectedType = event.target.textContent;
+      const selectedType = event.target.innerText;
 
-      // 각 row의 휴가 종류에 맞게 표시 여부 설정
+      const rows = document.querySelectorAll(".row3__item");
+
       rows.forEach((row) => {
-        const vacationType = row.children[0].textContent;
+        const vacationType = row.children[0].innerText;
         if (selectedType === "전체" || vacationType === selectedType) {
           row.style.display = "";
         } else {
@@ -55,24 +58,29 @@ export default function absenceMng() {
       onClickDropBtn();
     };
 
-    // 드롭다운 메뉴 항목에 클릭 이벤트 추가
+    // 드롭다운 메뉴 항목에 클릭 이벤트 추가(필터링 위해서)
     const dropMenuItems = document.querySelectorAll(".row3__drop-menu div");
     dropMenuItems.forEach((item) => {
       item.addEventListener("click", onSelectVacationType);
     });
 
+    // 부재 신청 모달 ON/OFF , 버튼 활성화 style 적용
     const onClickReqBtn = () => {
       isReqClick = !isReqClick;
       submitModal.style.display = isReqClick ? "flex" : "none";
-      console.log(isReqClick ? "모달 창 온" : "모달 창 닫힘");
+      vacationReqBtn.style.display = isReqClick
+        ? vacationReqBtn.classList.add("row2__btns__active")
+        : vacationReqBtn.classList.remove("row2__btns__active");
     };
 
-    // 왜 안될까~~~~
+    // 부재 신청 Submit 함수(작동이 안되서 requestSubmit()를 사용함)
+    const onClickSubmitBtn = () => {
+      submitModal.requestSubmit(submitApplyBtn);
+    };
+
+    // 부재 신청 함수
     const handleFormSubmit = (event) => {
-      console.log("ㅎㅇㅎ");
       event.preventDefault();
-      console.log("Form submit event triggered");
-      console.log(event.target);
 
       const formData = new FormData(event.target);
       const typeOfVacation = formData.get("type-of-vacation");
@@ -80,16 +88,40 @@ export default function absenceMng() {
       const endDate = formData.get("end-date");
       const reason = formData.get("reason");
 
-      console.log("Form Data:", {
+      const data = {
         typeOfVacation,
         startDate,
         endDate,
         reason,
-      });
+      };
 
+      if (data.startDate === "" || data.endDate === "" || data.reason === "") {
+        alert("항목을 모두 입력해 주세요.");
+        return;
+      }
+
+      addRowToTable(data);
       event.target.reset();
+      onClickReqBtn();
     };
 
+    // 부재 신청시 내역에 추가하는 함수
+    const addRowToTable = (data) => {
+      const newRow = document.createElement("tr");
+      newRow.classList.add("row3__item");
+
+      newRow.innerHTML = `
+        <td>${data.typeOfVacation}</td>
+        <td>승인대기</td>
+        <td>${data.startDate}</td>
+        <td>${data.endDate}</td>
+      `;
+      const tbody = table.querySelector("tbody");
+      const secondRow = tbody.children[1];
+      tbody.insertBefore(newRow, secondRow);
+    };
+
+    // Input(달력) 클릭 하기 위한 함수(Start Date)
     const onClickStartDataBtn = () => {
       if (isStartDateClick) {
         isStartDateClick = false;
@@ -99,6 +131,7 @@ export default function absenceMng() {
       }
     };
 
+    // Input(달력) 클릭 하기 위한 함수(End Date)
     const onClickEndtDataBtn = () => {
       if (isEndDateClick) {
         isEndDateClick = false;
@@ -108,37 +141,39 @@ export default function absenceMng() {
       }
     };
 
-    document.querySelector(".days").addEventListener("click", function (event) {
-      const target = event.target;
-
-      if (target.tagName === "LI") {
-        document
-          .querySelectorAll(".days li")
-          .forEach((li) => li.classList.remove("selected"));
-        target.classList.add("selected");
-      }
-    });
-
-    dropDownBtn.addEventListener("click", onClickDropBtn);
-    vacationReqBtn.addEventListener("click", onClickReqBtn);
-    submitModalBack.addEventListener("click", onClickReqBtn);
-    startDateBtn.addEventListener("click", onClickStartDataBtn);
-    endtDateBtn.addEventListener("click", onClickEndtDataBtn);
-
-    if (submitModal && submitModal.tagName === "FORM") {
-      // 왜 안될까~~~~2
-      submitModal.addEventListener("submit", handleFormSubmit);
-      // submitModal.addEventListener("click", handleFormSubmit);
-      // console.dir(submitModal);
-      // console.log("추가됨");
-      // console.log(getEventListeners(submitModal));
-      // getEventListeners(document);
-    } else {
-      console.error("submitModal is not a valid FORM element");
+    if (calendar) {
+      calendar.addEventListener("click", function (event) {
+        const target = event.target;
+        if (target.tagName === "LI") {
+          document
+            .querySelectorAll(".days li")
+            .forEach((li) => li.classList.remove("selected"));
+          target.classList.add("selected");
+        }
+      });
     }
 
-    // submitModal.addEventListener("submit", handleFormSubmit);
-    // submitApplyBtn.addEventListener("click", handleFormSubmit);
+    if (dropDownBtn) {
+      dropDownBtn.addEventListener("click", onClickDropBtn);
+    }
+    if (vacationReqBtn) {
+      vacationReqBtn.addEventListener("click", onClickReqBtn);
+    }
+    if (submitModalBack) {
+      submitModalBack.addEventListener("click", onClickReqBtn);
+    }
+    if (startDateBtn) {
+      startDateBtn.addEventListener("click", onClickStartDataBtn);
+    }
+    if (endtDateBtn) {
+      endtDateBtn.addEventListener("click", onClickEndtDataBtn);
+    }
+    if (submitApplyBtn) {
+      submitApplyBtn.addEventListener("click", onClickSubmitBtn);
+    }
+    if (submitModal) {
+      submitModal.addEventListener("submit", handleFormSubmit);
+    }
   }, 1000);
 
   return html`
@@ -171,7 +206,7 @@ export default function absenceMng() {
         <div class="row3__details">
           <div>부재 신청 내역</div>
 
-          <table>
+          <table id="row3__table">
             <tr class="row3__title">
               <td>
                 종류
@@ -182,7 +217,7 @@ export default function absenceMng() {
                   <div>연차</div>
                   <div>반차</div>
                   <div>휴가</div>
-                  <div>출산 휴가</div>
+                  <div>출산휴가</div>
                   <div>경조사</div>
                 </div>
               </td>
@@ -204,7 +239,7 @@ export default function absenceMng() {
               <td>2024.11.07</td>
               <td>2024.10.13</td>
             </tr>
-            
+
             <tr class="row3__item">
               <td>병가</td>
               <td>승인완료</td>
@@ -225,20 +260,14 @@ export default function absenceMng() {
               <td>2024.02.03</td>
               <td>2024.02.03</td>
             </tr>
-
-            <tr class="row3__item">
-              <td>연차</td>
-              <td>승인완료</td>
-              <td>2024.01.29</td>
-              <td>2024.01.15</td>
-            </tr>
-
+            
             <tr class="row3__item">
               <td>휴가</td>
               <td>승인완료</td>
               <td>2024.01.10</td>
               <td>2024.01.03</td>
             </tr> 
+          
           </table>
         </div>
 
@@ -310,11 +339,11 @@ export default function absenceMng() {
             <div class="title">휴가 종류</div>
             <div class="item">
               <select name="type-of-vacation" id="kind">
-                <option class="kind__item" value="annual-leave">연차</option>
-                <option value="half">반차</option>
-                <option value="vacation">휴가</option>
-                <option value="maternity-leave">출산휴가</option>
-                <option value="family-event">경조사</option>
+                <option class="kind__item" value="연차">연차</option>
+                <option value="반차">반차</option>
+                <option value="휴가">휴가</option>
+                <option value="출산휴가">출산휴가</option>
+                <option value="경조사">경조사</option>
               </select>
             </div>
           </div>
@@ -329,7 +358,7 @@ export default function absenceMng() {
           <div class="period">
             <div class="title">사용 기간</div>
             <div class="item">
-              <div>10일</div>
+              <div>1일</div>
             </div>
           </div>
 
@@ -347,7 +376,7 @@ export default function absenceMng() {
           <div class="submit-btn">
             <div class="item submit-btn__item">
               <button type="button" id="submit-modal-back">취소</button>
-              <button type="button" id="submit-modal-apply">휴가 신청하기</button>
+              <button type="submit" id="submit-modal-apply">휴가 신청하기</button>
             </div>
           </div>
         </div>
