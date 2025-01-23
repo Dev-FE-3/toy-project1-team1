@@ -73,7 +73,7 @@ function initializePage() {
   }
 }
 
-export default function myPage() {
+export default function myPageAdm() {
   // 전페이지로 이동
   // window.goBack = function () {
   //   window.history.go(-1);

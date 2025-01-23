@@ -37,22 +37,22 @@ const init = () => {
   toggleLoginButtons("staff");
 };
 
-const isStaff = () => {
+const checkUser = () => {
   const staffLoginBtn = document.querySelector(".staffLoginBtn");
   const managerLoginBtn = document.querySelector(".managerLoginBtn");
 
   staffLoginBtn?.addEventListener("click",() => {
-    window.localStorage.setItem('isManager',false);
+    window.localStorage.setItem('user','staff');
   });
   managerLoginBtn?.addEventListener("click",() => {
-    window.localStorage.setItem('isManager',true);
+    window.localStorage.setItem('user','manager');
   });
 }
 
 export default function login() {
   if(window.location.pathname === '/')
   setTimeout(init, 0);
-  setTimeout(isStaff, 0);
+  setTimeout(checkUser, 0);
   return `
 
    <div class="container">
@@ -85,7 +85,7 @@ export default function login() {
     <!-- login button -->
     <div class="loginBtnContainer">
        <button class="staffLoginBtn" onclick="window.location.href='/home'">직원으로 로그인</button>
-       <button class="managerLoginBtn" onclick="window.location.href='/staff-info'">관리자로 로그인</button> 
+       <button class="managerLoginBtn" onclick="window.location.href='/mypage-adm'">관리자로 로그인</button> 
        </div>
   </div>
 </div>

@@ -7,7 +7,9 @@ import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
 import absenceMng from "./pages/Absence-mng";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
+import myPageAdm from "./pages/MypageAdm";
+import Navbar from "./components/Navbar";
 
 const app = () => {
   init();
@@ -56,12 +58,22 @@ const updateActiveMenu = () => {
 const route = () => {
   const path = window.location.pathname;
   const content = document.querySelector("#app");
+  const nav = document.querySelector('#nav');
   const absenceMngPage = new Page("#app", absenceMng());
   const homePage = new Home();
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
   const myPagePage = new Page("#app", myPage());
   const mylogin = new Page("main", login());
+  const myPageAdmin = new Page('#app', myPageAdm());
+  const navBar = new Navbar({isAdmin : false});
+  const navBarMng = new Navbar({isAdmin : true});
+
+  if (window.localStorage.getItem('user') === 'manager'){
+    nav.innerHTML = navBarMng.render();
+  } else {
+    nav.innerHTML = navBar.render();
+  }
 
   switch (path) {
     case "/":
@@ -80,8 +92,11 @@ const route = () => {
       myPagePage.render();
       break;
     case "/staff-info":
-      // content.innerHTML = supportPage.render();
-      content.innerHTML = html`<h1>직원 정보</h1>`.strings;
+      content.innerHTML = supportPage.render();
+      // content.innerHTML = html`<h1>직원 정보</h1>`.strings;
+      break;
+    case "/mypage-adm":
+      myPageAdmin.render();
       break;
     default:
       content.innerHTML = pageNotFound();
