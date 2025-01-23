@@ -4,52 +4,57 @@ import "../styles/board.css";
 // 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
 // 내림차순으로 넘버링할지 오름차순으로 할지는 추후 결정
 const dataBoardItems = [
-  { no: 1, title: "A", author: "A", date: "2025-01-01" },
-  { no: 2, title: "B", author: "B", date: "2025-01-02" },
-  { no: 3, title: "C", author: "C", date: "2025-01-03" },
-  { no: 4, title: "D", author: "D", date: "2025-01-04" },
-  { no: 5, title: "E", author: "E", date: "2025-01-05" },
-  { no: 6, title: "F", author: "F", date: "2025-01-06" },
-  { no: 7, title: "G", author: "G", date: "2025-01-07" },
+  {
+    no: 1,
+    title: "상반기 필수 수강",
+    author: "원장 김민수",
+    date: "2025-01-01",
+  },
+  { no: 2, title: "B", author: "원장 김민수", date: "2025-01-02" },
+  { no: 3, title: "C", author: "원장 김민수", date: "2025-01-03" },
+  { no: 4, title: "D", author: "원장 김민수", date: "2025-01-04" },
+  { no: 5, title: "E", author: "원장 김민수", date: "2025-01-05" },
+  { no: 6, title: "F", author: "원장 김민수", date: "2025-01-06" },
+  { no: 7, title: "G", author: "원장 김민수", date: "2025-01-07" },
 ];
 
 // 공지게시판 데이터
 // 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
 const noticeBoardItems = [
   {
-    img: "",
-    title: "Notice A",
-    content: "Content A",
+    img: "src/image/hospital.jpg",
+    title: "리모델링 공지",
+    content: "신년맞이 병원 리모델링을 진행합니다.",
   },
   {
-    img: "",
-    title: "Notice B",
-    content: "Content B",
+    img: "src/image/hospital.jpg",
+    title: "대체 휴일 공지",
+    content: "1월 27일 대체 휴일 관련 공지입니다.",
   },
   {
-    img: "",
-    title: "Notice C",
-    content: "Content C",
+    img: "src/image/hospital.jpg",
+    title: "설 연휴 영업 공지",
+    content: "1/28~1/30 휴무입니다.",
   },
   {
-    img: "",
-    title: "Notice D",
-    content: "Content D",
+    img: "src/image/hospital.jpg",
+    title: "안전 점검 공지",
+    content: "1분기 안전 점검 실시 예정입니다.",
   },
   {
-    img: "",
-    title: "Notice E",
-    content: "Content E",
+    img: "src/image/hospital.jpg",
+    title: "신규 의료진 합류 공지",
+    content: "2025년 신규 의료진이 합류합니다.",
   },
   {
-    img: "",
-    title: "Notice F",
-    content: "Content F",
+    img: "src/image/hospital.jpg",
+    title: "원장 휴무일 변경 공지",
+    content: "격주 목요일 휴무로 변경 예정입니다.",
   },
   {
-    img: "",
-    title: "Notice G",
-    content: "Content G",
+    img: "src/image/hospital.jpg",
+    title: "근무진 건강 검진 공지",
+    content: "근무 의료진의 검강 검진 일정입니다.",
   },
 ];
 

@@ -29,6 +29,46 @@ const navigatePage = (event) => {
   if (anchor && anchor.href) {
     history.pushState(null, null, anchor.href);
     route();
+    updateActiveMenu();
+  }
+};
+
+const updateActiveMenu = () => {
+  const allMenuItems = document.querySelectorAll("nav ul li a");
+  const currentPath = window.location.pathname;
+
+  // 모든 메뉴에서 active 클래스를 제거
+  allMenuItems.forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  // 현재 경로에 해당하는 메뉴에 active 클래스를 추가
+  const activeMenu = Array.from(allMenuItems).find(
+    (item) => item.getAttribute("href") === currentPath,
+  );
+  if (activeMenu) {
+    activeMenu.classList.add("active");
+  }
+};
+
+// 역할에 따라 메뉴 표시
+const updateNavMenu = () => {
+  const role = sessionStorage.getItem("role"); // 'user' 또는 'admin'
+
+  // 모든 메뉴 숨기기
+  document.querySelectorAll(".user-only, .admin-only").forEach((menu) => {
+    menu.style.display = "none";
+  });
+
+  // 역할에 맞는 메뉴만 표시
+  if (role === "user") {
+    document.querySelectorAll(".user-only").forEach((menu) => {
+      menu.style.display = "block";
+    });
+  } else if (role === "admin") {
+    document.querySelectorAll(".admin-only").forEach((menu) => {
+      menu.style.display = "block";
+    });
   }
 };
 
@@ -41,7 +81,7 @@ const route = () => {
 
   switch (path) {
     case "/":
-      content.innerHTML = html`<h1>홈</h1>`.strings;
+      mylogin.render();
       break;
     case "/board":
       boardPage.render();
