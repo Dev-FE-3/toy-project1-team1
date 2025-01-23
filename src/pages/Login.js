@@ -1,33 +1,58 @@
 import "/src/styles/login.css";
-import { html } from "lit-html";
 
-// 버튼 활성화 상태를 토글하는 함수
 const toggleActiveBtn = (e) => {
-  // 모든 버튼에서 btnActive 클래스 제거
   document.querySelectorAll(".LoginDecoration span").forEach((btn) => {
     btn.classList.remove("btnActive");
   });
-
-  // 클릭된 버튼에 btnActive 클래스 추가
   e.target.classList.add("btnActive");
 };
 
-// 페이지가 마운트된 후 이벤트 리스너 추가
-setTimeout(() => {
-  // 직원으로 로그인 버튼 선택
-  const staffBtn = document.querySelector(".staff");
+const toggleLoginButtons = (type) => {
+  const staffLoginBtn = document.querySelector(".staffLoginBtn");
+  const managerLoginBtn = document.querySelector(".managerLoginBtn");
 
-  // 관리자로 로그인 버튼 선택
+  if (type === "staff") {
+    staffLoginBtn.style.display = "block";
+    managerLoginBtn.style.display = "none";
+  } else {
+    staffLoginBtn.style.display = "none";
+    managerLoginBtn.style.display = "block";
+  }
+};
+
+const init = () => {
+  const staffBtn = document.querySelector(".staff");
   const managerBtn = document.querySelector(".manager");
 
-  // 직원 로그인 버튼 클릭 이벤트 추가
-  staffBtn?.addEventListener("click", toggleActiveBtn);
+  staffBtn?.addEventListener("click", (e) => {
+    toggleActiveBtn(e);
+    toggleLoginButtons("staff");
+  });
 
-  // 관리자 로그인 버튼 클릭 이벤트 추가
-  managerBtn?.addEventListener("click", toggleActiveBtn);
-}, 0);
+  managerBtn?.addEventListener("click", (e) => {
+    toggleActiveBtn(e);
+    toggleLoginButtons("manager");
+  });
+
+  toggleLoginButtons("staff");
+};
+
+const isStaff = () => {
+  const staffLoginBtn = document.querySelector(".staffLoginBtn");
+  const managerLoginBtn = document.querySelector(".managerLoginBtn");
+
+  staffLoginBtn?.addEventListener("click",() => {
+    window.localStorage.setItem('isManager',false);
+  });
+  managerLoginBtn?.addEventListener("click",() => {
+    window.localStorage.setItem('isManager',true);
+  });
+}
 
 export default function login() {
+  if(window.location.pathname === '/')
+  setTimeout(init, 0);
+  setTimeout(isStaff, 0);
   return `
 
    <div class="container">
@@ -59,8 +84,9 @@ export default function login() {
 
     <!-- login button -->
     <div class="loginBtnContainer">
-      <button class="loginBtn" onClick="">로그인</button>
-    </div>
+       <button class="staffLoginBtn" onclick="window.location.href='/home'">직원으로 로그인</button>
+       <button class="managerLoginBtn" onclick="window.location.href='/staff-info'">관리자로 로그인</button> 
+       </div>
   </div>
 </div>
 `;

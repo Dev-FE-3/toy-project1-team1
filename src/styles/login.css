@@ -1,7 +1,25 @@
+/* 애니메이션 */
+
+@eyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loginWrap * {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* 로그인페이지 */
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .container {
@@ -11,14 +29,14 @@
 .leftSide {
   height: 100vh;
   width: 50vw;
-  background-color: #cacaca;
+  background-color: #e9f5f5;
 }
 
 .loginWrap {
   padding-top: 0;
   width: 50vw;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #fff;
   flex-direction: column;
   align-items: center;
   padding-top: 13%;
@@ -36,7 +54,7 @@
 }
 
 .LoginDecoration {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #3a8c8c;
   width: 20vw;
   height: 8vh;
   display: flex;
@@ -100,10 +118,16 @@
   height: 4vh;
   margin: 0 auto;
   border: none;
-  background-color: #e8e8e8;
+  background-color: #e9f5f5;
   border-radius: 8px;
   padding: 4%;
   font-size: 16px;
+  border-color: #3a8c8c;
+}
+
+.idText:focus,
+.pwText:focus {
+  outline: #3a8c8c;
 }
 
 .loginBtnContainer {
@@ -113,22 +137,32 @@
   margin-top: 3%;
 }
 
-.loginBtn {
+.staffLoginBtn,
+.managerLoginBtn {
   margin-top: 30px;
   border-radius: 8px;
   width: 15vw;
-  border: 1px solid transparent;
+  border: 1px solid #3a8c8c;
+  color: #333;
   padding: 0.6em 1.2em;
   font-size: 16px;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #fff;
   cursor: pointer;
-  transition: border-color 0.25s;
-  color: #fff;
+  transition: 0.25s;
+  justify-content: center;
+  text-align: center;
 }
 
-.loginBtn:hover {
+.managerLoginBtn {
+  display: none;
+}
+
+.staffLoginBtn:hover,
+.managerLoginBtn:hover {
   font-weight: bold;
-  transition: 0.5s;
+  transition: 0.3s;
+  background-color: #e9f5f5;
+  color: #3a8c8c;
 }

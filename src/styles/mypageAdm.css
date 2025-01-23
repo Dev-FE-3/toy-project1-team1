@@ -15,10 +15,6 @@
   animation: fadeIn 0.3s;
 }
 
-* {
-  white-space: nowrap;
-}
-
 /* 마이페이지 */
 
 .myPageContainer {
@@ -49,12 +45,11 @@
   text-align: center;
   align-items: center;
 }
-
+/* 
 .back,
 .disabledEditBtn {
   background-color: #fff;
   margin-left: 20px;
-  margin-bottom: 10px;
   cursor: pointer;
   border: 1px solid #d2e7e7;
   border-radius: 6px;
@@ -72,7 +67,7 @@
 
 .disabledEditBtn {
   width: 8vw;
-}
+} */
 
 .detailInfoEdit {
   background-color: #fff;
@@ -147,7 +142,7 @@
   gap: 10px;
   margin-top: 10px;
 }
-
+/* 
 .upload-btn,
 .delete-btn {
   background-color: #fff;
@@ -173,7 +168,7 @@
   background-color: #e9f5f5;
   color: #3a8c8c;
   font-weight: bold;
-}
+} */
 
 .nurseInfo {
   flex: 1;
@@ -197,6 +192,7 @@ ul > .nurseWorking {
   display: flex;
   align-items: center;
   gap: 2%;
+  color: #333;
 }
 
 ul > .nurseWorking::before {
@@ -205,7 +201,6 @@ ul > .nurseWorking::before {
   height: 0.5vw;
   border-radius: 50%;
   margin-right: 10px;
-  background-color: #3a8c8c;
 }
 
 .workTime {
@@ -213,7 +208,7 @@ ul > .nurseWorking::before {
   width: 25vw;
   display: flex;
   padding-bottom: 2vh;
-  border-bottom: 2px solid #d2e7e7;
+  border-bottom: 2px solid #3a8c8c;
   margin-right: 150px;
 }
 
@@ -264,6 +259,7 @@ ul > .nurseWorking::before {
   padding: 1vh 0;
   font-weight: bold;
   font-size: 16px;
+  color: #333;
 }
 
 .dataOfJoining {
