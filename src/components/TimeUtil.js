@@ -8,10 +8,8 @@ export default class TimeUtil {
   updateTime () {
     setInterval(() => {
       this.currentTime = this.getCurrentTime();
-    }, 1000);
-    setInterval(() => {
       this.putTime();
-    }, 1000);
+    }, 0);
   }
 
   putTime() {
