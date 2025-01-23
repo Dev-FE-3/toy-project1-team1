@@ -2,47 +2,8 @@ import { html } from "lit-html";
 import "../styles/boardDataCreate.css";
 
 export default function boardDataCreatePage() {
-  const firstUpdated = () => {
-    const createDataBoard = this.shadowRoot.querySelector("#createDataBoard");
-    createDataBoard.addEventListener("click", () => {
-      const title = this.shadowRoot.getElementById("title").value;
-      const writer = this.shadowRoot.getElementById("writer").value;
-      const category = this.shadowRoot.getElementById("category").value;
-      const content = this.shadowRoot.getElementById("content").value;
-      const image = this.shadowRoot.getElementById("image").files[0];
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("writer", writer);
-      formData.append("category", category);
-      formData.append("content", content);
-      formData.append("image", image);
-      const data = Object.fromEntries(formData);
-
-      fetch("http://localhost:8080/board/data/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result);
-          if (result.success) {
-            alert("게시물이 성공적으로 등록되었습니다.");
-            window.location.href = "/board/data/list";
-          } else {
-            alert("게시물 등록에 실패했습니다. 다시 시도해주세요.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("서버 오류가 발생했습니다. 나중에 다시 시도해주세요.");
-        });
-    });
-  };
-
-  return html`
+  // 렌더링 할 HTML
+  const template = html`
     <section class="board-data-create">
       <div class="board-data-create-header">
         <h1>게시물 작성</h1>
@@ -66,14 +27,96 @@ export default function boardDataCreatePage() {
         </div>
         <div class="form-group">
           <label for="image">사진 등록</label>
-          <input type="file" id="image" name="image" multiple />
+          <button id="fileButton">파일 선택</button>
         </div>
+        <img id="imagePreview" />
         <div class="form-group">
           <label for="content">내용</label>
           <textarea id="content" name="content"></textarea>
         </div>
-        <!-- <button type="submit" class="btn btn-blue">작성</button> -->
       </form>
     </section>
   `.strings;
+
+  // DOM 렌더링 후 이벤트 리스너 추가
+  setTimeout(() => {
+    const createDataBoard = document.querySelector("#createDataBoard");
+    const imagePreview = document.getElementById("imagePreview");
+    const imageInputBtn = document.getElementById("fileButton");
+
+    let selectedImageFile = null;
+
+    const addImg = async () => {
+      try {
+        const fileHandle = await window.showOpenFilePicker({
+          types: [
+            {
+              description: "이미지 파일",
+              accept: { "image/*": [".jpg", ".png", ".gif"] },
+            },
+          ],
+        });
+
+        const file = await fileHandle[0].getFile();
+        selectedImageFile = file; // 선택된 파일을 저장
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          // 파일을 읽고 미리보기 이미지로 표시
+          imagePreview.src = e.target.result;
+        };
+        console.log(reader);
+        reader.readAsDataURL(file);
+      } catch (error) {
+        console.error("파일을 선택하는 도중 오류 발생:", error);
+      }
+    };
+
+    const submitData = () => {
+      const title = document.getElementById("title");
+      const writer = document.getElementById("writer");
+      const category = document.getElementById("category");
+      const content = document.getElementById("content");
+
+      const formData = new FormData();
+      formData.append("title", title.value);
+      formData.append("writer", writer.value);
+      formData.append("category", category.value);
+      formData.append("content", content.value);
+
+      if (selectedImageFile) {
+        console.log(selectedImageFile.file);
+        formData.append("image", selectedImageFile);
+      }
+
+      const data = Object.fromEntries(formData.entries());
+      console.log(data);
+      localStorage.setItem(`category${data.category}`, JSON.stringify(data));
+
+      console.log("로컬 스토리지 저장 완료");
+
+      const storedData = JSON.parse(
+        localStorage.getItem(`category${data.category}`),
+      );
+      console.log("데이터 확인", storedData);
+
+      // 데이터 필드 초기화
+      title.value = "";
+      writer.value = "";
+      category.value = "1";
+      content.value = "";
+      imagePreview.src = "";
+      selectedImageFile = null;
+    };
+
+    if (imageInputBtn) {
+      imageInputBtn.addEventListener("click", addImg);
+    }
+
+    if (createDataBoard) {
+      createDataBoard.addEventListener("click", submitData);
+    }
+  }, 0);
+
+  return template;
 }

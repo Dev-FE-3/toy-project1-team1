@@ -58,16 +58,13 @@
   height: 150px;
 }
 
-/* button[type="submit"] {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
+#fileButton {
+  margin-left: 10px;
+  border: 1px solid black;
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
-  background-color: #45a049;
-} */
+#imagePreview {
+  max-width: 200px;
+  margin-top: 10px;
+}

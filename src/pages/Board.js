@@ -65,6 +65,7 @@ export default function board() {
         <button class="tab-button active" data-tab="공지게시판">공지게시판</button>
         <button class="tab-button" data-tab="자료게시판">자료게시판</button>
       </div>
+      <a id="btnAddDataBoard" class="create-post-button" href="/board/data/create">게시물 작성</a>
     </div>
   `;
 
