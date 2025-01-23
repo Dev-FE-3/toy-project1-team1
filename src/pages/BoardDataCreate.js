@@ -1,61 +1,67 @@
-import { html } from "lit-html";
 import "../styles/boardDataCreate.css";
 
-export default function boardDataCreatePage() {
-  const firstUpdated = () => {
-    const createDataBoard = this.shadowRoot.querySelector("#createDataBoard");
-    createDataBoard.addEventListener("click", () => {
-      const title = this.shadowRoot.getElementById("title").value;
-      const writer = this.shadowRoot.getElementById("writer").value;
-      const category = this.shadowRoot.getElementById("category").value;
-      const content = this.shadowRoot.getElementById("content").value;
-      const image = this.shadowRoot.getElementById("image").files[0];
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("writer", writer);
-      formData.append("category", category);
-      formData.append("content", content);
-      formData.append("image", image);
-      const data = Object.fromEntries(formData);
+export default function createPost() {
+  // 폼 제출 처리
+  const handleSubmit = (e) => {
+    e.preventDefault(); // 기본 폼 제출 동작 방지
 
-      fetch("http://localhost:8080/board/data/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result);
-          if (result.success) {
-            alert("게시물이 성공적으로 등록되었습니다.");
-            window.location.href = "/board/data/list";
-          } else {
-            alert("게시물 등록에 실패했습니다. 다시 시도해주세요.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("서버 오류가 발생했습니다. 나중에 다시 시도해주세요.");
-        });
-    });
+    // 폼 데이터 가져오기
+    const title = document.getElementById("title").value;
+    const writer = document.getElementById("writer").value;
+    const category = document.getElementById("category").value;
+    const content = document.getElementById("content").value;
+
+    // 게시물 데이터 추가
+    const newPost = {
+      no: Math.floor(Math.random() * 1000), // 임시로 번호 생성
+      title,
+      author: writer,
+      date: new Date().toLocaleDateString(),
+    };
+
+    // 로컬스토리지에서 기존 데이터를 가져와서 추가
+    let dataBoardItems =
+      JSON.parse(localStorage.getItem("dataBoardItems")) || [];
+    let noticeBoardItems =
+      JSON.parse(localStorage.getItem("noticeBoardItems")) || [];
+
+    // 카테고리에 따라 게시판에 추가
+    if (category === "2") {
+      dataBoardItems.push(newPost);
+      localStorage.setItem("dataBoardItems", JSON.stringify(dataBoardItems));
+    } else {
+      noticeBoardItems.push(newPost);
+      localStorage.setItem(
+        "noticeBoardItems",
+        JSON.stringify(noticeBoardItems),
+      );
+    }
+
+    // 게시물 작성 후 목록으로 돌아가기
+    window.location.href = "/board"; // 게시물 목록 페이지로 이동
   };
 
-  return html`
+  // 페이지 로드 후 이벤트 리스너 설정
+  document.addEventListener("DOMContentLoaded", () => {
+    // 폼에 submit 이벤트 리스너 연결
+    const form = document.querySelector("form");
+    form.addEventListener("submit", handleSubmit); // 폼이 제출되면 handleSubmit 실행
+  });
+
+  return `
     <section class="board-data-create">
       <div class="board-data-create-header">
         <h1>게시물 작성</h1>
-        <button id="createDataBoard" class="btn btn-gray">게시물 등록</button>
+        <button id="createDataBoard" class="btn btn-gray" onclick="window.location.href='/board'">게시물 목록</button>
       </div>
       <form>
         <div class="form-group">
           <label for="title">제목</label>
-          <input type="text" id="title" name="title" />
+          <input type="text" id="title" name="title" required />
         </div>
         <div class="form-group">
           <label for="writer">작성자</label>
-          <input type="text" id="writer" name="writer" />
+          <input type="text" id="writer" name="writer" required />
         </div>
         <div class="form-group">
           <label for="category">게시판</label>
@@ -70,10 +76,10 @@ export default function boardDataCreatePage() {
         </div>
         <div class="form-group">
           <label for="content">내용</label>
-          <textarea id="content" name="content"></textarea>
+          <textarea id="content" name="content" required></textarea>
         </div>
-        <!-- <button type="submit" class="btn btn-blue">작성</button> -->
+        <button type="submit" class="btn btn-blue">작성</button>
       </form>
     </section>
-  `.strings;
+  `;
 }

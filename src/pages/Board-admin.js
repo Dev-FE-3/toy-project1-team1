@@ -1,9 +1,7 @@
-import "../styles/board.css";
+import "../styles/board-1.css";
 
 // 자료게시판 데이터
-// 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
-// 내림차순으로 넘버링할지 오름차순으로 할지는 추후 결정
-const dataBoardItems = [
+let dataBoardItems = JSON.parse(localStorage.getItem("dataBoardItems")) || [
   { no: 1, title: "A", author: "A", date: "2025-01-01" },
   { no: 2, title: "B", author: "B", date: "2025-01-02" },
   { no: 3, title: "C", author: "C", date: "2025-01-03" },
@@ -13,24 +11,10 @@ const dataBoardItems = [
   { no: 7, title: "G", author: "G", date: "2025-01-07" },
 ];
 
-// 공지게시판 데이터
-// 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
-const noticeBoardItems = [
-  {
-    img: "",
-    title: "Notice A",
-    content: "Content A",
-  },
-  {
-    img: "",
-    title: "Notice B",
-    content: "Content B",
-  },
-  {
-    img: "",
-    title: "Notice C",
-    content: "Content C",
-  },
+let noticeBoardItems = JSON.parse(localStorage.getItem("noticeBoardItems")) || [
+  { img: "", title: "Notice A", content: "Content A" },
+  { img: "", title: "Notice B", content: "Content B" },
+  { img: "", title: "Notice C", content: "Content C" },
   {
     img: "",
     title: "Notice D",
@@ -70,14 +54,8 @@ export default function board() {
   `;
 
   const renderDataBoard = () => {
-    const totalPages = Math.ceil(dataBoardItems.length / itemsPerPage); // 전체 페이지 수 계산
+    const totalPages = Math.ceil(dataBoardItems.length / itemsPerPage);
 
-    // 현재 페이지 번호 그룹을 계산 (5개씩 보여주는 로직은 유지)
-    const pageGroup = Math.floor((currentPage - 1) / 5); // 현재 페이지가 어느 그룹에 속하는지
-    const startPage = pageGroup * 5 + 1; // 시작 페이지 번호
-    const endPage = Math.min(startPage + 4, totalPages); // 끝 페이지 번호 (5개씩 표시되므로 4번까지)
-
-    // 현재 페이지에 해당하는 데이터만 표시
     const rows = dataBoardItems
       .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
       .map(
@@ -94,14 +72,11 @@ export default function board() {
 
     const pagination = `
         <div class="pagination">
-          <!-- 이전 페이지로 이동 -->
           <button class="pagination-button" data-page="${currentPage - 1}" ${
             currentPage === 1 ? "disabled" : ""
           }>&lt;</button>
-    
-          <!-- 페이지 번호 표시 -->
-          ${Array.from({ length: endPage - startPage + 1 }, (_, i) => {
-            const page = startPage + i; // 페이지 번호
+          ${Array.from({ length: totalPages }, (_, i) => {
+            const page = i + 1;
             return `
               <button class="pagination-button" data-page="${page}" ${
                 page === currentPage ? 'class="active"' : ""
@@ -110,8 +85,6 @@ export default function board() {
               </button>
             `;
           }).join("")}
-    
-          <!-- 다음 페이지로 이동 -->
           <button class="pagination-button" data-page="${currentPage + 1}" ${
             currentPage === totalPages ? "disabled" : ""
           }>&gt;</button>
@@ -138,7 +111,6 @@ export default function board() {
     `;
   };
 
-  // 공지 게시판 render
   const renderNoticeBoard = () => {
     const items = noticeBoardItems
       .map(
@@ -172,15 +144,18 @@ export default function board() {
   document.addEventListener("DOMContentLoaded", () => {
     const tabs = document.querySelectorAll(".tab-button");
 
-    // 첫 번째 탭에 'active' 클래스 추가 (페이지 로딩 시)
+    /* 추가 */
+    const boardContent = document.querySelector("#board-content");
+    if (boardContent) {
+      boardContent.innerHTML = renderContent();
+    }
+    /* */
+
     tabs[0].classList.add("active");
 
     tabs.forEach((button) => {
       button.addEventListener("click", () => {
-        // 모든 탭에서 'active' 클래스 제거
         tabs.forEach((btn) => btn.classList.remove("active"));
-
-        // 클릭한 탭에만 'active' 클래스 추가
         button.classList.add("active");
       });
     });
@@ -193,18 +168,16 @@ export default function board() {
       const paginationButtons = document.querySelectorAll(".pagination-button");
 
       paginationButtons.forEach((button) => {
-        // 페이지 번호 클릭 시 처리
         button.addEventListener("click", (e) => {
           const page = parseInt(e.target.dataset.page, 10);
           const totalPages = Math.ceil(dataBoardItems.length / itemsPerPage);
 
           if (page >= 1 && page <= totalPages) {
             currentPage = page;
-            updateUI(); // UI 업데이트
+            updateUI();
           }
         });
 
-        // active 클래스 적용
         if (button.dataset.page == currentPage) {
           button.classList.add("active");
         } else {
@@ -218,13 +191,11 @@ export default function board() {
     const tabButtons = document.querySelectorAll(".tab-button");
     tabButtons.forEach((button) =>
       button.addEventListener("click", (e) => {
-        // 모든 탭에서 active 클래스를 제거
         tabButtons.forEach((btn) => btn.classList.remove("active"));
-        // 클릭한 버튼에만 active 클래스 추가
         e.target.classList.add("active");
 
         currentTab = e.target.dataset.tab;
-        currentPage = 1; // 탭 변경 시 페이지 초기화
+        currentPage = 1;
         updateUI();
       }),
     );
@@ -232,12 +203,11 @@ export default function board() {
     updateUI();
   });
 
-  // html
   return `
     <section>
       <h1 id="h1">게시판</h1>
       ${renderTabs()}
       <div id="board-content">${renderContent()}</div>
     </section>
-    `;
+  `;
 }
