@@ -11,6 +11,7 @@ import Home from "./pages/Home"
 
 const app = () => {
   init();
+  updateActiveMenu()
   route();
 };
 
@@ -31,9 +32,26 @@ const navigatePage = (event) => {
   if (anchor && anchor.href) {
     history.pushState(null, null, anchor.href);
     route();
+    updateActiveMenu();
   }
 };
+const updateActiveMenu = () => {
+  const allMenuItems = document.querySelectorAll("nav ul li a");
+  const currentPath = window.location.pathname;
 
+  // 모든 메뉴에서 active 클래스를 제거
+  allMenuItems.forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  // 현재 경로에 해당하는 메뉴에 active 클래스를 추가
+  const activeMenu = Array.from(allMenuItems).find(
+    (item) => item.getAttribute("href") === currentPath,
+  );
+  if (activeMenu) {
+    activeMenu.classList.add("active");
+  }
+};
 const route = () => {
   const path = window.location.pathname;
   const content = document.querySelector("#app");
