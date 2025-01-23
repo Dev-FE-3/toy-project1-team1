@@ -25,7 +25,7 @@
   - 휴진 안내 : 24px (bold) - 조절
 - 부재 관리
   - 타이틀(h1) : 24px (bold)
-  - 부재 신청 / 안내 사항 (탭?버튼?) : 14px
+  - 부재 신청 / 안내 사항 : 14px
   - 부재 신청 내역 : 16px
     나머지 전부 16 / 14 px 안에서 조절하시고 코멘트 달아주세요.
 - 마이 페이지
@@ -79,8 +79,8 @@
   #333 기본 font 색상에서 active 시 color change
   ```
   .tab-button.active {
-  background-color: #3a8c8c; /_ 수정: 활성화된 버튼 배경색 변경 _/
-  color: #ffffff; /_ 수정: 활성화된 버튼 텍스트 색 변경 _/
+  background-color: #3a8c8c; /* 수정: 활성화된 버튼 배경색 변경 */
+  color: #ffffff; /* 수정: 활성화된 버튼 텍스트 색 변경 */
   }
 - button hover
 
@@ -108,15 +108,15 @@
 - 갤러리 카드 디자인  
   제목 색상은 동일하게 #333 (16px bold) 상세 내용은 #666 (14px) 로 조금 옅고 작게
   ```
-  /_ 카드 제목 _/
+  /* 카드 제목 */
   .gallery-card .card-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333; /_ 수정: 제목 색상 변경 _/
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; /_ 수정: 제목 색상 변경 _/
   }
 
-      /* 카드 내용 */
-      .gallery-card .card-text {
-          font-size: 14px;
-          color: #666; /* 수정: 텍스트 색상 유지 */
-      }
+  /* 카드 내용 */
+  .gallery-card .card-text {
+    font-size: 14px;
+    color: #666; /* 수정: 텍스트 색상 유지 */
+  }
