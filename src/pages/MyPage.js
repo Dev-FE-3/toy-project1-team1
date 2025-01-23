@@ -6,23 +6,20 @@ export default function myPage() {
   };
 
   // localStorge를 활용한 근무 시간 변경
-  const changeState = () => {
+  const isWorking = window.localStorage.getItem('workState') === 'working';
+  const updateState = () => {
     if (window.location.pathname === '/my-page'){
       const startTime = window.localStorage.getItem('startTime');
       const endTime = window.localStorage.getItem('endTime');
-      const workState = window.localStorage.getItem('workState');
       document.getElementById("startWork").textContent = startTime;
       document.getElementById("finishWork").textContent = endTime;
-      if (workState === 'working'){
-        document.querySelector('.nurseWorking').textContent = '근무 중';
-      } else {
-        document.querySelector('.nurseWorking').textContent = '근무 전';
-      }
+      document.querySelector('.nurseWorking').textContent = isWorking ? '근무 중': '근무 전';
     }
   }
   setTimeout(() => {
-    changeState();
+    updateState();
   }, 0);
+
   // * 이미지 업로드 버튼 클릭 시 실행되는 함수
   // * 파일 선택을 위한 input 요소를 동적으로 생성하고 클릭 이벤트를 발생시킴
 
