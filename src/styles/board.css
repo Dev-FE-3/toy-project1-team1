@@ -4,6 +4,9 @@ section {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+  overflow: hidden; /* 넘치는 텍스트 숨기기 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 '...'으로 표시 */
 }
 
 /* h1 */
@@ -148,6 +151,11 @@ section {
 .data-board tr:hover {
   background-color: #e9f5f5;
   color: #3a8c8c;
+}
+
+.data-board thead tr:hover {
+  background-color: transparent; /* 헤더의 hover 효과 없애기 */
+  color: #333;
 }
 
 .data-board th {

@@ -7,6 +7,9 @@
   gap: 30px;
   flex-direction: column;
   overflow: auto; /* 스크롤 가능하도록 추가 */
+  white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+  overflow: hidden; /* 넘치는 텍스트 숨기기 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 '...'으로 표시 */
 }
 
 h1 {
@@ -63,6 +66,8 @@ table.staff-board {
 
 table.staff-board thead {
   border-bottom: 3px solid #d2e7e7;
+  height: 40px;
+  font-weight: bold;
 }
 
 table.staff-board tbody tr {
