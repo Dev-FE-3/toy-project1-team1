@@ -163,6 +163,7 @@ export default function myPage() {
     </div>
   </div>
 
+  <div class="infoContainer">
   <div class="info">
     <ul class="firstDate">
       <li class="dataOfJoining">
@@ -225,6 +226,7 @@ export default function myPage() {
         </div>
       </li>
     </ul>
+    </div>
   </div>
 </div>
 `;
