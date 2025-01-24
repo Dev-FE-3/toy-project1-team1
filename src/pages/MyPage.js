@@ -70,11 +70,26 @@ function initializePage() {
 }
 
 export default function myPage() {
-  // 전페이지로 이동
-  // window.goBack = function () {
-  //   window.history.go(-1);
-  // };
-  //   <input class="back" type="button" value="뒤로가기" onClick="goBack()">
+  window.goBack = function () {
+    window.history.go(-1);
+  };
+
+  // localStorge를 활용한 근무 시간 변경
+  const isWorking = window.localStorage.getItem('workState') === 'working';
+  const updateState = () => {
+    if (window.location.pathname === '/my-page'){
+      const startTime = window.localStorage.getItem('startTime');
+      const endTime = window.localStorage.getItem('endTime');
+      document.getElementById("startWork").textContent = startTime;
+      document.getElementById("finishWork").textContent = endTime;
+      document.querySelector('.nurseWorking').textContent = isWorking ? '근무 중': '근무 전';
+    }
+  }
+  setTimeout(() => {
+    updateState();
+  }, 0);
+  // * 이미지 업로드 버튼 클릭 시 실행되는 함수
+  // * 파일 선택을 위한 input 요소를 동적으로 생성하고 클릭 이벤트를 발생시킴
 
   window.onUploadButtonClick = function () {
     const input = document.createElement("input");
@@ -134,10 +149,6 @@ export default function myPage() {
     }
   };
 
-  setTimeout(() => {
-    initializePage();
-  }, 100);
-
   return `
   <div class="myPageContainer">
   <div class="headerWrap">
@@ -173,17 +184,18 @@ export default function myPage() {
       <li class="nurseWorking">근무중</li>
     </ul>
 
-    <div class="workTime">
-      <div class="dutyStart">
-        근무시작
-        <div class="startTime">09:00</div>
-      </div>
-      <div class="dutyFinish">
-        근무종료
-        <div class="finishTime">00:00</div>
-      </div>
-    </div>
-  </div>
+       <!-- 근무 시간 정보 표시 -->
+       <div class="workTime">
+         <div class="dutyStart">
+           근무시작
+           <div class="startTime">09:00</div>
+         </div>
+         <div class="dutyFinish">
+           근무종료
+           <div class="finishTime">00:00</div>
+         </div>
+       </div>
+     </div>
 
   <div class="info">
     <ul class="firstDate">

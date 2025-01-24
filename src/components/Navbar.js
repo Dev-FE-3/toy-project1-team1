@@ -34,9 +34,10 @@ export default class Navbar {
             ${this.isAdmin 
               ? ""
               : `<li>
-              <a href="/absent-mng">
-                <span class="material-icons"> event </span>부재 관리
-              </a>
+              <a href="/my-page"
+                ><span class="material-icons"> account_circle </span>마이
+                페이지</a
+              >
             </li>`}
             ${this.isAdmin 
               ? `
