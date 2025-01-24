@@ -1,6 +1,8 @@
 * {white-space: nowrap;}
-h2 {font-size: 18px; font-weight: bold;}
-h3 {font-size: 16px;}
+p {cursor: default;}
+h1 {cursor: default;}
+h2 {font-size: 18px; font-weight: bold; cursor: default;}
+h3 {font-size: 16px; cursor: default;}
 /* modal */
 #home-modal{
   display:none;
@@ -63,7 +65,7 @@ h3 {font-size: 16px;}
 
 /*Home Main - Header*/
 .home-main > header {
-  width:92%;
+  width:100%;
   display: flex;
   justify-content: space-between;
   font-weight: bold;
@@ -88,7 +90,7 @@ h3 {font-size: 16px;}
 
 /*Home Main - Contents*/
 .contents {
-  width: calc(100% - 120px);
+  width: 100%;
   display: flex;
   justify-content: space-between;
   gap: 2.5rem;
@@ -97,8 +99,8 @@ h3 {font-size: 16px;}
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  max-width: 500px;
-  min-width: 400px;
+  max-width: 650px;
+  min-width: 500px;
   width: 100%;
 }
 .contents > div:last-child {
@@ -266,9 +268,9 @@ h3 {font-size: 16px;}
   border-bottom: 1.5px solid  #d2e7e7;
   padding: .8rem .5rem;
   gap: 40px;
-  cursor: pointer;
 }
 .file > ul > li > .title {
+  cursor: pointer;
   width: 70%;
 }
 .file > ul > li > .num {
