@@ -1,0 +1,94 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 50px 80px;
+  color: #333;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  overflow: auto; /* 스크롤 가능하도록 추가 */
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 30px;
+}
+
+.row2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.row3 {
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* 스크롤 가능하도록 추가 */
+}
+
+.row3__details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row3__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+
+.row3__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.row3__item td {
+  margin: 0px 40px;
+  border-radius: 0.5em;
+  padding: 5px 13px;
+}
+
+table.staff-board {
+  width: 100%;
+  border-collapse: collapse; /* 테이블 경계선 정리 */
+}
+
+table.staff-board thead {
+  border-bottom: 3px solid #d2e7e7;
+}
+
+table.staff-board tbody tr {
+  border-bottom: 1px solid #d2e7e7;
+  height: 100px;
+}
+
+table.staff-board tbody tr td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.staff-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.staff-container {
+  height: 70vh;
+  overflow-y: auto; /* 스크롤 활성화 */
+}
+
+table.staff-board tbody tr:hover {
+  background-color: #e9f5f5;
+  color: #3a8c8c;
+  cursor: pointer;
+}

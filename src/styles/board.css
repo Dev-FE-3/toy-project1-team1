@@ -30,38 +30,29 @@ section {
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 6px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
-
-/* .tab-button.active {
-  background-color: #e9f5f5; 
-  color: #3a8c8c; 
-  font-weight: bold;
-} */
 
 .tab-button.active {
-  background-color: #3a8c8c; /* 수정: 활성화된 버튼 배경색 변경 */
-  color: #ffffff; /* 수정: 활성화된 버튼 텍스트 색 변경 */
+  background-color: #3a8c8c;
+  color: #ffffff;
 }
-
-/* .tab-button:hover {
-  background-color: #e9f5f5; 
-  color: #3a8c8c; 
-  font-weight: bold;
-} */
 
 /* create post button */
 .create-post-button {
   padding: 5px 10px;
   font-size: 14px;
   cursor: pointer;
-  border: 1px solid #d2e7e7; /* 수정: 테두리 색상 변경 */
+  border: 1px solid #d2e7e7;
   border-radius: 6px;
-  color: #3a8c8c; /* 수정: 텍스트 색상 변경 */
+  color: #3a8c8c;
 }
 
 .create-post-button:hover {
-  background-color: #e9f5f5; /* 수정: 버튼 호버 시 배경색 변경 */
-  color: #3a8c8c; /* 수정: 텍스트 색상 유지 */
+  background-color: #e9f5f5;
+  color: #3a8c8c;
   font-weight: bold;
 }
 
@@ -78,25 +69,21 @@ section {
   gap: 10px;
 }
 
-/* 갤러리 레이아웃 */
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개 */
   gap: 40px; /* 카드 간 간격 */
 }
 
-/* 갤러리 카드 */
 .gallery-card {
   border-radius: 12px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff; /* 수정: 카드 배경색 유지 */
   height: 300px;
   border: 1px solid #d2e7e7;
 }
 
-/* 카드 이미지 */
 .gallery-card img {
   width: 100%;
   height: 75%; /* 상단 3/4 비율 */
@@ -104,7 +91,6 @@ section {
   border-bottom: 1px solid #d2e7e7; /* 카드 겉 테두리 추가 */
 }
 
-/* 카드 내용 */
 .gallery-card .card-content {
   padding: 10px;
   height: 25%; /* 하단 1/4 비율 */
@@ -114,32 +100,31 @@ section {
   gap: 5px;
 }
 
-/* 카드 제목 */
 .gallery-card .card-title {
   font-size: 16px;
   font-weight: bold;
-  color: #333; /* 수정: 제목 색상 변경 */
+  color: #333;
 }
 
-/* 카드 내용 */
 .gallery-card .card-text {
   font-size: 14px;
-  color: #666; /* 수정: 텍스트 색상 유지 */
+  color: #666;
 }
 
-/* 높이 조정 - 동적 설정 */
 .data-board-container {
   font-size: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 550px; /* 최소 높이 설정 */
+  /*justify-content: space-between;*/
+  box-sizing: border-box;
+  min-height: 550px;
+  position: relative;
 }
 
 .data-board {
-  flex-grow: 1;
+  /*flex-grow: 1;*/
   border-collapse: collapse;
-  width: 95%;
+  width: 100%;
   text-align: center;
   margin: 0 auto; /* 테이블을 중앙 정렬 */
 }
@@ -147,31 +132,42 @@ section {
 .data-board td {
   padding: 5px 10px;
   vertical-align: middle;
+  padding: 10px;
   cursor: pointer;
 }
 
+.data-board tbody {
+  height: auto;
+  min-height: 300px; /* tbody의 최소 높이 설정 */
+}
+
+.data-board tbody tr {
+  height: 70px; /* 각 행의 고정 높이 설정 */
+}
+
 .data-board tr:hover {
-  background-color: #e9f5f5; /* 수정: 버튼 호버 시 배경색 변경 */
-  color: #3a8c8c; /* 수정: 텍스트 색상 유지 */
+  background-color: #e9f5f5;
+  color: #3a8c8c;
 }
 
 .data-board th {
   padding: 0px 10px 10px 10px;
+  font-weight: bold;
+  border-bottom: 2px solid #d2e7e7;
 }
 
-.data-board thead th {
-  font-weight: bold; /* 헤더 강조 */
-  border-bottom: 2px solid #d2e7e7; /* 수정: 로고 아래 경계선 색상 변경 */
-}
-
+/* pagination container */
 .pagination-container {
+  position: absolute; /* 컨테이너 하단 고정 */
+  bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center; /* 페이지네이션 가운데 정렬 */
   padding: 8px;
-  margin-top: 30px;
+  margin: 0; /* 추가 여백 제거 */
 }
 
-/* 페이지네이션 버튼 */
 .pagination-button {
   padding: 5px 10px;
   cursor: pointer;
@@ -181,23 +177,20 @@ section {
   justify-content: center; /* 가로 가운데 정렬 */
   border-radius: 6px;
   font-size: 14px;
-  color: #3a8c8c; /* 수정: 버튼 텍스트 색상 변경 */
+  color: #3a8c8c;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .pagination-button.active {
-  background-color: #3a8c8c; /* 수정: 활성화된 버튼 배경색 변경 */
-  color: #ffffff; /* 수정: 활성화된 버튼 텍스트 색 변경 */
+  background-color: #3a8c8c;
+  color: #ffffff;
   font-weight: bold;
 }
 
 .pagination-button:hover {
-  background-color: #e9f5f5; /* 수정: 버튼 호버 시 배경색 변경 */
-  color: #3a8c8c; /* 수정: 텍스트 색상 유지 */
+  background-color: #e9f5f5;
+  color: #3a8c8c;
   font-weight: bold;
-}
-
-table.staff-board tbody tr:hover {
-  background-color: #e9f5f5; /* 호버 시 배경색 */
-  color: #3a8c8c; /* 텍스트 색상 */
-  cursor: pointer; /* 클릭 가능한 커서 */
 }

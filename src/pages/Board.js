@@ -1,50 +1,6 @@
 import "../styles/board.css";
 
-// 자료게시판 데이터
-// 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
-// 내림차순으로 넘버링할지 오름차순으로 할지는 추후 결정
-const dataBoardItems = [
-  {
-    no: 1,
-    title: "상반기 보수 교육 일정",
-    author: "원장 김민수",
-    date: "2025-01-01",
-  },
-  {
-    no: 2,
-    title: "직원 복지 안내의 건",
-    author: "원장 김민수",
-    date: "2025-01-02",
-  },
-  {
-    no: 3,
-    title: "감염 관리 교육 자료",
-    author: "원장 김민수",
-    date: "2025-01-03",
-  },
-  {
-    no: 4,
-    title: "2024 학술 자료 모음",
-    author: "원장 김민수",
-    date: "2025-01-04",
-  },
-  {
-    no: 5,
-    title: "의료기기 사용 메뉴얼 모음",
-    author: "원장 김민수",
-    date: "2025-01-05",
-  },
-  {
-    no: 6,
-    title: "CPR 및 응급처치 교육 일정",
-    author: "원장 김민수",
-    date: "2025-01-06",
-  },
-  // { no: 7, title: "G", author: "원장 김민수", date: "2025-01-07" },
-];
-
-// 공지게시판 데이터
-// 우선은 Json 아닌 예시 데이터를 띄웠습니다. 이건 추후 수정하겠습니다.
+// 공지 게시판 data
 const noticeBoardItems = [
   {
     img: "src/image/hospital.jpg",
@@ -83,17 +39,65 @@ const noticeBoardItems = [
   },
 ];
 
+// 자료 게시판 data
+const dataBoardItems = [
+  {
+    no: 1,
+    title: "상반기 보수 교육 일정",
+    author: "원장 우미연",
+    date: "2025-01-01",
+  },
+  {
+    no: 2,
+    title: "직원 복지 안내의 건",
+    author: "원장 우미연",
+    date: "2025-01-02",
+  },
+  {
+    no: 3,
+    title: "감염 관리 교육 자료",
+    author: "원장 우미연",
+    date: "2025-01-03",
+  },
+  {
+    no: 4,
+    title: "2024 학술 자료 모음",
+    author: "원장 우미연",
+    date: "2025-01-04",
+  },
+  {
+    no: 5,
+    title: "의료기기 사용 메뉴얼 모음",
+    author: "원장 우미연",
+    date: "2025-01-05",
+  },
+  {
+    no: 6,
+    title: "CPR 및 응급처치 교육 일정",
+    author: "원장 우미연",
+    date: "2025-01-06",
+  },
+  {
+    no: 7,
+    title: "CPR 및 응급처치 교육 일정",
+    author: "원장 우미연",
+    date: "2025-01-06",
+  },
+];
+
 export default function board() {
-  let currentTab = "공지게시판"; // 초기 탭은 공지게시판으로 설정
+  const urlParams = new URLSearchParams(window.location.search);
+  let currentTab = urlParams.get("tab") || "공지게시판"; // 기본값은 '공지게시판'
+
   let currentPage = 1; // 자료게시판의 초기 페이지는 1로 설정
   const itemsPerPage = 6; // 자료게시판의 한 페이지당 항목 수
 
-  // Tab 생성
   const renderTabs = () => `
     <div class="tabs">
       <div class="tab-buttons">
-        <button class="tab-button active" data-tab="공지게시판">공지게시판</button>
-        <button class="tab-button" data-tab="자료게시판">자료게시판</button>
+        <button class="tab-button ${currentTab === "공지게시판" ? "active" : ""}" data-tab="공지게시판">공지게시판</button>
+        <button class="tab-button ${currentTab === "자료게시판" ? "active" : ""}" data-tab="자료게시판">자료게시판</button>
+      </div>
       </div>
     </div>
   `;
@@ -101,10 +105,10 @@ export default function board() {
   const renderDataBoard = () => {
     const totalPages = Math.ceil(dataBoardItems.length / itemsPerPage); // 전체 페이지 수 계산
 
-    // 현재 페이지 번호 그룹을 계산 (5개씩 보여주는 로직은 유지)
+    // 현재 페이지 번호 그룹을 계산
     const pageGroup = Math.floor((currentPage - 1) / 5); // 현재 페이지가 어느 그룹에 속하는지
     const startPage = pageGroup * 5 + 1; // 시작 페이지 번호
-    const endPage = Math.min(startPage + 4, totalPages); // 끝 페이지 번호 (5개씩 표시되므로 4번까지)
+    const endPage = Math.min(startPage + 4, totalPages); // 끝 페이지 번호
 
     // 현재 페이지에 해당하는 데이터만 표시
     const rows = dataBoardItems
@@ -121,6 +125,7 @@ export default function board() {
       )
       .join("");
 
+    // 페이지네이션 버튼
     const pagination = `
         <div class="pagination">
           <!-- 이전 페이지로 이동 -->
@@ -201,8 +206,14 @@ export default function board() {
   document.addEventListener("DOMContentLoaded", () => {
     const tabs = document.querySelectorAll(".tab-button");
 
-    // 첫 번째 탭에 'active' 클래스 추가 (페이지 로딩 시)
-    tabs[0].classList.add("active");
+    // 홈 화면에서 각 게시판으로 이동해오기 위해
+    // URL 파라미터에 맞는 탭 활성화
+    tabs.forEach((button) => {
+      button.classList.remove("active");
+      if (button.dataset.tab === currentTab) {
+        button.classList.add("active");
+      }
+    });
 
     tabs.forEach((button) => {
       button.addEventListener("click", () => {

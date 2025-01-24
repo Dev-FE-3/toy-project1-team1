@@ -1,39 +1,87 @@
-import "../styles/board-1.css";
+import "../styles/board.css";
 
-// 자료게시판 데이터
-let dataBoardItems = JSON.parse(localStorage.getItem("dataBoardItems")) || [
-  { no: 1, title: "A", author: "A", date: "2025-01-01" },
-  { no: 2, title: "B", author: "B", date: "2025-01-02" },
-  { no: 3, title: "C", author: "C", date: "2025-01-03" },
-  { no: 4, title: "D", author: "D", date: "2025-01-04" },
-  { no: 5, title: "E", author: "E", date: "2025-01-05" },
-  { no: 6, title: "F", author: "F", date: "2025-01-06" },
-  { no: 7, title: "G", author: "G", date: "2025-01-07" },
+// 공지 게시판 data
+const noticeBoardItems = [
+  {
+    img: "src/image/hospital.jpg",
+    title: "리모델링 공지",
+    content: "신년맞이 병원 리모델링을 진행합니다.",
+  },
+  {
+    img: "src/image/hospital.jpg",
+    title: "대체 휴일 공지",
+    content: "1월 27일 대체 휴일 관련 공지입니다.",
+  },
+  {
+    img: "src/image/hospital.jpg",
+    title: "설 연휴 영업 공지",
+    content: "1/28~1/30 휴무입니다.",
+  },
+  {
+    img: "src/image/hospital.jpg",
+    title: "안전 점검 공지",
+    content: "1분기 안전 점검 실시 예정입니다.",
+  },
+  {
+    img: "src/image/hospital.jpg",
+    title: "신규 의료진 합류 공지",
+    content: "2025년 신규 의료진이 합류합니다.",
+  },
+  {
+    img: "src/image/hospital.jpg",
+    title: "원장 휴무일 변경 공지",
+    content: "격주 목요일 휴무로 변경 예정입니다.",
+  },
+  {
+    img: "src/image/hospital.jpg",
+    title: "근무진 건강 검진 공지",
+    content: "근무 의료진의 검강 검진 일정입니다.",
+  },
 ];
 
-let noticeBoardItems = JSON.parse(localStorage.getItem("noticeBoardItems")) || [
-  { img: "", title: "Notice A", content: "Content A" },
-  { img: "", title: "Notice B", content: "Content B" },
-  { img: "", title: "Notice C", content: "Content C" },
+// 자료 게시판 data
+const dataBoardItems = [
   {
-    img: "",
-    title: "Notice D",
-    content: "Content D",
+    no: 1,
+    title: "상반기 보수 교육 일정",
+    author: "원장 우미연",
+    date: "2025-01-01",
   },
   {
-    img: "",
-    title: "Notice E",
-    content: "Content E",
+    no: 2,
+    title: "직원 복지 안내의 건",
+    author: "원장 우미연",
+    date: "2025-01-02",
   },
   {
-    img: "",
-    title: "Notice F",
-    content: "Content F",
+    no: 3,
+    title: "감염 관리 교육 자료",
+    author: "원장 우미연",
+    date: "2025-01-03",
   },
   {
-    img: "",
-    title: "Notice G",
-    content: "Content G",
+    no: 4,
+    title: "2024 학술 자료 모음",
+    author: "원장 우미연",
+    date: "2025-01-04",
+  },
+  {
+    no: 5,
+    title: "의료기기 사용 메뉴얼 모음",
+    author: "원장 우미연",
+    date: "2025-01-05",
+  },
+  {
+    no: 6,
+    title: "CPR 및 응급처치 교육 일정",
+    author: "원장 우미연",
+    date: "2025-01-06",
+  },
+  {
+    no: 7,
+    title: "CPR 및 응급처치 교육 일정",
+    author: "원장 우미연",
+    date: "2025-01-06",
   },
 ];
 
