@@ -1,4 +1,4 @@
-import "../styles/mypage.css";
+import "../styles/mypageAdm.css";
 
 // DOM이 완전히 로드된 후에 초기화
 function initializePage() {
