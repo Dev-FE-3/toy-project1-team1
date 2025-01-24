@@ -8,8 +8,14 @@ import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
 import absenceMng from "./pages/Absence-mng";
 import Home from "./pages/Home";
-import myPageAdm from "./pages/MypageAdm";
+import myPageAdm_1 from "./pages/MypageAdm_1";
+import myPageAdm_2 from "./pages/MypageAdm_2";
+import myPageAdm_3 from "./pages/MypageAdm_3";
 import Navbar from "./components/Navbar";
+import board from "./pages/Board";
+import boardadmin from "./pages/Board-admin";
+import boardDataCreatePage from "./pages/BoardDataCreate";
+import staffInfo from "./pages/StaffInfo";
 
 const app = () => {
   init();
@@ -65,7 +71,12 @@ const route = () => {
   const supportPage = new Support({ title: "Support" });
   const myPagePage = new Page("#app", myPage());
   const mylogin = new Page("main", login());
-  const myPageAdmin = new Page("#app", myPageAdm());
+  const myPageAdmin_1 = new Page("#app", myPageAdm_1());
+  const myPageAdmin_2 = new Page("#app", myPageAdm_2());
+  const myPageAdmin_3 = new Page("#app", myPageAdm_3());
+  const boardPage = new Page("#app", board());
+  const boardAdminPage = new Page("#app", boardadmin());
+  const staffInfoPage = new Page("#app", staffInfo());
   const navBar = new Navbar({ isAdmin: false });
   const navBarMng = new Navbar({ isAdmin: true });
 
@@ -83,7 +94,7 @@ const route = () => {
       content.innerHTML = homePage.render();
       break;
     case "/board":
-      content.innerHTML = html`<h1>게시판</h1>`.strings;
+      boardPage.render();
       break;
     case "/absent-mng":
       absenceMngPage.render();
@@ -91,12 +102,23 @@ const route = () => {
     case "/my-page":
       myPagePage.render();
       break;
-    case "/staff-info":
-      content.innerHTML = supportPage.render();
-      // content.innerHTML = html`<h1>직원 정보</h1>`.strings;
+    case "/boardAdminPage":
+      boardAdminPage.render();
       break;
-    case "/mypage-adm":
-      myPageAdmin.render();
+    case "/staff-info":
+      staffInfoPage.render();
+      break;
+    case "/board/data/create":
+      content.innerHTML = boardDataCreatePage();
+      break;
+    case "/staff-info/mypage_1":
+      myPageAdmin_1.render();
+      break;
+    case "/staff-info/mypage_2":
+      myPageAdmin_2.render();
+      break;
+    case "/staff-info/mypage_3":
+      myPageAdmin_3.render();
       break;
     default:
       content.innerHTML = pageNotFound();

@@ -55,7 +55,9 @@ export default function login() {
 
    <div class="container">
   <!-- left side -->
-  <div class="leftSide"></div>
+  <div class="leftSide">
+    <img src="src/image/hospital-main.jpg" alt="병원이미지"/>
+  </div>
 
   <!-- login wrap -->
   <div class="loginWrap">
@@ -83,7 +85,7 @@ export default function login() {
     <!-- login button -->
     <div class="loginBtnContainer">
        <button class="staffLoginBtn" onclick="window.location.href='/home'">직원으로 로그인</button>
-       <button class="managerLoginBtn" onclick="window.location.href='/mypage-adm'">관리자로 로그인</button> 
+       <button class="managerLoginBtn" onclick="window.location.href='/staff-info'">관리자로 로그인</button> 
        </div>
   </div>
 </div>

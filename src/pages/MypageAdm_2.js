@@ -73,7 +73,7 @@ function initializePage() {
   }
 }
 
-export default function myPage() {
+export default function myPageAdm_2() {
   // 전페이지로 이동
   // window.goBack = function () {
   //   window.history.go(-1);
@@ -157,7 +157,7 @@ export default function myPage() {
         <div id="placeholder" class="placeholder">
           <span>이미지 없음</span>
         </div>
-         <img src="./src/image/프로필원장.png"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
+         <img src="/src/image/staff-2.jpg"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
         <img id="preview-image" alt="프로필 이미지" class="profile-image" style="display: none"/>
       </div>
 

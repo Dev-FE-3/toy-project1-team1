@@ -1,6 +1,6 @@
 /* 애니메이션 */
 
-@eyframes fadeIn {
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -28,13 +28,13 @@
 
 .leftSide {
   height: 100vh;
-  width: 50vw;
+  width: 60vw;
   background-color: #e9f5f5;
 }
 
 .loginWrap {
   padding-top: 0;
-  width: 50vw;
+  width: 40vw;
   height: 100vh;
   background-color: #fff;
   flex-direction: column;
@@ -47,7 +47,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 36px;
   margin-bottom: 30px;
   display: flex;
   gap: 3%;

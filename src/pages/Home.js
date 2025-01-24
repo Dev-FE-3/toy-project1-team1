@@ -100,7 +100,7 @@ export default class Home {
             <div class="personal-info">
               <a href="/my-page" class="profile-photo-box"></a>
               <div class="info-box">
-                <p class="name">조유나</p>
+                <p class="name">차주현</p>
                 <p class="work">간호사</p>
                 <div class="work-state">
                   <div class="state-icon"></div>
@@ -122,7 +122,7 @@ export default class Home {
           </div>
           <div class="doctor-schedule">
             <h2>휴진</h2>
-            <p>김철수님은<br />오늘 휴진입니다.</p>
+            <p>우미연님은<br />오늘 휴진입니다.</p>
           </div>
         </div>
         <div class="section-right">
@@ -132,22 +132,22 @@ export default class Home {
               <div class="gallery">
                 <div class="img-box"></div>
                 <div class="text-box">
-                  <h3>공지 제목</h3>
-                  <p>text</p>
+                  <h3>리모델링 공지</h3>
+                  <p>신년맞이 병원 리모델링을 진행합니다.</p>
                 </div>
               </div>
               <div class="gallery">
                 <div class="img-box"></div>
                 <div class="text-box">
-                  <h3>공지 제목</h3>
-                  <p>text</p>
+                  <h3>대체 휴일 공지</h3>
+                  <p>1월 27일 대체 휴일 관련 공지입니다.</p>
                 </div>
               </div>
               <div class="gallery">
                 <div class="img-box"></div>
                 <div class="text-box">
-                  <h3>공지 제목</h3>
-                  <p>text</p>
+                  <h3>설 연휴 영업 공지</h3>
+                  <p>1/28~1/30 휴무입니다.</p>
                 </div>
               </div>
             </div>
@@ -157,23 +157,23 @@ export default class Home {
             <ul>
               <li>
                 <p class="num">1</p>
-                <p class="title">2025년 상반기 교육 일정 및 교육 자료</p>
-                <p class="date">2025.01.18</p>
+                <p class="title">상반기 보수 교육 일정</p>
+                <p class="date">2025-01-01</p>
               </li>
               <li>
                 <p class="num">2</p>
-                <p class="title">2025년 상반기 교육 일정 및 교육 자료</p>
-                <p class="date">2025.01.18</p>
+                <p class="title">직원 복지 안내의 건</p>
+                <p class="date">2025-01-02</p>
               </li>
               <li>
                 <p class="num">3</p>
-                <p class="title">2025년 상반기 교육 일정 및 교육 자료</p>
-                <p class="date">2025.01.18</p>
+                <p class="title">감염 관리 교육 자료</p>
+                <p class="date">2025-01-03</p>
               </li>
               <li>
                 <p class="num">4</p>
-                <p class="title">2025년 상반기 교육 일정 및 교육 자료</p>
-                <p class="date">2025.01.18</p>
+                <p class="title">2024 학술 자료 모음</p>
+                <p class="date">2025-01-04</p>
               </li>
             </ul>
           </div>
