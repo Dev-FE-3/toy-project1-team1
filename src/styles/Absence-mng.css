@@ -25,7 +25,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 30px;
   font-weight: bold;
 }
 
@@ -38,7 +37,6 @@
 
 .row2__btns button {
   padding: 5px 10px;
-  margin-right: 13px;
 
   border: 1px solid #d2e7e7;
   border-radius: 6px;
@@ -96,19 +94,23 @@
 /* 부재 신청 내역 및 달력 */
 .row3 {
   display: flex;
-  gap: 100px;
+
+  justify-content: space-between;
+  height: 100%;
+  gap: 20px;
 }
 
 .row3__details {
-  flex: 0.5;
+  flex: 0.52;
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 }
 
 /* 부재 신청 내역 제목 (title) */
 .row3__details > div {
-  margin-bottom: 40px;
-  font-size: 24px;
+  margin-bottom: 20px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -123,7 +125,7 @@
 
   padding-bottom: 20px;
   margin-bottom: 20px;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid #d2e7e7;
 }
 .row3__title > td {
   position: relative;
@@ -148,8 +150,7 @@
   padding: 0px 0px;
 }
 
-.row3__item td:first-child,
-.row3__item td:nth-child(2) {
+.row3__item td:first-child {
   padding: 5px;
 
   border-radius: 0.5em;
@@ -157,7 +158,10 @@
   background-color: #3a8c8c;
   font-weight: bold;
   color: #ffffff;
-  /* margin: 0px 30px; */
+}
+.row3__item td:nth-child(2) {
+  color: #3a8c8c;
+  font-weight: bolder;
 }
 
 .row3__item td:first-child {
@@ -206,13 +210,13 @@
 
 /* 캘린더 */
 .row3__calendar {
-  flex: 0.5;
-  min-height: 300px;
-  height: 100%;
+  flex: 0.4;
+  height: 480px;
 
   background: #fff;
   border-radius: 10px;
-  padding: 40px 30px;
+  padding: 20px 20px;
+  margin-top: 50px;
 }
 
 .row3__calendar .nav {
@@ -234,7 +238,7 @@
 }
 
 .calendar {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .calendar ul {

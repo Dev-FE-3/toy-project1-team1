@@ -95,6 +95,10 @@ export default function absenceMng() {
         reason,
       };
 
+      console.log(data.startDate);
+      console.log(data.endDate);
+      console.log(data.reason);
+
       if (data.startDate === "" || data.endDate === "" || data.reason === "") {
         alert("항목을 모두 입력해 주세요.");
         return;
@@ -112,7 +116,7 @@ export default function absenceMng() {
 
       newRow.innerHTML = `
         <td>${data.typeOfVacation}</td>
-        <td>승인대기</td>
+        <td style="color: #666">승인대기</td>
         <td>${data.startDate}</td>
         <td>${data.endDate}</td>
       `;
@@ -181,15 +185,15 @@ export default function absenceMng() {
       <h1 class="row1">부재 관리</h1>
 
       <div class="row2">
-        <div class="row2__btns">
-          <button id="vacation-request-btn">부재 신청</button>
-          <button>안내 사항</button>
+
+      <div class="row2__remaining">
+
+      <!--
+        <div class="row2__remaining__item">
+          <div>연차</div>
+          <div>12일</div>
         </div>
-        <div class="row2__remaining">
-          <div class="row2__remaining__item">
-            <div>잔여 연차</div>
-            <div>12일</div>
-          </div>
+
           <div class="row2__remaining__item">
             <div>잔여 반차</div>
             <div>8.5일</div>
@@ -199,81 +203,26 @@ export default function absenceMng() {
             <div>잔여 휴가</div>
             <div>10일</div>
           </div>
-        </div>
+          -->
+      </div>
+
+      <!--
+        <div class="row2__btns">
+          <button id="vacation-request-btn">부재 신청</button>
+          <button>안내 사항</button>
+          </div>
+      -->
+      <div class="row2__btns">
+      <button id="vacation-request-btn">부재 신청</button>
+      <!--<button>안내 사항</button>-->
+    </div>
       </div>
 
       <div class="row3">
-        <div class="row3__details">
-          <div>부재 신청 내역</div>
-
-          <table id="row3__table">
-            <tr class="row3__title">
-              <td>
-                종류
-                <span id="drop-down-btn">▼</span>
-                <!-- 드롭다운 메뉴 -->
-                <div class="row3__drop-menu" style="display : none">
-                  <div>전체</div>
-                  <div>연차</div>
-                  <div>반차</div>
-                  <div>휴가</div>
-                  <div>출산휴가</div>
-                  <div>경조사</div>
-                </div>
-              </td>
-              <td>승인 여부</td>
-              <td>발생일</td>
-              <td>신청일</td>
-            </tr>
-
-            <tr class="row3__item">
-              <td>연차</td>
-              <td>승인대기</td>
-              <td>2025.01.02</td>
-              <td>2024.12.29</td>
-            </tr>
-            
-            <tr class="row3__item">
-              <td>휴가</td>
-              <td>승인완료</td>
-              <td>2024.11.07</td>
-              <td>2024.10.13</td>
-            </tr>
-
-            <tr class="row3__item">
-              <td>병가</td>
-              <td>승인완료</td>
-              <td>2024.06.15</td>
-              <td>2024.06.15</td>
-            </tr>
-            
-            <tr class="row3__item">
-              <td>연차</td>
-              <td>승인완료</td>
-              <td>2024.03.18</td>
-              <td>2024.02.02</td>
-            </tr>
-            
-            <tr class="row3__item">
-              <td>반차</td>
-              <td>승인완료</td>
-              <td>2024.02.03</td>
-              <td>2024.02.03</td>
-            </tr>
-            
-            <tr class="row3__item">
-              <td>휴가</td>
-              <td>승인완료</td>
-              <td>2024.01.10</td>
-              <td>2024.01.03</td>
-            </tr> 
-          
-          </table>
-        </div>
-
-
+        
         <div class="row3__calendar">
-          <div class="nav">
+        
+        <div class="nav">
             <button class="material-icons"> chevron_left </button>
             <p class="current-date">2025.1</p>
             <button class="material-icons"> chevron_right </span>
@@ -327,6 +276,74 @@ export default function absenceMng() {
               <li class="inactive">1</li>
             </ul>
           </div>
+        </div>
+
+        <div class="row3__details">
+
+
+          <table id="row3__table">
+            <tr class="row3__title">
+              <td>
+                종류
+                <span id="drop-down-btn">▼</span>
+                <!-- 드롭다운 메뉴 -->
+                <div class="row3__drop-menu" style="display : none">
+                  <div>전체</div>
+                  <div>연차</div>
+                  <div>반차</div>
+                  <div>휴가</div>
+                  <div>출산휴가</div>
+                  <div>경조사</div>
+                </div>
+              </td>
+              <td>승인 여부</td>
+              <td>발생일</td>
+              <td>신청일</td>
+            </tr>
+
+            <tr class="row3__item">
+              <td>연차</td>
+              <td style="color: #666">승인대기</td>
+              <td>2025.01.02</td>
+              <td>2024.12.29</td>
+            </tr>
+            
+            <tr class="row3__item">
+              <td>휴가</td>
+              <td>승인완료</td>
+              <td>2024.11.07</td>
+              <td>2024.10.13</td>
+            </tr>
+
+            <tr class="row3__item">
+              <td>병가</td>
+              <td>승인완료</td>
+              <td>2024.06.15</td>
+              <td>2024.06.15</td>
+            </tr>
+            
+            <tr class="row3__item">
+              <td>연차</td>
+              <td>승인완료</td>
+              <td>2024.03.18</td>
+              <td>2024.02.02</td>
+            </tr>
+            
+            <tr class="row3__item">
+              <td>반차</td>
+              <td>승인완료</td>
+              <td>2024.02.03</td>
+              <td>2024.02.03</td>
+            </tr>
+            
+            <tr class="row3__item">
+              <td>휴가</td>
+              <td>승인완료</td>
+              <td>2024.01.10</td>
+              <td>2024.01.03</td>
+            </tr> 
+          
+          </table>
         </div>
 
       </div>
