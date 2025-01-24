@@ -38,9 +38,9 @@ h3 {font-size: 16px;}
   border: 1px solid #ffffff00;
   padding: 5px 10px;
   font-size: 16px;
-  cursor: pointer; /* 수정: 테두리 색상 변경 */
+  cursor: pointer;
   border-radius: 6px;
-  color: #3a8c8c; /* 수정: 텍스트 색상 변경 */
+  color: #3a8c8c;
 }
 .button-box > button:hover {
   background-color: #e9f5f5;
@@ -127,6 +127,8 @@ h3 {font-size: 16px;}
   height: 180px;
   background-color: #f7fcfc;
   border-radius: 100px;
+  background-image: url('../image/staff-2.jpg');
+  background-size: cover;
 }
 .profile > .personal-info > .info-box {
   display: flex;
@@ -181,6 +183,7 @@ h3 {font-size: 16px;}
   border-radius: 6px;
   cursor: pointer;
   color: #3a8c8c;
+  transition: .3s;
 }
 
 .profile > .work-time-button:hover {
@@ -203,11 +206,18 @@ h3 {font-size: 16px;}
   background-color: #fff;
   border-radius: 1.5rem;
   overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #d2e7e7;
+  transition: .3s;
+}
+.notice >.notice-inner > .gallery:hover {
+  box-shadow: 1px 2px 12px #1b3a3a6e;
 }
 .notice >.notice-inner > .gallery >.img-box {
   width: 100%;
   height: 70%;
   background-color: #d2e7e7;
+  background-image: url('../image/hospital.jpg');
 }
 .notice >.notice-inner > .gallery > .text-box {
   padding: 1.2rem;
@@ -256,6 +266,7 @@ h3 {font-size: 16px;}
   border-bottom: 1.5px solid  #d2e7e7;
   padding: .8rem .5rem;
   gap: 40px;
+  cursor: pointer;
 }
 .file > ul > li > .title {
   width: 70%;
