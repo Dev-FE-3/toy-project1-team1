@@ -128,14 +128,11 @@ export default function myPage() {
     initializePage();
   }, 100);
 
-  // <img alt="프로필 이미지" id="placeholder" class="placeholder">
-  //       <img src="./src/image/프로필간호사.png"  id="preview-image" alt="프로필 이미지" class="profile-image" style="display: none"/>
-
   return `
   <div class="myPageContainer">
   <div class="headerWrap">
   <h1 class="myPage-title">마이페이지</h1>
-  <input class="disabledEditBtn" type="button" value="개인정보 수정">
+
   </div>
 
   <div class="myPageHeader">

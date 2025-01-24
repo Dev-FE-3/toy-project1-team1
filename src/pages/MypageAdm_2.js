@@ -1,4 +1,4 @@
-import "../styles/mypage.css";
+import "../styles/mypageAdm.css";
 
 // DOM이 완전히 로드된 후에 초기화
 function initializePage() {
@@ -14,10 +14,12 @@ function initializePage() {
   });
 
   let isEditing = false;
+
   if (detailInfoedits && disablededitbtn) {
     disablededitbtn.addEventListener("click", function () {
-      // isEditing = !isEditing; // 토글이 두번있음. 리펙토링 필요.
       if (!isEditing) {
+        // 수정모드가 꺼져 있을때 실행 // 이제 킬거임.
+        // 각 input 의 스타일변경
         detailInfoedits.forEach((input) => {
           input.disabled = false;
           input.readOnly = false;
@@ -26,31 +28,32 @@ function initializePage() {
           input.style.backgroundColor = "#e9f5f5";
         });
 
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "hidden";
+        // dot 숨기기
+        doted.forEach((dot) => {
+          dot.classList.add("hide-dot");
         });
 
+        // 버튼 스타일 변경
+
         disablededitbtn.value = "저장";
-        disablededitbtn.style.width = "80px";
+        disablededitbtn.style.color = "#3a8c8c";
+        disablededitbtn.style.display = "block";
         disablededitbtn.style.transition = "0.6s";
+        disablededitbtn.style.width = "5%";
       } else {
+        // 수정모드가 켜져 있을때 실행 // 이제 끌거임
         detailInfoedits.forEach((input) => {
           input.readOnly = true;
           input.disabled = true;
           input.style.borderColor = "transparent";
-          input.style.backgroundColor = "#fff";
           localStorage.setItem(input.id, input.value);
         });
 
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "visible";
-        });
-
+        // 버튼 스타일 원복
         disablededitbtn.value = "개인정보 수정";
         disablededitbtn.style.width = "8vw";
         disablededitbtn.style.backgroundColor = "#fff";
+        // disablededitbtn.style.color = "#3a8c8c";
 
         disablededitbtn.onmouseenter = () => {
           disablededitbtn.style.backgroundColor = "#e9f5f5";
@@ -58,13 +61,25 @@ function initializePage() {
         disablededitbtn.onmouseleave = () => {
           disablededitbtn.style.backgroundColor = "#fff";
         };
+
+        // dot 보이기
+        doted.forEach((dot) => {
+          dot.classList.remove("hide-dot");
+        });
       }
+
+      isEditing = !isEditing;
     });
   }
-  isEditing = !isEditing;
 }
 
 export default function myPage() {
+  // 전페이지로 이동
+  // window.goBack = function () {
+  //   window.history.go(-1);
+  // };
+  //   <input class="back" type="button" value="뒤로가기" onClick="goBack()">
+
   window.onUploadButtonClick = function () {
     const input = document.createElement("input");
     input.type = "file";
@@ -133,21 +148,32 @@ export default function myPage() {
   <h1 class="myPage-title">마이페이지</h1>
   <input class="disabledEditBtn" type="button" value="개인정보 수정">
   </div>
-  
+
   <div class="myPageHeader">
     <div class="nurseImageIcon">
       <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="window.handleFileSelect(event)"/>
-      
-      <div class="image-preview">       
-        <img src="./src/image/프로필원장.png"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
+
+      <div class="image-preview">
+        <div id="placeholder" class="placeholder">
+          <span>이미지 없음</span>
+        </div>
+         <img src="./src/image/프로필원장.png"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
+        <img id="preview-image" alt="프로필 이미지" class="profile-image" style="display: none"/>
       </div>
-      
-      
+
+      <div class="button-container">
+        <button id="uploadBtn" class="upload-btn" onclick="window.onUploadButtonClick()">
+          <i class="material-icons edit">edit</i>
+        </button>
+        <button onclick="window.deleteImage()" id="delete-btn" class="delete-btn" style="display: none">
+          <i class="material-icons">delete</i>
+        </button>
+      </div>
     </div>
 
     <ul class="nurseInfo">
       <li class="nurseName">우미연</li>
-      <li class="nurseLank">원장</li>
+      <li class="nurseLank"원장</li>
       <li class="nurseWorking">근무중</li>
     </ul>
 
