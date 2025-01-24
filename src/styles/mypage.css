@@ -152,10 +152,12 @@
   display: flex;
   gap: 10px;
   margin-top: 10px;
+  position: relative;
+  width: 100%;
 }
 
-.upload-btn,
-.delete-btn {
+.myPageContainers .upload-btn,
+.myPageContainers .delete-btn {
   background-color: #fff;
   color: #3a8c8c;
   border: 1px solid #3a8c8c;
@@ -165,8 +167,8 @@
   font-size: 14px;
   display: inline-flex;
   position: absolute;
-  right: 0;
-  top: 150px;
+  margin-left: 70px;
+  top: -70px;
   z-index: 1;
   border-radius: 50%;
   width: 60px;
@@ -217,10 +219,11 @@ ul > .nurseWorking::before {
 .workTime {
   font-size: 14px;
   width: 25vw;
+  height: 100px;
   display: flex;
-  padding-bottom: 2vh;
   border-bottom: 2px solid #d2e7e7;
   margin-right: 150px;
+  margin-bottom: 80px;
 }
 
 .dutyStart,

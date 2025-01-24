@@ -48,25 +48,16 @@ const checkUser = () => {
     window.localStorage.setItem("user", "manager");
   });
 };
-
 export default function login() {
   if (window.location.pathname === "/") setTimeout(init, 0);
   setTimeout(checkUser, 0);
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const signup = document.querySelector(".signUp");
-    if (signup) {
-      signup.addEventListener("click", () => {
-        console.log("dd");
-      });
-    }
-  });
-
   return `
 
    <div class="container">
   <!-- left side -->
-  <div class="leftSide"></div>
+  <div class="leftSide">
+    <img src="src/image/hospital-main.jpg" alt="병원이미지"/>
+  </div>
 
   <!-- login wrap -->
   <div class="loginWrap">
@@ -94,44 +85,8 @@ export default function login() {
     <!-- login button -->
     <div class="loginBtnContainer">
        <button class="staffLoginBtn" onclick="window.location.href='/home'">직원으로 로그인</button>
-       <button class="managerLoginBtn" onclick="window.location.href='/mypage-adm'">관리자로 로그인</button> 
+       <button class="managerLoginBtn" onclick="window.location.href='/staff-info'">관리자로 로그인</button> 
        </div>
-
-        <button class="signUp">회원가입</button>
-        <div class="modal">
-        <div class="modalBody">
-         <h1>회원가입<h1>
-         <label>
-         아이디
-         <input type="id">
-         </label>
-          <label>
-         비밀번호
-         <input type="password">
-         </label> 
-         <label>
-         비밀번호 확인
-         <input type="password">
-         </label>
-         <label>
-         이름
-         <input type="text">
-         </label>
-         <label>
-         생년월일
-        <input type="date">
-        </label>
-        <label>
-         전화번호
-        <input type="text">
-        </label>
-        <label>
-         자택주소
-        <input type="text">
-        </label>
-        </div>
-        <div>
-
   </div>
 </div>
 `;

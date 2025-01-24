@@ -73,7 +73,7 @@ function initializePage() {
   }
 }
 
-export default function myPage() {
+export default function myPageAdm_2() {
   // 전페이지로 이동
   // window.goBack = function () {
   //   window.history.go(-1);
@@ -143,6 +143,7 @@ export default function myPage() {
   }, 100);
 
   return `
+  <div class="myPageContainers admin-page"> 
   <div class="myPageContainer">
   <div class="headerWrap">
   <h1 class="myPage-title">마이페이지</h1>
@@ -157,7 +158,7 @@ export default function myPage() {
         <div id="placeholder" class="placeholder">
           <span>이미지 없음</span>
         </div>
-         <img src="./src/image/프로필원장.png"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
+         <img src="/src/image/staff-2.jpg"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
         <img id="preview-image" alt="프로필 이미지" class="profile-image" style="display: none"/>
       </div>
 
@@ -172,8 +173,8 @@ export default function myPage() {
     </div>
 
     <ul class="nurseInfo">
-      <li class="nurseName">우미연</li>
-      <li class="nurseLank"원장</li>
+      <li class="nurseName">차주현</li>
+      <li class="nurseLank">간호사</li>
       <li class="nurseWorking">근무중</li>
     </ul>
 
@@ -196,7 +197,7 @@ export default function myPage() {
         <div class="infoWrap">
           입사일
           <span class="dot">
-            <input class="detailInfoEdit" id="dataOfJoining" type="text" disabled value="2021.03.21">
+            <input class="detailInfoEdit" id="dataOfJoining" type="text" disabled value="2025.01.01">
           </span>
         </div>
       </li>
@@ -204,7 +205,7 @@ export default function myPage() {
         <div class="infoWrap">
           직급
           <span class="dot">
-            <input class="detailInfoEdit" id="rank" type="text" disabled value="원장">
+            <input class="detailInfoEdit" id="rank" type="text" disabled value="간호사">
           </span>
         </div>
       </li>
@@ -212,7 +213,7 @@ export default function myPage() {
         <div class="infoWrap">
           이메일
           <span class="dot">
-            <input class="detailInfoEdit" id="email" type="text" disabled value="woomiyeon@naver.com">
+            <input class="detailInfoEdit" id="email" type="text" disabled value="chajuhyun@naver.com">
           </span>
         </div>
       </li>
@@ -226,7 +227,7 @@ export default function myPage() {
           전화번호
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="phoneNumber" type="text" disabled value="010-2847-9365">
+              <input class="detailInfoEdit" id="phoneNumber" type="text" disabled value="010-2721-9932">
             </span>
           </div>
         </div>
@@ -236,7 +237,7 @@ export default function myPage() {
           자택주소
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="HomeAddress" type="text" disabled value="경기도 성남시 북창로 12">
+              <input class="detailInfoEdit" id="HomeAddress" type="text" disabled value="부산광역시 해운대구 우동 23번길">
             </span>
           </div>
         </div>
@@ -246,7 +247,7 @@ export default function myPage() {
           생년월일
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="birthDate" type="text" disabled value="1980.01.01">
+              <input class="detailInfoEdit" id="birthDate" type="text" disabled value="2000.01.01">
             </span>
           </div>
         </div>
@@ -254,6 +255,7 @@ export default function myPage() {
     </ul>
     </div>
   </div>
+</div>
 </div>
 `;
 }

@@ -64,7 +64,7 @@ function initializePage() {
   isEditing = !isEditing;
 }
 
-export default function myPage() {
+export default function myPageAdm_3() {
   window.onUploadButtonClick = function () {
     const input = document.createElement("input");
     input.type = "file";
@@ -128,6 +128,7 @@ export default function myPage() {
   }, 100);
 
   return `
+  <div class="myPageContainers admin-page"> 
   <div class="myPageContainer">
   <div class="headerWrap">
   <h1 class="myPage-title">마이페이지</h1>
@@ -139,7 +140,7 @@ export default function myPage() {
       <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="window.handleFileSelect(event)"/>
       
       <div class="image-preview">       
-        <img src="./src/image/프로필원무과.png"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
+        <img src="/src/image/staff-3.jpg"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
       </div>
       
       
@@ -228,6 +229,7 @@ export default function myPage() {
     </ul>
     </div>
   </div>
+</div>
 </div>
 `;
 }
