@@ -306,7 +306,3 @@ ul > .nurseWorking::before {
 .hide-dot::before {
   opacity: 0;
 }
-
-.infoContainer {
-  margin-top: 30px;
-}

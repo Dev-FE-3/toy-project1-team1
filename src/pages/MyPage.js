@@ -129,6 +129,7 @@ export default function myPage() {
   }, 100);
 
   return `
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <div class="myPageContainer">
   <div class="headerWrap">
   <h1 class="myPage-title">마이페이지</h1>

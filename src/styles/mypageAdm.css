@@ -50,11 +50,10 @@
   align-items: center;
 }
 
-.back,
 .disabledEditBtn {
   background-color: #fff;
   margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   cursor: pointer;
   border: 1px solid #d2e7e7;
   border-radius: 6px;
@@ -190,7 +189,7 @@
 ul > .nurseName {
   width: 10vw;
   font-size: 24px;
-  margin-top: 11vh;
+  margin-top: 2vh;
 }
 
 ul > .nurseLank {
@@ -198,7 +197,7 @@ ul > .nurseLank {
 }
 
 ul > .nurseWorking {
-  margin-top: 1vh;
+  margin-bottom: 2vh;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -218,7 +217,7 @@ ul > .nurseWorking::before {
   font-size: 14px;
   width: 25vw;
   display: flex;
-  padding-bottom: 2vh;
+  margin-bottom: 10vh;
   border-bottom: 2px solid #d2e7e7;
   margin-right: 150px;
 }
@@ -238,7 +237,7 @@ ul > .nurseWorking::before {
 
 .info {
   width: 90%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .info-column {
@@ -258,7 +257,7 @@ ul > .nurseWorking::before {
 .secondDate {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 3vh;
+  margin-bottom: 5vh;
 }
 
 .dataOfJoining,
@@ -270,14 +269,6 @@ ul > .nurseWorking::before {
   padding: 1vh 0;
   font-weight: bold;
   font-size: 16px;
-}
-
-.dataOfJoining {
-  width: 230px;
-}
-
-.infoWrap {
-  margin-top: 1vh;
 }
 
 .dot {
@@ -305,8 +296,4 @@ ul > .nurseWorking::before {
 
 .hide-dot::before {
   opacity: 0;
-}
-
-.infoContainer {
-  margin-top: 30px;
 }
