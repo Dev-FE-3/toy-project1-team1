@@ -25,7 +25,7 @@ nav {
   background-color: #e9f5f5; /* 수정 : nav바 배경 색 수정 */
 }
 
-nav > div.logo {
+nav > .logo {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -36,9 +36,10 @@ nav > div.logo {
   font-size: 1.5rem;
   color: #333;
   border-bottom: 3px solid #d2e7e7; /* 수정: 로고 아래 경계선 색상 변경 */
+  cursor: pointer;
 }
 
-nav > div.logo > span {
+nav > .logo > span {
   color: #3a8c8c; /* 수정: 강조 색상 */
 }
 
