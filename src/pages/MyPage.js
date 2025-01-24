@@ -79,11 +79,11 @@ export default function myPage() {
       document.querySelector(".nurseWorking").textContent = isWorking
         ? "근무 중"
         : "근무 전";
+      document.querySelector(".state-icon").style.backgroundColor = isWorking
+      ? "#3a8c8c"
+      : "#d2e7e7";
     }
   };
-  setTimeout(() => {
-    updateState();
-  }, 0);
   // * 이미지 업로드 버튼 클릭 시 실행되는 함수
   // * 파일 선택을 위한 input 요소를 동적으로 생성하고 클릭 이벤트를 발생시킴
 
@@ -146,10 +146,10 @@ export default function myPage() {
       placeholder.style.display = "flex";
     }
   };
-
   setTimeout(() => {
     initializePage();
-  }, 100);
+    updateState();
+  }, 0);
 
   return `
   <div class="myPageContainer">
@@ -176,20 +176,20 @@ export default function myPage() {
       </div>
     </div>
 
-    <ul class="nurseInfo">
-      <li class="nurseName">차주현</li>
-      <li class="nurseLank">간호사</li>
-      <li class="nurseWorking">근무중</li>
-    </ul>
+    <div class="nurseInfo">
+      <p class="nurseName">차주현</p>
+      <p class="nurseLank">간호사</p>
+      <div class="nurseWorking-box"><div class="state-icon"></div><div class="nurseWorking"></div></div>
+    </div>
 
     <div class="workTime">
       <div class="dutyStart">
         근무시작
-        <div class="startTime">09:00</div>
+        <div id="startWork">09 : 00</div>
       </div>
       <div class="dutyFinish">
         근무종료
-        <div class="finishTime">00:00</div>
+        <div id="finishWork">00 : 00</div>
       </div>
     </div>
   </div>

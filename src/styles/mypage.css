@@ -182,36 +182,26 @@
 }
 
 .nurseInfo {
-  flex: 1;
-  margin-left: 30vw;
-  margin-bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-ul > .nurseName {
-  width: 10vw;
+.nurseName {
   font-size: 24px;
   margin-top: 11vh;
 }
 
-ul > .nurseLank {
+.nurseLank {
   font-size: 14px;
 }
-
-ul > .nurseWorking {
-  margin-top: 1vh;
-  font-size: 12px;
+.nurseWorking-box {
   display: flex;
-  align-items: center;
-  gap: 2%;
+  gap: 1rem;
 }
-
-ul > .nurseWorking::before {
-  content: "";
-  width: 0.5vw;
-  height: 0.5vw;
-  border-radius: 50%;
-  margin-right: 10px;
-  background-color: #3a8c8c;
+.nurseWorking {
+  font-size: 12px;
+  gap: 2%;
 }
 
 .workTime {
