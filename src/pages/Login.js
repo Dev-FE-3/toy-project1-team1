@@ -39,7 +39,6 @@ const init = () => {
 
 export default function login() {
   setTimeout(init, 0);
-
   return `
 
    <div class="container">

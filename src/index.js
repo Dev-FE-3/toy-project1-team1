@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 
-import myPage from "./pages/MyPage";
+import myPage from "./pages/MyPageAdm_1";
 import login from "./pages/Login";
 import Page from "./pages/Page";
 import Support from "./pages/Support";

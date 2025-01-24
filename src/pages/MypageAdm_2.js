@@ -16,7 +16,7 @@ function initializePage() {
   let isEditing = false;
   if (detailInfoedits && disablededitbtn) {
     disablededitbtn.addEventListener("click", function () {
-      isEditing = !isEditing; // 토글이 두번있음. 리펙토링 필요.
+      // isEditing = !isEditing; // 토글이 두번있음. 리펙토링 필요.
       if (!isEditing) {
         detailInfoedits.forEach((input) => {
           input.disabled = false;

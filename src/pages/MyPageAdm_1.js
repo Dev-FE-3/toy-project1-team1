@@ -64,12 +64,6 @@ function initializePage() {
 }
 
 export default function myPage() {
-  // /전페이지로 이동
-  // window.goBack = function () {
-  //   window.history.go(-1);
-  // };
-  //   <input class="back" type="button" value="뒤로가기" onClick="goBack()">
-
   window.onUploadButtonClick = function () {
     const input = document.createElement("input");
     input.type = "file";
@@ -111,7 +105,6 @@ export default function myPage() {
     const deleteBtn = document.getElementById("delete-btn");
     const placeholder = document.getElementById("placeholder");
     const uploadBtn = document.querySelector(".upload-btn");
-    const profileImage = document.querySelector(".profile-image");
 
     if (previewImage) {
       previewImage.src = "";
@@ -120,12 +113,10 @@ export default function myPage() {
 
     if (deleteBtn) {
       deleteBtn.style.display = "none";
-      profileImage.removeAttribute(src);
     }
 
     if (uploadBtn) {
       uploadBtn.style.display = "block";
-      profileImage.setAttribute(src);
     }
 
     if (placeholder) {
@@ -152,8 +143,8 @@ export default function myPage() {
       <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="window.handleFileSelect(event)"/>
 
       <div class="image-preview">
-        <img alt="프로필 이미지" id="placeholder" class="placeholder">
-        <img src="./src/image/프로필간호사.png"  id="preview-image" alt="프로필 이미지" class="profile-image" style="display: none"/>
+        <img id="placeholder" class="placeholder" ><div class="imageNone">이미지 없음</div>
+        <img src="./src/image/staff-2.jpg" id="preview-image" class="profile-image" />
       </div>
  <div class="button-container">
         <button id="uploadBtn" class="upload-btn" onclick="window.onUploadButtonClick()">

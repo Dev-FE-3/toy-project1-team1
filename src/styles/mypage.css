@@ -142,6 +142,12 @@
   transform: translateX(-50%);
 }
 
+.imageNone {
+  position: absolute;
+  top: 45%;
+  left: 30%;
+}
+
 .button-container {
   display: flex;
   gap: 10px;
