@@ -7,32 +7,59 @@ export default function boardDataCreatePage() {
     <section class="board-data-create">
       <div class="board-data-create-header">
         <h1>게시물 작성</h1>
-        <button id="createDataBoard" class="btn btn-gray">게시물 등록</button>
+      </div>
+      <div class="board-data-create-addboard">
+        <button id="createDataBoard" class="board-data-create__btn">
+          게시물 등록
+        </button>
       </div>
       <form>
         <div class="form-group">
-          <label for="title">제목</label>
-          <input type="text" id="title" name="title" />
+          <input type="text" id="title" name="title" placeholder="제목" />
         </div>
+
         <div class="form-group">
-          <label for="writer">작성자</label>
-          <input type="text" id="writer" name="writer" />
+          <div class="form-group-item">
+            <label for="category">게시판 : </label>
+            <select id="category" name="category">
+              <option value="default">선택하세요</option>
+              <option value="1">공지게시판</option>
+              <option value="2">자료게시판</option>
+            </select>
+          </div>
+          <div class="form-group-item">
+            <input
+              type="text"
+              id="writer"
+              name="writer"
+              placeholder="작성자"
+              autocomplete="off"
+            />
+          </div>
+          <div
+            class="form-group-item"
+            id="fileButtonContainer"
+            style="display: none;"
+          >
+            <button
+              id="fileButton"
+              class="board-data-create__btn"
+              type="button"
+            >
+              사진 등록
+            </button>
+            <img id="imagePreview" />
+          </div>
         </div>
+        <div class="dividingLine"></div>
         <div class="form-group">
-          <label for="category">게시판</label>
-          <select id="category" name="category">
-            <option value="1">공지게시판</option>
-            <option value="2">자료게시판</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="image">사진 등록</label>
-          <button id="fileButton">파일 선택</button>
-        </div>
-        <img id="imagePreview" />
-        <div class="form-group">
-          <label for="content">내용</label>
-          <textarea id="content" name="content"></textarea>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="내용을 입력해 주세요"
+          ></textarea>
+
+          <img id="imagePreview" />
         </div>
       </form>
     </section>
@@ -44,8 +71,24 @@ export default function boardDataCreatePage() {
     const imagePreview = document.getElementById("imagePreview");
     const imageInputBtn = document.getElementById("fileButton");
 
+    const categorySelect = document.getElementById("category");
+    const fileButtonContainer = document.getElementById("fileButtonContainer");
+
     let selectedImageFile = null;
 
+    // 카테고리에 맞춰 img 태그 ON/DFF
+    const categoryHandler = () => {
+      const selectedValue = categorySelect.value;
+
+      if (selectedValue === "1") {
+        fileButtonContainer.style.display = "block";
+      } else {
+        fileButtonContainer.style.display = "none";
+        imagePreview.src = "";
+      }
+    };
+
+    // img 추가 하기
     const addImg = async () => {
       try {
         const fileHandle = await window.showOpenFilePicker({
@@ -58,20 +101,19 @@ export default function boardDataCreatePage() {
         });
 
         const file = await fileHandle[0].getFile();
-        selectedImageFile = file; // 선택된 파일을 저장
+        selectedImageFile = file;
 
         const reader = new FileReader();
         reader.onload = function (e) {
-          // 파일을 읽고 미리보기 이미지로 표시
           imagePreview.src = e.target.result;
         };
-        console.log(reader);
         reader.readAsDataURL(file);
       } catch (error) {
         console.error("파일을 선택하는 도중 오류 발생:", error);
       }
     };
 
+    // 입력받은 데이터 저장
     const submitData = () => {
       const title = document.getElementById("title");
       const writer = document.getElementById("writer");
@@ -85,28 +127,36 @@ export default function boardDataCreatePage() {
       formData.append("content", content.value);
 
       if (selectedImageFile) {
-        console.log(selectedImageFile.file);
         formData.append("image", selectedImageFile);
+      } else {
+        formData.append("image", null);
+      }
+      const data = Object.fromEntries(formData.entries());
+
+      if (
+        data.title === "" ||
+        data.writer === "" ||
+        data.category === "default" ||
+        data.content === ""
+      ) {
+        alert("필드를 채워주세요.");
+        return;
       }
 
-      const data = Object.fromEntries(formData.entries());
-      console.log(data);
       localStorage.setItem(`category${data.category}`, JSON.stringify(data));
 
-      console.log("로컬 스토리지 저장 완료");
-
-      const storedData = JSON.parse(
-        localStorage.getItem(`category${data.category}`),
-      );
-      console.log("데이터 확인", storedData);
-
-      // 데이터 필드 초기화
-      title.value = "";
-      writer.value = "";
-      category.value = "1";
-      content.value = "";
-      imagePreview.src = "";
-      selectedImageFile = null;
+      const isFinished = confirm("글을 게시 하시겠습니까?");
+      if (isFinished) {
+        window.location.href = "/board";
+        title.value = "";
+        writer.value = "";
+        category.value = "default";
+        content.value = "";
+        imagePreview.src = "";
+        selectedImageFile = null;
+      } else {
+        return;
+      }
     };
 
     if (imageInputBtn) {
@@ -115,6 +165,9 @@ export default function boardDataCreatePage() {
 
     if (createDataBoard) {
       createDataBoard.addEventListener("click", submitData);
+    }
+    if (categorySelect) {
+      categorySelect.addEventListener("change", categoryHandler);
     }
   }, 0);
 
