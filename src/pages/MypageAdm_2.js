@@ -1,4 +1,4 @@
-import "../styles/mypage.css";
+import "../styles/mypageAdm.css";
 
 // DOM이 완전히 로드된 후에 초기화
 function initializePage() {
@@ -73,7 +73,7 @@ function initializePage() {
   }
 }
 
-export default function myPageAdm() {
+export default function myPage() {
   // 전페이지로 이동
   // window.goBack = function () {
   //   window.history.go(-1);
@@ -148,19 +148,19 @@ export default function myPageAdm() {
   <h1 class="myPage-title">마이페이지</h1>
   <input class="disabledEditBtn" type="button" value="개인정보 수정">
   </div>
-  
+
   <div class="myPageHeader">
     <div class="nurseImageIcon">
       <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="window.handleFileSelect(event)"/>
-      
+
       <div class="image-preview">
         <div id="placeholder" class="placeholder">
           <span>이미지 없음</span>
         </div>
-        
+         <img src="./src/image/프로필원장.png"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
         <img id="preview-image" alt="프로필 이미지" class="profile-image" style="display: none"/>
       </div>
-      
+
       <div class="button-container">
         <button id="uploadBtn" class="upload-btn" onclick="window.onUploadButtonClick()">
           <i class="material-icons edit">edit</i>
@@ -172,7 +172,7 @@ export default function myPageAdm() {
     </div>
 
     <ul class="nurseInfo">
-      <li class="nurseName">코깎장</li>
+      <li class="nurseName">차주현</li>
       <li class="nurseLank">간호사</li>
       <li class="nurseWorking">근무중</li>
     </ul>
@@ -189,6 +189,7 @@ export default function myPageAdm() {
     </div>
   </div>
 
+  <div class="infoContainer">
   <div class="info">
     <ul class="firstDate">
       <li class="dataOfJoining">
@@ -211,7 +212,7 @@ export default function myPageAdm() {
         <div class="infoWrap">
           이메일
           <span class="dot">
-            <input class="detailInfoEdit" id="email" type="text" disabled value="fastcamp@kdt.com">
+            <input class="detailInfoEdit" id="email" type="text" disabled value="chajuhyun@naver.com">
           </span>
         </div>
       </li>
@@ -251,6 +252,7 @@ export default function myPageAdm() {
         </div>
       </li>
     </ul>
+    </div>
   </div>
 </div>
 `;

@@ -5,55 +5,69 @@ export default class Home {
   constructor() {
     this.timeUtil = new TimeUtil();
     this.timeUtil.updateTime();
-    this.isWorking = window.localStorage.getItem('workState') === 'working';
+    this.isWorking = window.localStorage.getItem("workState") === "working";
   }
   updateUI = () => {
-    const startTime = window.localStorage.getItem('startTime') || '00 : 00';
-    const endTime = window.localStorage.getItem('endTime') || '00 : 00';
+    const startTime = window.localStorage.getItem("startTime") || "00 : 00";
+    const endTime = window.localStorage.getItem("endTime") || "00 : 00";
 
     document.getElementById("startWork").textContent = startTime;
     document.getElementById("finishWork").textContent = endTime;
 
-    document.querySelector(".work-time-button").textContent = this.isWorking ? '근무 종료' : '근무 시작';
-    document.querySelector(".state-icon").style.backgroundColor = this.isWorking ? "#3a8c8c" : "#d2e7e7";
-    document.querySelector(".state-text").textContent = this.isWorking ? '근무 중' : '근무 전';
+    document.querySelector(".work-time-button").textContent = this.isWorking
+      ? "근무 종료"
+      : "근무 시작";
+    document.querySelector(".state-icon").style.backgroundColor = this.isWorking
+      ? "#3a8c8c"
+      : "#d2e7e7";
+    document.querySelector(".state-text").textContent = this.isWorking
+      ? "근무 중"
+      : "근무 전";
   };
 
   updateState = (newState, currentTime) => {
-    this.isWorking = newState === 'working'; // 상태를 업데이트
-    window.localStorage.setItem('workState', newState);
-    window.localStorage.setItem('startTime', this.isWorking ? currentTime : window.localStorage.getItem('startTime') || '00 : 00');
-    window.localStorage.setItem('endTime', this.isWorking ? '00 : 00' : currentTime);
+    this.isWorking = newState === "working"; // 상태를 업데이트
+    window.localStorage.setItem("workState", newState);
+    window.localStorage.setItem(
+      "startTime",
+      this.isWorking
+        ? currentTime
+        : window.localStorage.getItem("startTime") || "00 : 00",
+    );
+    window.localStorage.setItem(
+      "endTime",
+      this.isWorking ? "00 : 00" : currentTime,
+    );
 
     this.updateUI();
   };
 
   modal = () => {
     const message = this.isWorking
-      ? '근무를 종료하시겠습니까?'
-      : '근무를 시작하시겠습니까?';
-    document.querySelector('.home-modal-system_msg').textContent = message;
-    document.getElementById('home-modal').style.display = 'block';
+      ? "근무를 종료하시겠습니까?"
+      : "근무를 시작하시겠습니까?";
+    document.querySelector(".home-modal-system_msg").textContent = message;
+    document.getElementById("home-modal").style.display = "block";
   };
 
   changeState = () => {
     const currentTime = this.timeUtil.getCurrentTime();
-    this.updateState(this.isWorking ? 'beforeWork' : 'working', currentTime);
-    document.getElementById('home-modal').style.display = 'none';
+    this.updateState(this.isWorking ? "beforeWork" : "working", currentTime);
+    document.getElementById("home-modal").style.display = "none";
   };
 
   homeEventHandler = () => {
     this.updateUI();
 
     document
-      .getElementById('home-modal-confirm')
-      .addEventListener('click', this.changeState);
-    document.querySelector('.cancel').addEventListener('click', () => {
-      document.getElementById('home-modal').style.display = 'none';
+      .getElementById("home-modal-confirm")
+      .addEventListener("click", this.changeState);
+    document.querySelector(".cancel").addEventListener("click", () => {
+      document.getElementById("home-modal").style.display = "none";
     });
     document
-      .querySelector('.work-time-button')
-      .addEventListener('click', this.modal);
+      .querySelector(".work-time-button")
+      .addEventListener("click", this.modal);
   };
 
   render() {

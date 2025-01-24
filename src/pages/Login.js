@@ -41,17 +41,15 @@ const checkUser = () => {
   const staffLoginBtn = document.querySelector(".staffLoginBtn");
   const managerLoginBtn = document.querySelector(".managerLoginBtn");
 
-  staffLoginBtn?.addEventListener("click",() => {
-    window.localStorage.setItem('user','staff');
+  staffLoginBtn?.addEventListener("click", () => {
+    window.localStorage.setItem("user", "staff");
   });
-  managerLoginBtn?.addEventListener("click",() => {
-    window.localStorage.setItem('user','manager');
+  managerLoginBtn?.addEventListener("click", () => {
+    window.localStorage.setItem("user", "manager");
   });
-}
-
+};
 export default function login() {
-  if(window.location.pathname === '/')
-  setTimeout(init, 0);
+  if (window.location.pathname === "/") setTimeout(init, 0);
   setTimeout(checkUser, 0);
   return `
 

@@ -1,5 +1,6 @@
-import "../styles/mypage.css";
+import "../styles/mypageAdm.css";
 
+// DOM이 완전히 로드된 후에 초기화
 function initializePage() {
   const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
   const disablededitbtn = document.querySelector(".disabledEditBtn");
@@ -13,10 +14,12 @@ function initializePage() {
   });
 
   let isEditing = false;
+
   if (detailInfoedits && disablededitbtn) {
     disablededitbtn.addEventListener("click", function () {
-      isEditing = !isEditing; // 토글이 두번있음. 리펙토링 필요.
       if (!isEditing) {
+        // 수정모드가 꺼져 있을때 실행 // 이제 킬거임.
+        // 각 input 의 스타일변경
         detailInfoedits.forEach((input) => {
           input.disabled = false;
           input.readOnly = false;
@@ -25,31 +28,32 @@ function initializePage() {
           input.style.backgroundColor = "#e9f5f5";
         });
 
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "hidden";
+        // dot 숨기기
+        doted.forEach((dot) => {
+          dot.classList.add("hide-dot");
         });
 
+        // 버튼 스타일 변경
+
         disablededitbtn.value = "저장";
-        disablededitbtn.style.width = "80px";
+        disablededitbtn.style.color = "#3a8c8c";
+        disablededitbtn.style.display = "block";
         disablededitbtn.style.transition = "0.6s";
+        disablededitbtn.style.width = "5%";
       } else {
+        // 수정모드가 켜져 있을때 실행 // 이제 끌거임
         detailInfoedits.forEach((input) => {
           input.readOnly = true;
           input.disabled = true;
           input.style.borderColor = "transparent";
-          input.style.backgroundColor = "#fff";
           localStorage.setItem(input.id, input.value);
         });
 
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "visible";
-        });
-
+        // 버튼 스타일 원복
         disablededitbtn.value = "개인정보 수정";
         disablededitbtn.style.width = "8vw";
         disablededitbtn.style.backgroundColor = "#fff";
+        // disablededitbtn.style.color = "#3a8c8c";
 
         disablededitbtn.onmouseenter = () => {
           disablededitbtn.style.backgroundColor = "#e9f5f5";
@@ -57,35 +61,24 @@ function initializePage() {
         disablededitbtn.onmouseleave = () => {
           disablededitbtn.style.backgroundColor = "#fff";
         };
+
+        // dot 보이기
+        doted.forEach((dot) => {
+          dot.classList.remove("hide-dot");
+        });
       }
+
+      isEditing = !isEditing;
     });
   }
-  isEditing = !isEditing;
 }
 
 export default function myPage() {
-  window.goBack = function () {
-    window.history.go(-1);
-  };
-
-  // localStorge를 활용한 근무 시간 변경
-  const isWorking = window.localStorage.getItem("workState") === "working";
-  const updateState = () => {
-    if (window.location.pathname === "/my-page") {
-      const startTime = window.localStorage.getItem("startTime");
-      const endTime = window.localStorage.getItem("endTime");
-      document.getElementById("startWork").textContent = startTime;
-      document.getElementById("finishWork").textContent = endTime;
-      document.querySelector(".nurseWorking").textContent = isWorking
-        ? "근무 중"
-        : "근무 전";
-    }
-  };
-  setTimeout(() => {
-    updateState();
-  }, 0);
-  // * 이미지 업로드 버튼 클릭 시 실행되는 함수
-  // * 파일 선택을 위한 input 요소를 동적으로 생성하고 클릭 이벤트를 발생시킴
+  // 전페이지로 이동
+  // window.goBack = function () {
+  //   window.history.go(-1);
+  // };
+  //   <input class="back" type="button" value="뒤로가기" onClick="goBack()">
 
   window.onUploadButtonClick = function () {
     const input = document.createElement("input");
@@ -138,9 +131,7 @@ export default function myPage() {
       deleteBtn.style.display = "none";
     }
 
-    if (uploadBtn) {
-      uploadBtn.style.display = "block";
-    }
+    if (uploadBtn) uploadBtn.style.display = "block";
 
     if (placeholder) {
       placeholder.style.display = "flex";
@@ -155,7 +146,7 @@ export default function myPage() {
   <div class="myPageContainer">
   <div class="headerWrap">
   <h1 class="myPage-title">마이페이지</h1>
-
+  <input class="disabledEditBtn" type="button" value="개인정보 수정">
   </div>
 
   <div class="myPageHeader">
@@ -163,10 +154,14 @@ export default function myPage() {
       <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="window.handleFileSelect(event)"/>
 
       <div class="image-preview">
-        <img id="placeholder" class="placeholder" ><div class="imageNone">이미지 없음</div>
-        <img src="./src/image/staff-2.jpg" id="preview-image" class="profile-image" />
+        <div id="placeholder" class="placeholder">
+          <span>이미지 없음</span>
+        </div>
+         <img src="./src/image/프로필원장.png"  id="preview-image" alt="프로필 이미지" class="profile-image"/>
+        <img id="preview-image" alt="프로필 이미지" class="profile-image" style="display: none"/>
       </div>
- <div class="button-container">
+
+      <div class="button-container">
         <button id="uploadBtn" class="upload-btn" onclick="window.onUploadButtonClick()">
           <i class="material-icons edit">edit</i>
         </button>
@@ -177,8 +172,8 @@ export default function myPage() {
     </div>
 
     <ul class="nurseInfo">
-      <li class="nurseName">차주현</li>
-      <li class="nurseLank">간호사</li>
+      <li class="nurseName">우미연</li>
+      <li class="nurseLank"원장</li>
       <li class="nurseWorking">근무중</li>
     </ul>
 
@@ -194,14 +189,14 @@ export default function myPage() {
     </div>
   </div>
 
-   <div class="infoContainer">
+  <div class="infoContainer">
   <div class="info">
     <ul class="firstDate">
       <li class="dataOfJoining">
         <div class="infoWrap">
           입사일
           <span class="dot">
-            <input class="detailInfoEdit" id="dataOfJoining" type="text" disabled value="2025.01.01">
+            <input class="detailInfoEdit" id="dataOfJoining" type="text" disabled value="2021.03.21">
           </span>
         </div>
       </li>
@@ -209,7 +204,7 @@ export default function myPage() {
         <div class="infoWrap">
           직급
           <span class="dot">
-            <input class="detailInfoEdit" id="rank" type="text" disabled value="간호사">
+            <input class="detailInfoEdit" id="rank" type="text" disabled value="원장">
           </span>
         </div>
       </li>
@@ -217,7 +212,7 @@ export default function myPage() {
         <div class="infoWrap">
           이메일
           <span class="dot">
-            <input class="detailInfoEdit" id="email" type="text" disabled value="chajuhyun@naver.com">
+            <input class="detailInfoEdit" id="email" type="text" disabled value="woomiyeon@naver.com">
           </span>
         </div>
       </li>
@@ -231,7 +226,7 @@ export default function myPage() {
           전화번호
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="phoneNumber" type="text" disabled value="010-2721-9932">
+              <input class="detailInfoEdit" id="phoneNumber" type="text" disabled value="010-2847-9365">
             </span>
           </div>
         </div>
@@ -241,7 +236,7 @@ export default function myPage() {
           자택주소
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="HomeAddress" type="text" disabled value="부산광역시 해운대구 우동 23번길">
+              <input class="detailInfoEdit" id="HomeAddress" type="text" disabled value="경기도 성남시 북창로 12">
             </span>
           </div>
         </div>
@@ -251,13 +246,13 @@ export default function myPage() {
           생년월일
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="birthDate" type="text" disabled value="2000.01.01">
+              <input class="detailInfoEdit" id="birthDate" type="text" disabled value="1980.01.01">
             </span>
           </div>
         </div>
       </li>
     </ul>
-  </div>
+    </div>
   </div>
 </div>
 `;
