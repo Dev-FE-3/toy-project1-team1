@@ -58,18 +58,18 @@ const updateActiveMenu = () => {
 const route = () => {
   const path = window.location.pathname;
   const content = document.querySelector("#app");
-  const nav = document.querySelector('#nav');
+  const nav = document.querySelector("#nav");
   const absenceMngPage = new Page("#app", absenceMng());
   const homePage = new Home();
   const downloadPage = new Page("#app", download());
   const supportPage = new Support({ title: "Support" });
   const myPagePage = new Page("#app", myPage());
   const mylogin = new Page("main", login());
-  const myPageAdmin = new Page('#app', myPageAdm());
-  const navBar = new Navbar({isAdmin : false});
-  const navBarMng = new Navbar({isAdmin : true});
+  const myPageAdmin = new Page("#app", myPageAdm());
+  const navBar = new Navbar({ isAdmin: false });
+  const navBarMng = new Navbar({ isAdmin: true });
 
-  if (window.localStorage.getItem('user') === 'manager'){
+  if (window.localStorage.getItem("user") === "manager") {
     nav.innerHTML = navBarMng.render();
   } else {
     nav.innerHTML = navBar.render();

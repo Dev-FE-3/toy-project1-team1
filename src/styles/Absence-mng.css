@@ -6,53 +6,65 @@
   padding-left: 100px; */
 
   padding: 50px 80px;
-  /* padding: 5% 8%; */
-  /* padding: 70px 100px; */
 
   color: black;
-
+  /* background-color:; */
   display: flex;
   gap: 30px;
   flex-direction: column;
 }
 
+/* page 상단 제목 title */
 .row1 {
   font-size: 24px;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
-/* 부재 신청 */
+/* 부재 신청 버튼 & 잔여 휴가*/
 .row2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 100px;
   font-weight: bold;
 }
 
+/* 부재 신청 버튼 */
 .row2__btns {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
+  color: #3a8c8c;
 }
 
 .row2__btns button {
-  border: 1px solid none;
-  border-radius: 0.5em;
+  padding: 5px 10px;
 
-  padding: 7px 14px;
-}
+  border: 1px solid #d2e7e7;
+  border-radius: 6px;
 
-.row2__btns button:first-child {
-  margin-right: 13px;
-  background-color: #929292;
-  color: #ffffff;
   cursor: pointer;
 }
 
-.row2__btns button:last-child {
-  background-color: #dedede;
-  color: #777777;
+.row2__btns button:first-child:hover {
+  background-color: #e9f5f5;
+  color: #3a8c8c;
+  font-weight: bold;
 }
+
+.row2__btns button:first-child:active {
+  background-color: #3a8c8c;
+  color: #ffffff;
+}
+
+.row2__btns__active {
+  background-color: #3a8c8c;
+  color: #ffffff;
+}
+
+/* 안내사항 버튼(작동 X ) */
+/* .row2__btns button:last-child {
+  background-color: #3a8c8c;
+  color: #ffffff;
+} */
 
 /* 잔여 연차 */
 .row2__remaining {
@@ -70,100 +82,110 @@
 
   border-right: 1px dotted #777777;
 }
+
 .row2__remaining > div:last-child {
   border: none;
 }
 
 .row2__remaining__item div:first-child {
-  color: #747474;
+  color: #666;
 }
 
-/* 부재 신청 */
+/* 부재 신청 내역 및 달력 */
 .row3 {
   display: flex;
-  width: 100%;
+
+  justify-content: space-between;
   height: 100%;
-  gap: 90px;
+  gap: 20px;
 }
 
 .row3__details {
-  flex: 0.5;
+  flex: 0.52;
   display: flex;
   flex-direction: column;
-  width: 45%;
+  margin-top: 50px;
 }
 
+/* 부재 신청 내역 제목 (title) */
 .row3__details > div {
-  margin-bottom: 40px;
-  font-size: 24px;
+  margin-bottom: 20px;
+  font-size: 20px;
   font-weight: bold;
-  color: black;
 }
+
+/* 부재 신청 내역 항목 (종류 , 승인여부 ...) */
+#row3__table td {
+  width: 25%;
+}
+
 .row3__title {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  text-align: center;
 
   padding-bottom: 20px;
-  border-bottom: 2px solid black;
-  position: relative;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d2e7e7;
 }
-
-.row3__title td {
-  margin-right: 20px;
+.row3__title > td {
+  position: relative;
 }
 
 #drop-down-btn {
   cursor: pointer;
 }
 
+/* 부재 신청 내역 item */
 .row3__item {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  font-size: 16px;
-
-  margin-top: 20px;
-  margin-left: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+  white-space: nowrap;
 }
 
 .row3__item td {
-  margin: 0px 40px;
-}
-
-.row3__item td:first-child,
-.row3__item td:nth-child(2) {
-  border: 1px solid none;
-  border-radius: 0.5em;
-
-  background-color: #dedede;
-  font-weight: bold;
-  color: #777777;
-
-  padding: 5px 13px;
-  margin: 0px 0px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px 0px;
 }
 
 .row3__item td:first-child {
+  padding: 5px;
+
+  border-radius: 0.5em;
+
+  background-color: #3a8c8c;
+  font-weight: bold;
+  color: #ffffff;
+}
+.row3__item td:nth-child(2) {
+  color: #3a8c8c;
+  font-weight: bolder;
+}
+
+.row3__item td:first-child {
+  margin-left: 20px;
 }
 
 .row3__item td:nth-child(2) {
-  margin-left: 57px;
+  margin-left: 48px;
 }
+
 .row3__item td:nth-child(3) {
-  margin-right: 12px;
-  margin-left: 55px;
+  margin-left: 50px;
 }
 
 .row3__item td:nth-child(4) {
-  margin-left: 40px;
-  margin-right: 37px;
+  margin-left: 50px;
+  margin-right: 25px;
 }
 
 /* 드롭다운 메뉴 */
 .row3__drop-menu {
   position: absolute;
   left: 10px;
+  top: 30px;
 
   display: flex;
   flex-direction: column;
@@ -188,13 +210,13 @@
 
 /* 캘린더 */
 .row3__calendar {
-  flex: 0.5;
-  min-height: 300px;
-  height: 100%;
+  flex: 0.4;
+  height: 480px;
 
   background: #fff;
   border-radius: 10px;
-  padding: 40px 30px;
+  padding: 20px 20px;
+  margin-top: 50px;
 }
 
 .row3__calendar .nav {
@@ -216,7 +238,7 @@
 }
 
 .calendar {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .calendar ul {
@@ -262,14 +284,22 @@
 }
 
 .days li:hover::before {
-  background-color: #f2f2f2;
+  background-color: #e9f5f5;
+}
+
+/* 5일 색 고정 */
+.days li:nth-child(5)::before {
+  background-color: #3a8c8c !important;
+}
+.days li:nth-child(5) {
+  color: #fff;
 }
 
 .days li.selected {
   color: #ffffff;
 }
 .days li.selected::before {
-  background-color: #6d6d6d;
+  background-color: #3a8c8c;
 }
 /* 부재신청 */
 
@@ -299,6 +329,7 @@
   align-items: center;
 
   background-color: #f5f5f5;
+  border: 2px solid #d2e7e7;
 
   color: black;
   font-weight: bold;
@@ -321,9 +352,6 @@
   font-weight: bold;
 }
 
-.type-of-vacation {
-}
-
 input[type="date"],
 #kind {
   border: none;
@@ -332,10 +360,6 @@ input[type="date"],
   background-color: #f5f5f5;
   /* appearance: none; */
   text-align: center;
-}
-input[type="date"]:focus,
-#kind:focus {
-  /* outline: none; */
 }
 
 #kind {
@@ -367,8 +391,6 @@ input[type="date"]:focus,
   color: #8b95a1;
 }
 
-.submit-btn {
-}
 .submit-btn__item {
   width: 100%;
   display: flex;
@@ -387,7 +409,12 @@ input[type="date"]:focus,
   background-color: #f5f5f5;
 }
 .submit-btn__item button:last-child {
-  background-color: #808080;
-  color: #f5f5f5;
+  border: 2px solid #d2e7e7;
+  color: #3a8c8c;
   border-radius: 0.3em;
+}
+.submit-btn__item button:last-child:hover {
+  background-color: #e9f5f5;
+  color: #3a8c8c;
+  font-weight: bold;
 }
