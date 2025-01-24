@@ -4,6 +4,7 @@ const staffInfoList = [
   {
     no: 1,
     img: "src/image/staff-1.jpg",
+    page: 1,
     name: "우미연",
     position: "원장",
     email: "woomiyeon@naver.com",
@@ -12,6 +13,7 @@ const staffInfoList = [
   {
     no: 2,
     img: "src/image/staff-2.jpg",
+    page: 2,
     name: "차주현",
     position: "간호사",
     email: "chajuhyun@naver.com",
@@ -20,6 +22,7 @@ const staffInfoList = [
   {
     no: 3,
     img: "src/image/staff-2.jpg",
+    page: 3,
     name: "방소라",
     position: "원무과",
     email: "bangsora@naver.com",
@@ -28,6 +31,7 @@ const staffInfoList = [
   {
     no: 4,
     img: "src/image/staff-2.jpg",
+    page: 2,
     name: "정유진",
     position: "임상병리사",
     email: "jungyujin@naver.com",
@@ -36,6 +40,7 @@ const staffInfoList = [
   {
     no: 5,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "최현우",
     position: "원무과",
     email: "choihw@naver.com",
@@ -44,6 +49,7 @@ const staffInfoList = [
   {
     no: 6,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "강도윤",
     position: "간호사",
     email: "kangdoyun@naver.com",
@@ -52,6 +58,7 @@ const staffInfoList = [
   {
     no: 7,
     img: "src/image/staff-2.jpg",
+    page: 2,
     name: "윤서아",
     position: "임상병리사",
     email: "yoonseoa@naver.com",
@@ -60,6 +67,7 @@ const staffInfoList = [
   {
     no: 8,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "장민재",
     position: "방사선사",
     email: "jangminjae@naver.com",
@@ -68,6 +76,7 @@ const staffInfoList = [
   {
     no: 9,
     img: "src/image/staff-2.jpg",
+    page: 2,
     name: "송하은",
     position: "원무과",
     email: "songhaeun@naver.com",
@@ -76,6 +85,7 @@ const staffInfoList = [
   {
     no: 10,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "임지훈",
     position: "간호사",
     email: "limjihoon@naver.com",
@@ -84,6 +94,7 @@ const staffInfoList = [
   {
     no: 11,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "한소율",
     position: "임상병리사",
     email: "hansoyul@naver.com",
@@ -92,6 +103,7 @@ const staffInfoList = [
   {
     no: 12,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "오승현",
     position: "방사선사",
     email: "ohseunghyun@naver.com",
@@ -100,6 +112,7 @@ const staffInfoList = [
   {
     no: 13,
     img: "src/image/staff-2.jpg",
+    page: 2,
     name: "신예진",
     position: "간호사",
     email: "shinyejin@naver.com",
@@ -108,6 +121,7 @@ const staffInfoList = [
   {
     no: 14,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "권도현",
     position: "원무과",
     email: "kwondohyun@naver.com",
@@ -116,6 +130,7 @@ const staffInfoList = [
   {
     no: 15,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "백지호",
     position: "임상병리사",
     email: "baekjiho@naver.com",
@@ -124,6 +139,7 @@ const staffInfoList = [
   {
     no: 16,
     img: "src/image/staff-2.jpg",
+    page: 2,
     name: "서유안",
     position: "방사선사",
     email: "seoyuan@naver.com",
@@ -132,6 +148,7 @@ const staffInfoList = [
   {
     no: 17,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "남동현",
     position: "간호사",
     email: "namdonghyun@naver.com",
@@ -140,6 +157,7 @@ const staffInfoList = [
   {
     no: 18,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "구현서",
     position: "원무과",
     email: "koohyunseo@naver.com",
@@ -148,6 +166,7 @@ const staffInfoList = [
   {
     no: 19,
     img: "src/image/staff-2.jpg",
+    page: 2,
     name: "황수진",
     position: "임상병리사",
     email: "hwangsujin@naver.com",
@@ -156,6 +175,7 @@ const staffInfoList = [
   {
     no: 20,
     img: "src/image/staff-3.jpg",
+    page: 2,
     name: "전승우",
     position: "방사선사",
     email: "jeonseungwoo@naver.com",
@@ -202,6 +222,13 @@ export default function staffInfo() {
     `;
   };
 
+  // 직원 페이지 이동 함수
+  const goToMypage = (staffId) => {
+    const staff = staffData.find((item) => item.no === parseInt(staffId)); // staffData에서 staffId로 직원 찾기
+    const page = staff ? staff.page : 2; // 기본 페이지는 2로 설정
+    window.location.href = `/Mypage_${page}.js?id=${staffId}`;
+  };
+
   // 이벤트 연결 함수
   const bindClickEvents = () => {
     setTimeout(() => {
@@ -210,14 +237,17 @@ export default function staffInfo() {
       rows.forEach((row) => {
         row.addEventListener("click", () => {
           const staffId = row.getAttribute("data-id");
-          // window.location.href = `/staff-1?id=${staffId}`;
-          window.location.href = `https://www.google.com`;
+          // goToMypage 함수 호출하여 페이지 이동
+          goToMypage(staffId);
         });
       });
     });
   };
 
-  bindClickEvents(); // DOM 이벤트 연결
+  document.addEventListener("DOMContentLoaded", () => {
+    // DOM이 로드된 후 bindClickEvents() 호출
+    bindClickEvents();
+  });
 
   return `
     <div class="container">

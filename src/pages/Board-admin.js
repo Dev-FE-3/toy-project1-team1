@@ -42,45 +42,45 @@ const noticeBoardItems = [
 // 자료 게시판 data
 const dataBoardItems = [
   {
-    no: 1,
+    no: 7,
     title: "상반기 보수 교육 일정",
-    author: "원장 우미연",
+    writer: "원장 우미연",
     date: "2025-01-01",
   },
   {
-    no: 2,
+    no: 6,
     title: "직원 복지 안내의 건",
-    author: "원장 우미연",
+    writer: "원장 우미연",
     date: "2025-01-02",
   },
   {
-    no: 3,
+    no: 5,
     title: "감염 관리 교육 자료",
-    author: "원장 우미연",
+    writer: "원장 우미연",
     date: "2025-01-03",
   },
   {
     no: 4,
     title: "2024 학술 자료 모음",
-    author: "원장 우미연",
+    writer: "원장 우미연",
     date: "2025-01-04",
   },
   {
-    no: 5,
+    no: 3,
     title: "의료기기 사용 메뉴얼 모음",
-    author: "원장 우미연",
+    writer: "원장 우미연",
     date: "2025-01-05",
   },
   {
-    no: 6,
+    no: 2,
     title: "CPR 및 응급처치 교육 일정",
-    author: "원장 우미연",
+    writer: "원장 우미연",
     date: "2025-01-06",
   },
   {
-    no: 7,
+    no: 1,
     title: "CPR 및 응급처치 교육 일정",
-    author: "원장 우미연",
+    writer: "원장 우미연",
     date: "2025-01-06",
   },
 ];
@@ -111,7 +111,7 @@ export default function board() {
           <tr>
             <td>${item.no}</td>
             <td>${item.title}</td>
-            <td>${item.author}</td>
+            <td>${item.writer}</td>
             <td>${item.date}</td>
           </tr>
         `,

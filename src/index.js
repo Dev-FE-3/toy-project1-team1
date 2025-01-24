@@ -5,7 +5,7 @@ import Support from "./pages/Support";
 import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
 import board from "./pages/Board";
-// import boardDataCreatePage from "./pages/BoardDataCreate";
+import boardDataCreatePage from "./pages/BoardDataCreate";
 import staffInfo from "./pages/StaffInfo";
 
 const app = () => {
@@ -80,6 +80,7 @@ const route = () => {
   const supportPage = new Support({ title: "Support" });
   const boardPage = new Page("#app", board());
   const staffInfoPage = new Page("#app", staffInfo());
+
   switch (path) {
     case "/":
       //mylogin.render();
