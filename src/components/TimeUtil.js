@@ -5,7 +5,7 @@ export default class TimeUtil {
     this.updateTime();
   }
 
-  updateTime () {
+  updateTime() {
     setInterval(() => {
       this.currentTime = this.getCurrentTime();
       this.putTime();
@@ -14,7 +14,7 @@ export default class TimeUtil {
 
   putTime() {
     this.getCurrentTime();
-    if (window.location.pathname === '/home'){
+    if (window.location.pathname === "/home") {
       document.querySelector(".hour-min").textContent = this.currentTime;
       document.querySelector("#date").textContent = this.currentDate;
     }
@@ -34,8 +34,6 @@ export default class TimeUtil {
     const now = new Date();
     const hour = now.getHours().toString().padStart(2, "0");
     const minutes = now.getMinutes().toString().padStart(2, "0");
-    // const sec = now.getSeconds().toString().padStart(2, "0");
-    // return `${hour} : ${minutes} : ${sec}`;
     return `${hour} : ${minutes}`;
   }
 }

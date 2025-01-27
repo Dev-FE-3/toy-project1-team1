@@ -271,7 +271,6 @@ export default function board() {
     updateUI();
   });
 
-  // html
   return `
     <section>
       <h1 id="h1">게시판</h1>

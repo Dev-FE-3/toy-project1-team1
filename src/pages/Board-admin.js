@@ -197,7 +197,6 @@ export default function boardadmin() {
     if (boardContent) {
       boardContent.innerHTML = renderContent();
     }
-    /* */
 
     tabs[0].classList.add("active");
 

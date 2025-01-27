@@ -185,37 +185,11 @@ export default function absenceMng() {
       <h1 class="row1">부재 관리</h1>
 
       <div class="row2">
+        <div class="row2__remaining"></div>
 
-      <div class="row2__remaining">
-
-      <!--
-        <div class="row2__remaining__item">
-          <div>연차</div>
-          <div>12일</div>
-        </div>
-
-          <div class="row2__remaining__item">
-            <div>잔여 반차</div>
-            <div>8.5일</div>
-          </div>
-
-          <div class="row2__remaining__item">
-            <div>잔여 휴가</div>
-            <div>10일</div>
-          </div>
-          -->
-      </div>
-
-      <!--
         <div class="row2__btns">
           <button id="vacation-request-btn">부재 신청</button>
-          <button>안내 사항</button>
-          </div>
-      -->
-      <div class="row2__btns">
-      <button id="vacation-request-btn">부재 신청</button>
-      <!--<button>안내 사항</button>-->
-    </div>
+         </div>
       </div>
 
       <div class="row3">

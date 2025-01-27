@@ -50,11 +50,10 @@
   align-items: center;
 }
 
-.back,
 .disabledEditBtn {
   background-color: #fff;
   margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   cursor: pointer;
   border: 1px solid #d2e7e7;
   border-radius: 6px;
@@ -148,8 +147,11 @@
   left: 30%;
 }
 
+.admin-page .button-container {
+  visibility: hidden;
+}
+
 .button-container {
-  display: flex;
   gap: 10px;
   margin-top: 10px;
 }
@@ -182,35 +184,46 @@
 }
 
 .nurseInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex: 1;
+  margin-left: 30vw;
+  margin-bottom: 11vh;
 }
 
-.nurseName {
+ul > .nurseName {
+  width: 10vw;
   font-size: 24px;
-  margin-top: 11vh;
+  margin-top: 2vh;
 }
 
-.nurseLank {
+ul > .nurseLank {
   font-size: 14px;
 }
-.nurseWorking-box {
-  display: flex;
-  gap: 1rem;
-}
-.nurseWorking {
+
+ul > .nurseWorking {
+  margin-bottom: 2vh;
   font-size: 12px;
+  display: flex;
+  align-items: center;
   gap: 2%;
+}
+
+ul > .nurseWorking::before {
+  content: "";
+  width: 0.5vw;
+  height: 0.5vw;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: #3a8c8c;
 }
 
 .workTime {
   font-size: 14px;
   width: 25vw;
+  height: 100px;
   display: flex;
-  padding-bottom: 2vh;
   border-bottom: 2px solid #d2e7e7;
   margin-right: 150px;
+  margin-bottom: 80px;
 }
 
 .dutyStart,
@@ -228,7 +241,6 @@
 
 .info {
   width: 90%;
-  margin: 0 auto;
 }
 
 .info-column {
@@ -248,7 +260,7 @@
 .secondDate {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 3vh;
+  margin-bottom: 5vh;
 }
 
 .dataOfJoining,
@@ -260,14 +272,6 @@
   padding: 1vh 0;
   font-weight: bold;
   font-size: 16px;
-}
-
-.dataOfJoining {
-  width: 230px;
-}
-
-.infoWrap {
-  margin-top: 1vh;
 }
 
 .dot {
@@ -295,8 +299,4 @@
 
 .hide-dot::before {
   opacity: 0;
-}
-
-.infoContainer {
-  margin-top: 30px;
 }

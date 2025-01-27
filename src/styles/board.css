@@ -123,14 +123,12 @@ section {
   font-size: 16px;
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
   box-sizing: border-box;
   min-height: 550px;
   position: relative;
 }
 
 .data-board {
-  /*flex-grow: 1;*/
   border-collapse: collapse;
   width: 100%;
   text-align: center;
