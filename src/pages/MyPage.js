@@ -1,73 +1,6 @@
 import "../styles/mypage.css";
 
-function initializePage() {
-  const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
-  const disablededitbtn = document.querySelector(".disabledEditBtn");
-  const doted = document.querySelectorAll(".dot");
-
-  detailInfoedits.forEach((input) => {
-    const savedValue = localStorage.getItem(input.id);
-    if (savedValue) {
-      input.value = savedValue;
-    }
-  });
-
-  let isEditing = false;
-  if (detailInfoedits && disablededitbtn) {
-    disablededitbtn.addEventListener("click", function () {
-      isEditing = !isEditing; // 토글이 두번있음. 리펙토링 필요.
-      if (!isEditing) {
-        detailInfoedits.forEach((input) => {
-          input.disabled = false;
-          input.readOnly = false;
-          input.style.color = "#666";
-          input.style.borderColor = "#3a8c8c";
-          input.style.backgroundColor = "#e9f5f5";
-        });
-
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "hidden";
-        });
-
-        disablededitbtn.value = "저장";
-        disablededitbtn.style.width = "80px";
-        disablededitbtn.style.transition = "0.6s";
-      } else {
-        detailInfoedits.forEach((input) => {
-          input.readOnly = true;
-          input.disabled = true;
-          input.style.borderColor = "transparent";
-          input.style.backgroundColor = "#fff";
-          localStorage.setItem(input.id, input.value);
-        });
-
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "visible";
-        });
-
-        disablededitbtn.value = "개인정보 수정";
-        disablededitbtn.style.width = "8vw";
-        disablededitbtn.style.backgroundColor = "#fff";
-
-        disablededitbtn.onmouseenter = () => {
-          disablededitbtn.style.backgroundColor = "#e9f5f5";
-        };
-        disablededitbtn.onmouseleave = () => {
-          disablededitbtn.style.backgroundColor = "#fff";
-        };
-      }
-    });
-  }
-  isEditing = !isEditing;
-}
-
 export default function myPage() {
-  window.goBack = function () {
-    window.history.go(-1);
-  };
-
   // localStorge를 활용한 근무 시간 변경
   const isWorking = window.localStorage.getItem("workState") === "working";
   const updateState = () => {
@@ -84,9 +17,8 @@ export default function myPage() {
   setTimeout(() => {
     updateState();
   }, 0);
-  // * 이미지 업로드 버튼 클릭 시 실행되는 함수
-  // * 파일 선택을 위한 input 요소를 동적으로 생성하고 클릭 이벤트를 발생시킴
 
+  // 이미지 업로드 버튼 클릭 시 실행되는 함수
   window.onUploadButtonClick = function () {
     const input = document.createElement("input");
     input.type = "file";
@@ -147,9 +79,6 @@ export default function myPage() {
     }
   };
 
-  setTimeout(() => {
-    initializePage();
-  }, 100);
   return `
   <div class="myPageContainers">
   <div class="myPageContainer">

@@ -1,127 +1,78 @@
 import "../styles/mypageAdm.css";
 
-// DOM이 완전히 로드된 후에 초기화
-function initializePage() {
-  const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
-  const disablededitbtn = document.querySelector(".disabledEditBtn");
-  const doted = document.querySelectorAll(".dot");
+export default function myPageAdm_3() {
+  // DOM이 완전히 로드된 후에 초기화
+  function initializePage() {
+    const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
+    const disablededitbtn = document.querySelector(".disabledEditBtn");
+    const doted = document.querySelectorAll(".dot");
 
-  detailInfoedits.forEach((input) => {
-    const savedValue = localStorage.getItem(input.id);
-    if (savedValue) {
-      input.value = savedValue;
-    }
-  });
-
-  let isEditing = false;
-  if (detailInfoedits && disablededitbtn) {
-    disablededitbtn.addEventListener("click", function () {
-      isEditing = !isEditing; // 토글이 두번있음. 리펙토링 필요.
-      if (!isEditing) {
-        detailInfoedits.forEach((input) => {
-          input.disabled = false;
-          input.readOnly = false;
-          input.style.color = "#666";
-          input.style.borderColor = "#3a8c8c";
-          input.style.backgroundColor = "#e9f5f5";
-        });
-
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "hidden";
-        });
-
-        disablededitbtn.value = "저장";
-        disablededitbtn.style.width = "80px";
-        disablededitbtn.style.transition = "0.6s";
-      } else {
-        detailInfoedits.forEach((input) => {
-          input.readOnly = true;
-          input.disabled = true;
-          input.style.borderColor = "transparent";
-          input.style.backgroundColor = "#fff";
-          localStorage.setItem(input.id, input.value);
-        });
-
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "visible";
-        });
-
-        disablededitbtn.value = "개인정보 수정";
-        disablededitbtn.style.width = "8vw";
-        disablededitbtn.style.backgroundColor = "#fff";
-
-        disablededitbtn.onmouseenter = () => {
-          disablededitbtn.style.backgroundColor = "#e9f5f5";
-        };
-        disablededitbtn.onmouseleave = () => {
-          disablededitbtn.style.backgroundColor = "#fff";
-        };
+    detailInfoedits.forEach((input) => {
+      const savedValue = localStorage.getItem(input.id);
+      if (savedValue) {
+        input.value = savedValue;
       }
     });
+
+    let isEditing = false;
+
+    if (detailInfoedits && disablededitbtn) {
+      disablededitbtn.addEventListener("click", function () {
+        if (!isEditing) {
+          // 수정모드가 꺼져 있을때 실행
+          // 각 input 의 스타일변경
+          detailInfoedits.forEach((input) => {
+            input.disabled = false;
+            input.readOnly = false;
+            input.style.color = "#666";
+            input.style.borderColor = "#3a8c8c";
+            input.style.backgroundColor = "#e9f5f5";
+          });
+
+          // dot 숨기기
+          doted.forEach((dot) => {
+            dot.classList.add("hide-dot");
+          });
+
+          // 버튼 스타일 변경
+
+          disablededitbtn.value = "저장";
+          disablededitbtn.style.color = "#3a8c8c";
+          disablededitbtn.style.display = "block";
+          disablededitbtn.style.transition = "0.6s";
+          disablededitbtn.style.width = "5%";
+        } else {
+          // 수정모드가 켜져 있을때 실행
+          detailInfoedits.forEach((input) => {
+            input.readOnly = true;
+            input.disabled = true;
+            input.style.borderColor = "transparent";
+            input.style.backgroundColor = "#fff";
+            localStorage.setItem(input.id, input.value);
+          });
+
+          // 버튼 스타일 원복
+          disablededitbtn.value = "개인정보 수정";
+          disablededitbtn.style.width = "8vw";
+          disablededitbtn.style.backgroundColor = "#fff";
+
+          disablededitbtn.onmouseenter = () => {
+            disablededitbtn.style.backgroundColor = "#e9f5f5";
+          };
+          disablededitbtn.onmouseleave = () => {
+            disablededitbtn.style.backgroundColor = "#fff";
+          };
+
+          // dot 보이기
+          doted.forEach((dot) => {
+            dot.classList.remove("hide-dot");
+          });
+        }
+
+        isEditing = !isEditing;
+      });
+    }
   }
-  isEditing = !isEditing;
-}
-
-export default function myPageAdm_3() {
-  window.onUploadButtonClick = function () {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.onchange = window.handleFileSelect;
-    input.click();
-  };
-
-  window.handleFileSelect = function (event) {
-    const files = event.target.files;
-    if (!files) return;
-
-    const file = files[0];
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const previewImage = document.getElementById("preview-image");
-      const deleteBtn = document.getElementById("delete-btn");
-      const placeholder = document.getElementById("placeholder");
-      const uploadBtn = document.querySelector(".upload-btn");
-
-      if (previewImage && e.target) {
-        previewImage.src = e.target.result;
-        previewImage.style.display = "block";
-
-        if (deleteBtn) deleteBtn.style.display = "block";
-
-        if (placeholder) placeholder.style.display = "none";
-
-        if (uploadBtn) uploadBtn.style.display = "none";
-      }
-    };
-
-    reader.readAsDataURL(file);
-  };
-
-  window.deleteImage = function () {
-    const previewImage = document.getElementById("preview-image");
-    const deleteBtn = document.getElementById("delete-btn");
-    const placeholder = document.getElementById("placeholder");
-    const uploadBtn = document.querySelector(".upload-btn");
-
-    if (previewImage) {
-      previewImage.src = "";
-      previewImage.style.display = "none";
-    }
-
-    if (deleteBtn) {
-      deleteBtn.style.display = "none";
-    }
-
-    if (uploadBtn) uploadBtn.style.display = "block";
-
-    if (placeholder) {
-      placeholder.style.display = "flex";
-    }
-  };
 
   setTimeout(() => {
     initializePage();
@@ -171,7 +122,7 @@ export default function myPageAdm_3() {
         <div class="infoWrap">
           입사일
           <span class="dot">
-            <input class="detailInfoEdit" id="dataOfJoining" type="text" disabled value="2022.10.15">
+            <input class="detailInfoEdit" id="employee3_dataOfJoining" type="text" disabled value="2022.10.15">
           </span>
         </div>
       </li>
@@ -179,7 +130,7 @@ export default function myPageAdm_3() {
         <div class="infoWrap">
           직급
           <span class="dot">
-            <input class="detailInfoEdit" id="rank" type="text" disabled value="원무과">
+            <input class="detailInfoEdit" id="employee3_rank" type="text" disabled value="원무과">
           </span>
         </div>
       </li>
@@ -187,7 +138,7 @@ export default function myPageAdm_3() {
         <div class="infoWrap">
           이메일
           <span class="dot">
-            <input class="detailInfoEdit" id="email" type="text" disabled value="bangsora@naver.com">
+            <input class="detailInfoEdit" id="employee3_email" type="text" disabled value="bangsora@naver.com">
           </span>
         </div>
       </li>
@@ -201,7 +152,7 @@ export default function myPageAdm_3() {
           전화번호
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="phoneNumber" type="text" disabled value="010-5734-1982">
+              <input class="detailInfoEdit" id="employee3_phoneNumber" type="text" disabled value="010-5734-1982">
             </span>
           </div>
         </div>
@@ -211,7 +162,7 @@ export default function myPageAdm_3() {
           자택주소
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="HomeAddress" type="text" disabled value="경기도 수원시 신미로 399">
+              <input class="detailInfoEdit" id="employee3_HomeAddress" type="text" disabled value="경기도 수원시 신미로 399">
             </span>
           </div>
         </div>
@@ -221,7 +172,7 @@ export default function myPageAdm_3() {
           생년월일
           <div class="infoWrap">
             <span class="dot">
-              <input class="detailInfoEdit" id="birthDate" type="text" disabled value="1990.07.03">
+              <input class="detailInfoEdit" id="employee3_birthDate" type="text" disabled value="1990.07.03">
             </span>
           </div>
         </div>
