@@ -80,8 +80,8 @@ export default function myPage() {
         ? "근무 중"
         : "근무 전";
       document.querySelector(".state-icon").style.backgroundColor = isWorking
-      ? "#3a8c8c"
-      : "#d2e7e7";
+        ? "#3a8c8c"
+        : "#d2e7e7";
     }
   };
   // * 이미지 업로드 버튼 클릭 시 실행되는 함수
