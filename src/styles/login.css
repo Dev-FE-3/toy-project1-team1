@@ -1,0 +1,292 @@
+/* 애니메이션 */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#login-bg-modal,
+.container,
+.LoginBtnWrap,
+.loginBtnContainer,
+#signUPid,
+#signUPpassword {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* 로그인페이지 */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.container {
+  display: flex;
+}
+
+.leftSide {
+  height: 100vh;
+  width: 60vw;
+  background-color: #e9f5f5;
+  background-image: url(../image/hospital-main.jpg);
+  background-size: cover;
+}
+
+.loginWrap {
+  padding-top: 0;
+  width: 40vw;
+  height: 100vh;
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 13%;
+}
+
+.HospitalTitle {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 36px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 3%;
+}
+
+.LoginBtnWrap {
+  border-bottom: 1px solid #3a8c8c;
+  width: 20vw;
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+
+.LoginBtnWrap > .staff {
+  cursor: pointer;
+  width: 100%;
+  height: 5vh;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+  color: #b3b3b3;
+}
+.LoginBtnWrap > .manager {
+  cursor: pointer;
+  height: 5vh;
+  margin-left: 5px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+  border-radius: 8px;
+  color: #b3b3b3;
+}
+
+.btnActive {
+  color: #424242 !important;
+  transition: 0.5s;
+}
+
+.login {
+  width: 50%;
+  height: 15%;
+  padding: 3% 0 0 0;
+  vertical-align: middle;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+.idContainer,
+.pwContainer {
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  display: flex;
+  padding: 1%;
+}
+
+.idText,
+.pwText {
+  width: 70%;
+  height: 4vh;
+  margin: 0 auto;
+  border: none;
+  background-color: #e9f5f5;
+  border-radius: 8px;
+  padding: 4%;
+  font-size: 16px;
+  border-color: #3a8c8c;
+}
+
+.idText:focus,
+.pwText:focus {
+  outline: #3a8c8c;
+}
+
+.loginBtnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+
+.staffLoginBtn,
+.managerLoginBtn {
+  margin-top: 30px;
+  border-radius: 8px;
+  width: 10vw;
+  left: 77%;
+  border: 1px solid #3a8c8c;
+  color: #333;
+  padding: 0.6em 1.2em;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  justify-content: center;
+  text-align: center;
+}
+
+.managerLoginBtn {
+  display: none;
+}
+
+.staffLoginBtn:hover,
+.managerLoginBtn:hover {
+  font-weight: bold;
+  transition: 0.3s;
+  background-color: #e9f5f5;
+  color: #3a8c8c;
+}
+
+.signUpBtn {
+  position: absolute;
+  margin-top: 20px;
+  border-radius: 8px;
+  width: 10vw;
+  border: 1px solid #3a8c8c;
+  color: #333;
+  padding: 0.6em 1.2em;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #fff;
+  cursor: pointer;
+  left: 75%;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.signUpBtn:hover {
+  font-weight: bold;
+  transition: 0.3s;
+  background-color: #e9f5f5;
+  color: #3a8c8c;
+}
+
+/* modal */
+#login-bg-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.382);
+  z-index: 2;
+}
+
+.login-modal {
+  z-index: 1;
+  border: 2px solid #3a8c8c;
+  min-height: 550px;
+  width: 450px; /* 고정 너비 설정 */
+  position: absolute;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background-color: #e9f5f5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.login-modal-box {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.login-modal-system_msg {
+  font-size: 22px;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.login-modal-box label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.login-modal-box label input {
+  width: 200px;
+  padding: 5px 10px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid #3a8c8c;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+.signUpBtnWrap {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.loginModalConfirm,
+.signModalClose {
+  height: 35px;
+  width: 120px;
+  border: 1px solid #3a8c8c;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #fff;
+}
+
+.loginModalConfirm:hover,
+.signModalClose:hover {
+  font-weight: bold;
+  color: #3a8c8c;
+}

@@ -1,0 +1,302 @@
+* {
+  white-space: nowrap;
+}
+p {
+  cursor: default;
+}
+h1 {
+  cursor: default;
+}
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: default;
+}
+h3 {
+  font-size: 16px;
+  cursor: default;
+}
+/* modal */
+#home-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.382);
+}
+.home-modal-box {
+  position: absolute;
+  width: 350px;
+  height: 200px;
+  background-color: #f7fcfc;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 12px;
+  padding: 10px;
+}
+.home-modal-system_msg {
+  font-size: 22px;
+}
+.button-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.button-box > button {
+  border: 1px solid #ffffff00;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #3a8c8c;
+}
+.button-box > button:hover {
+  background-color: #e9f5f5;
+  border: 1px solid #3a8c8c;
+}
+.button-box > button:active {
+  background-color: #3a8c8c;
+  color: #fff;
+}
+
+/* Home Main */
+.home-main {
+  width: 100%;
+  height: 100%;
+  padding: 50px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/*Home Main - Header*/
+.home-main > header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  gap: 100px;
+  min-width: 1100px;
+}
+.home-main > header > h1 {
+  font-size: 24px;
+}
+.home-main > header > .time {
+  display: flex;
+  font-size: 24px;
+}
+.home-main > header > .time > .time-icon > span {
+  width: 26px;
+  height: 26px;
+  margin-right: 0.6rem;
+  margin-top: 0.5rem;
+  font-size: 26px;
+}
+
+/*Home Main - Contents*/
+.contents {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+.contents > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 650px;
+  min-width: 500px;
+  width: 100%;
+}
+.contents > div:last-child {
+  min-width: 700px;
+  max-width: 750px;
+}
+
+/*Profile*/
+.profile {
+  border-radius: 1.2rem;
+  padding: 2.4rem 3rem;
+  height: 30rem;
+  background-color: #e9f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+.profile > .personal-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+}
+.profile > .personal-info > .profile-photo-box {
+  width: 180px;
+  height: 180px;
+  background-color: #f7fcfc;
+  border-radius: 100px;
+  background-image: url("../image/staff-2.jpg");
+  background-size: cover;
+}
+.profile > .personal-info > .info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1.5rem 0;
+}
+.profile > .personal-info > .info-box > .name {
+  font-size: 28px;
+  font-weight: 600;
+}
+.profile > .personal-info > .info-box > .work {
+  font-size: 18px;
+  font-weight: 500;
+  color: #666;
+}
+.profile > .personal-info > .info-box > .work-state {
+  display: flex;
+  gap: 1rem;
+  color: #666;
+  font-size: 14px;
+}
+.state-icon {
+  width: 1rem;
+  height: 1rem;
+  background-color: #b2b2b2;
+  border-radius: 50%;
+  margin: auto 0;
+}
+.profile > .work-time-check {
+  border-top: 2px solid #d2e7e7;
+  display: flex;
+  justify-content: center;
+  padding: 0 2.5rem;
+  gap: 5.5rem;
+}
+.profile > .work-time-check > div {
+  padding-top: 1.3rem;
+  text-align: center;
+  font-size: 16px;
+}
+.profile > .work-time-check > div > p {
+  margin-top: 1rem;
+  font-size: 24px;
+}
+.profile > .work-time-button {
+  font-size: 18px;
+  padding: 7px 7px;
+  width: 6.5rem;
+  background-color: #e9f5f5;
+  border: 1px solid #d2e7e7;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #3a8c8c;
+  transition: 0.3s;
+}
+
+.profile > .work-time-button:hover {
+  background-color: #d2e7e7;
+}
+
+/*Notice*/
+.notice {
+  width: 100%;
+  height: 30rem;
+}
+.notice > .notice-inner {
+  display: flex;
+  margin-top: 1.2rem;
+  gap: 2rem;
+}
+.notice > .notice-inner > .gallery {
+  width: 250px;
+  height: 23rem;
+  background-color: #fff;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #d2e7e7;
+  transition: 0.3s;
+}
+.notice > .notice-inner > .gallery:hover {
+  box-shadow: 1px 2px 12px #1b3a3a6e;
+}
+.notice > .notice-inner > .gallery > .img-box {
+  width: 100%;
+  height: 70%;
+  background-color: #d2e7e7;
+  background-image: url("../image/hospital.jpg");
+  background-size: cover;
+}
+.notice > .notice-inner > .gallery > .text-box {
+  padding: 1.2rem;
+}
+.notice > .notice-inner > .gallery > .text-box > p {
+  margin-top: 0.6rem;
+  font-size: 14px;
+  color: #666;
+  white-space: wrap;
+}
+
+/*Doctor-schedule*/
+.doctor-schedule {
+  border-radius: 1.2rem;
+  padding: 1.5rem 1.8rem;
+  height: 15rem;
+  background-color: #e9f5f5;
+  font-size: 28px;
+}
+.doctor-schedule > h2 {
+  font-size: 18px;
+  padding: 2px 10px;
+  background-color: #f7fcfc;
+  display: inline-block;
+  border-radius: 5px;
+  color: #3a8c8c;
+  font-weight: bold;
+  border: 1px solid #fff;
+}
+
+.doctor-schedule > p {
+  margin-top: 32px;
+  margin-left: 5px;
+}
+
+/*File*/
+.file {
+  height: 15rem;
+}
+.file > ul {
+  margin-top: 0.5rem;
+  font-size: 16px;
+}
+.file > ul > li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #d2e7e7;
+  padding: 0.8rem 0.5rem;
+  gap: 40px;
+}
+.file > ul > li > .title {
+  cursor: pointer;
+  width: 70%;
+}
+.file > ul > li > .num {
+  width: 10%;
+  text-align: center;
+}
+.file > ul > li > .date {
+  color: #666;
+}
+.file > ul > li:last-child {
+  border: none;
+}
+.file > ul > li > .title {
+  margin: 0;
+}

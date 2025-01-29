@@ -1,0 +1,409 @@
+.abs-container {
+  width: 100%;
+  height: 100%;
+
+  padding: 50px 80px;
+
+  color: black;
+
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
+
+/* page 상단 제목 title */
+.row1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* 부재 신청 버튼 & 잔여 휴가*/
+.row2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+/* 부재 신청 버튼 */
+.row2__btns {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3a8c8c;
+}
+
+.row2__btns button {
+  padding: 5px 10px;
+
+  border: 1px solid #d2e7e7;
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+.row2__btns button:first-child:hover {
+  background-color: #e9f5f5;
+  color: #3a8c8c;
+  font-weight: bold;
+}
+
+.row2__btns button:first-child:active {
+  background-color: #3a8c8c;
+  color: #ffffff;
+}
+
+.row2__btns__active {
+  background-color: #3a8c8c;
+  color: #ffffff;
+}
+
+/* 잔여 연차 */
+.row2__remaining {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row2__remaining__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 0px 15px;
+
+  border-right: 1px dotted #777777;
+}
+
+.row2__remaining > div:last-child {
+  border: none;
+}
+
+.row2__remaining__item div:first-child {
+  color: #666;
+}
+
+/* 부재 신청 내역 및 달력 */
+.row3 {
+  display: flex;
+
+  justify-content: space-between;
+  height: 100%;
+  gap: 20px;
+}
+
+.row3__details {
+  flex: 0.52;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+/* 부재 신청 내역 제목 (title) */
+.row3__details > div {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* 부재 신청 내역 항목 (종류 , 승인여부 ...) */
+#row3__table td {
+  width: 25%;
+}
+
+.row3__title {
+  display: flex;
+  text-align: center;
+
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d2e7e7;
+}
+.row3__title > td {
+  position: relative;
+}
+
+#drop-down-btn {
+  cursor: pointer;
+}
+
+/* 부재 신청 내역 item */
+.row3__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+
+.row3__item td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px 0px;
+}
+
+.row3__item td:first-child {
+  padding: 5px;
+
+  border-radius: 0.5em;
+
+  background-color: #3a8c8c;
+  font-weight: bold;
+  color: #ffffff;
+}
+.row3__item td:nth-child(2) {
+  color: #3a8c8c;
+  font-weight: bolder;
+}
+
+.row3__item td:first-child {
+  margin-left: 20px;
+}
+
+.row3__item td:nth-child(2) {
+  margin-left: 48px;
+}
+
+.row3__item td:nth-child(3) {
+  margin-left: 50px;
+}
+
+.row3__item td:nth-child(4) {
+  margin-left: 50px;
+  margin-right: 25px;
+}
+
+/* 드롭다운 메뉴 */
+.row3__drop-menu {
+  position: absolute;
+  left: 10px;
+  top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  padding: 13px;
+  border-radius: 1em;
+
+  box-shadow: 1px 1px 1px 1px rgb(158, 157, 157);
+
+  background-color: #ffffff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.row3__drop-menu div {
+  margin: 5px 0px;
+}
+.row3__drop-menu div:hover {
+  background-color: #f2f2f2;
+}
+
+/* 캘린더 */
+.row3__calendar {
+  flex: 0.4;
+  height: 480px;
+
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 20px;
+  margin-top: 50px;
+}
+
+.row3__calendar .nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 0px 30px;
+}
+.row3__calendar .nav .current-date {
+  font-size: 24px;
+  font-weight: 600;
+}
+.row3__calendar .nav button {
+  width: 38px;
+  height: 38px;
+  font-size: 30px;
+  color: #878787;
+}
+
+.calendar {
+  font-size: 16px;
+}
+
+.calendar ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.calendar .weeks li {
+  font-weight: 500;
+}
+.calendar .days {
+  margin-bottom: 20px;
+}
+.calendar ul li {
+  width: calc(100% / 7);
+  margin-bottom: 10px;
+  position: relative;
+}
+.calendar .days li {
+  z-index: 1;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.days li.inactive {
+  color: #aaa;
+}
+
+.days li.active {
+  color: #fff;
+}
+.calendar .days li::before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.days li:hover::before {
+  background-color: #e9f5f5;
+}
+
+/* 5일 색 고정 */
+.days li:nth-child(5)::before {
+  background-color: #3a8c8c !important;
+}
+.days li:nth-child(5) {
+  color: #fff;
+}
+
+.days li.selected {
+  color: #ffffff;
+}
+.days li.selected::before {
+  background-color: #3a8c8c;
+}
+/* 부재신청 */
+
+#submit-continer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.123);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+}
+
+.submit-modal {
+  width: 444px;
+  height: 668px;
+  display: flex;
+  gap: 15px;
+
+  border-radius: 0.5em;
+
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #f5f5f5;
+  border: 2px solid #d2e7e7;
+
+  color: black;
+  font-weight: bold;
+}
+
+.submit-modal > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  padding: 12px 0px;
+}
+
+.main-title {
+  margin: 0px;
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+input[type="date"],
+#kind {
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #f5f5f5;
+
+  text-align: center;
+}
+
+#kind {
+  text-align: end;
+}
+
+.title {
+  margin-left: 30px;
+}
+
+.item {
+  margin-right: 30px;
+}
+
+.reason {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reason > textarea {
+  display: flex;
+  width: 80%;
+  height: 141px;
+  padding: 20px;
+
+  font-size: 18px;
+  font-weight: bold;
+  color: #8b95a1;
+}
+
+.submit-btn__item {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+
+.submit-btn__item button {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 30px;
+  cursor: pointer;
+  border: none;
+}
+.submit-btn__item button:first-child {
+  background-color: #f5f5f5;
+}
+.submit-btn__item button:last-child {
+  border: 2px solid #d2e7e7;
+  color: #3a8c8c;
+  border-radius: 0.3em;
+}
+.submit-btn__item button:last-child:hover {
+  background-color: #e9f5f5;
+  color: #3a8c8c;
+  font-weight: bold;
+}
