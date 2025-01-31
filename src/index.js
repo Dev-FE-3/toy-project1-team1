@@ -1,10 +1,6 @@
-import { html } from "lit-html";
-
 import myPage from "./pages/MyPage";
 import login from "./pages/Login";
 import Page from "./pages/Page";
-import Support from "./pages/Support";
-import download from "./pages/Download";
 import pageNotFound from "./pages/PageNotFound";
 import absenceMng from "./pages/Absence-mng";
 import Home from "./pages/Home";
@@ -23,9 +19,6 @@ const app = () => {
 };
 
 const init = () => {
-  // const mainMenuList = document.querySelectorAll('nav li a')
-
-  // mainMenuList.forEach(menu => menu.addEventListener('click', navigatePage))
   window.addEventListener("popstate", route);
   document.body.addEventListener("click", navigatePage);
 };
@@ -33,7 +26,6 @@ const init = () => {
 const navigatePage = (event) => {
   event.preventDefault();
 
-  const path = event.target.getAttribute("href");
   const anchor = event.target.closest("a");
 
   if (anchor && anchor.href) {
@@ -67,8 +59,7 @@ const route = () => {
   const nav = document.querySelector("#nav");
   const absenceMngPage = new Page("#app", absenceMng());
   const homePage = new Home();
-  const downloadPage = new Page("#app", download());
-  const supportPage = new Support({ title: "Support" });
+
   const myPagePage = new Page("#app", myPage());
   const mylogin = new Page("main", login());
   const myPageAdmin_1 = new Page("#app", myPageAdm_1());

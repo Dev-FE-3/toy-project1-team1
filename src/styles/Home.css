@@ -87,7 +87,6 @@ h3 {
 }
 .home-main > header > h1 {
   font-size: 24px;
-  /* font-size: 2.25rem; */
 }
 .home-main > header > .time {
   display: flex;
@@ -166,7 +165,7 @@ h3 {
   color: #666;
   font-size: 14px;
 }
-.profile > .personal-info > .info-box > .work-state > .state-icon {
+.state-icon {
   width: 1rem;
   height: 1rem;
   background-color: #b2b2b2;
@@ -242,6 +241,7 @@ h3 {
   margin-top: 0.6rem;
   font-size: 14px;
   color: #666;
+  white-space: wrap;
 }
 
 /*Doctor-schedule*/

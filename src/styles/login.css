@@ -35,6 +35,8 @@
   height: 100vh;
   width: 60vw;
   background-color: #e9f5f5;
+  background-image: url(../image/hospital-main.jpg);
+  background-size: cover;
 }
 
 .loginWrap {
@@ -186,7 +188,7 @@
   font-family: inherit;
   background-color: #fff;
   cursor: pointer;
-  left: 75.7%;
+  left: 75%;
   justify-content: center;
   text-align: center;
   align-items: center;

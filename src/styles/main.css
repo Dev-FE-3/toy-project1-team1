@@ -77,7 +77,6 @@ nav > div:not(.logo) > ul > li > a {
   justify-content: start;
   align-items: center;
   text-align: center;
-  /* font-weight: bold; */ /* 수정: 너무 두꺼워 보여서 bold 삭제 */
 }
 nav > div:not(.logo) > ul > li > a:hover {
   color: #3a8c8c;

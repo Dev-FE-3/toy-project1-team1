@@ -1,3 +1,20 @@
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.myPageContainer > *:not(.nurseImageIcon) {
+  animation: fadeIn 0.6s ease-out;
+}
+.nurseImageIcon {
+  animation: fadeIn 0.3s;
+}
+
 * {
   white-space: nowrap;
 }
@@ -33,11 +50,10 @@
   align-items: center;
 }
 
-.back,
 .disabledEditBtn {
   background-color: #fff;
   margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   cursor: pointer;
   border: 1px solid #d2e7e7;
   border-radius: 6px;
@@ -125,16 +141,23 @@
   transform: translateX(-50%);
 }
 
-.button-container {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  position: relative;
-  width: 100%;
+.imageNone {
+  position: absolute;
+  top: 45%;
+  left: 30%;
 }
 
-.myPageContainers .upload-btn,
-.myPageContainers .delete-btn {
+.admin-page .button-container {
+  visibility: hidden;
+}
+
+.button-container {
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.upload-btn,
+.delete-btn {
   background-color: #fff;
   color: #3a8c8c;
   border: 1px solid #3a8c8c;
@@ -144,8 +167,8 @@
   font-size: 14px;
   display: inline-flex;
   position: absolute;
-  margin-left: 70px;
-  top: -70px;
+  right: 0;
+  top: 150px;
   z-index: 1;
   border-radius: 50%;
   width: 60px;
@@ -163,13 +186,13 @@
 .nurseInfo {
   flex: 1;
   margin-left: 30vw;
-  margin-bottom: 10vh;
+  margin-bottom: 11vh;
 }
 
 ul > .nurseName {
   width: 10vw;
   font-size: 24px;
-  margin-top: 11vh;
+  margin-top: 2vh;
 }
 
 ul > .nurseLank {
@@ -177,7 +200,7 @@ ul > .nurseLank {
 }
 
 ul > .nurseWorking {
-  margin-top: 1vh;
+  margin-bottom: 2vh;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -218,7 +241,6 @@ ul > .nurseWorking::before {
 
 .info {
   width: 90%;
-  margin: 0 auto;
 }
 
 .info-column {
@@ -238,7 +260,7 @@ ul > .nurseWorking::before {
 .secondDate {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 3vh;
+  margin-bottom: 5vh;
 }
 
 .dataOfJoining,
@@ -250,10 +272,6 @@ ul > .nurseWorking::before {
   padding: 1vh 0;
   font-weight: bold;
   font-size: 16px;
-}
-
-.infoWrap {
-  margin-top: 1vh;
 }
 
 .dot {
