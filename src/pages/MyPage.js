@@ -1,63 +1,6 @@
 import "../styles/mypage.css";
-function initializePage() {
-  const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
-  const disablededitbtn = document.querySelector(".disabledEditBtn");
 
-  detailInfoedits.forEach((input) => {
-    const savedValue = localStorage.getItem(input.id);
-    if (savedValue) {
-      input.value = savedValue;
-    }
-  });
-  let isEditing = false;
-  if (detailInfoedits && disablededitbtn) {
-    disablededitbtn.addEventListener("click", function () {
-      isEditing = !isEditing;
-      if (!isEditing) {
-        detailInfoedits.forEach((input) => {
-          input.disabled = false;
-          input.readOnly = false;
-          input.style.color = "#666";
-          input.style.borderColor = "#3A8C8C";
-          input.style.backgroundColor = "#E9F5F5";
-        });
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "hidden";
-        });
-        disablededitbtn.value = "저장";
-        disablededitbtn.style.width = "80px";
-        disablededitbtn.style.transition = "0.6s";
-      } else {
-        detailInfoedits.forEach((input) => {
-          input.readOnly = true;
-          input.disabled = true;
-          input.style.borderColor = "transparent";
-          input.style.backgroundColor = "#fff";
-          localStorage.setItem(input.id, input.value);
-        });
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot) => {
-          dot.style.visibility = "visible";
-        });
-        disablededitbtn.value = "개인정보 수정";
-        disablededitbtn.style.width = "8vw";
-        disablededitbtn.style.backgroundColor = "#fff";
-        disablededitbtn.onmouseenter = () => {
-          disablededitbtn.style.backgroundColor = "#E9F5F5";
-        };
-        disablededitbtn.onmouseleave = () => {
-          disablededitbtn.style.backgroundColor = "#fff";
-        };
-      }
-    });
-  }
-  isEditing = !isEditing;
-}
 export default function myPage() {
-  window.goBack = function () {
-    window.history.go(-1);
-  };
   // localStorge를 활용한 근무 시간 변경
   const isWorking = window.localStorage.getItem("workState") === "working";
   const updateState = () => {
@@ -70,8 +13,8 @@ export default function myPage() {
         ? "근무 중"
         : "근무 전";
       document.querySelector(".state-icon").style.backgroundColor = isWorking
-        ? "#3a8c8c"
-        : "#d2e7e7";
+        ? "#3A8C8C"
+        : "#D2E7E7";
     }
   };
   // * 이미지 업로드 버튼 클릭 시 실행되는 함수
@@ -123,7 +66,6 @@ export default function myPage() {
     }
   };
   setTimeout(() => {
-    initializePage();
     updateState();
   }, 0);
   return `
@@ -133,6 +75,7 @@ export default function myPage() {
   </div>
   <div class="myPageHeader">
     <div class="nurseImageIcon">
+  <label for="imageUpload">
       <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="window.handleFileSelect(event)"/>
       <div class="image-preview">
         <img id="placeholder" class="placeholder" ><div class="imageNone">이미지 없음</div>
@@ -146,6 +89,7 @@ export default function myPage() {
           <i class="material-icons">delete</i>
         </button>
       </div>
+    </label>
     </div>
     <div class="nurseInfo">
       <p class="nurseName">차주현</p>

@@ -3,11 +3,11 @@ import "../styles/mypageAdm.css";
 export default function myPageAdm_1() {
   // DOM이 완전히 로드된 후에 초기화
   function initializePage() {
-    const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
-    const disablededitbtn = document.querySelector(".disabledEditBtn");
-    const doted = document.querySelectorAll(".dot");
+    const detailInfoEdit = document.querySelectorAll(".detailInfoEdit");
+    const disabledEditBtn = document.querySelector(".disabledEditBtn");
+    const dots = document.querySelectorAll(".dot");
 
-    detailInfoedits.forEach((input) => {
+    detailInfoEdit.forEach((input) => {
       const savedValue = localStorage.getItem(input.id);
       if (savedValue) {
         input.value = savedValue;
@@ -16,54 +16,60 @@ export default function myPageAdm_1() {
 
     let isEditing = false;
 
-    if (detailInfoedits && disablededitbtn) {
-      disablededitbtn.addEventListener("click", function () {
+    if (detailInfoEdit && disabledEditBtn) {
+      disabledEditBtn.addEventListener("click", function () {
         if (!isEditing) {
           // 수정모드가 꺼져 있을때 실행
           // 각 input 의 스타일변경
-          detailInfoedits.forEach((input) => {
+          detailInfoEdit.forEach((input) => {
             input.disabled = false;
             input.readOnly = false;
-            input.style.color = "#666";
-            input.style.borderColor = "#3a8c8c";
-            input.style.backgroundColor = "#e9f5f5";
+            Object.assign(input.style, {
+              color: "#666",
+              borderColor: "#3a8c8c",
+              backgroundColor: "#e9f5f5",
+            });
           });
 
           // dot 숨기기
-          doted.forEach((dot) => {
+          dots.forEach((dot) => {
             dot.classList.add("hide-dot");
           });
 
           // 버튼 스타일 변경
-
-          disablededitbtn.value = "저장";
-          disablededitbtn.style.color = "#3a8c8c";
-          disablededitbtn.style.display = "block";
-          disablededitbtn.style.transition = "0.6s";
-          disablededitbtn.style.width = "5%";
+          Object.assign(disabledEditBtn.style, {
+            color: "#3a8c8c",
+            display: "block",
+            width: "5%",
+            transition: "0.2s",
+          });
+          disabledEditBtn.value = "저장";
         } else {
           // 수정모드가 켜져 있을때 실행
-          detailInfoedits.forEach((input) => {
+          detailInfoEdit.forEach((input) => {
             input.readOnly = true;
             input.disabled = true;
-            input.style.borderColor = "transparent";
+            Object.assign(input.style, {
+              borderColor: "transparent",
+              backgroundColor: "#fff",
+            });
             localStorage.setItem(input.id, input.value);
           });
-
           // 버튼 스타일 원복
-          disablededitbtn.value = "개인정보 수정";
-          disablededitbtn.style.width = "8vw";
-          disablededitbtn.style.backgroundColor = "#fff";
-
-          disablededitbtn.onmouseenter = () => {
-            disablededitbtn.style.backgroundColor = "#e9f5f5";
-          };
-          disablededitbtn.onmouseleave = () => {
-            disablededitbtn.style.backgroundColor = "#fff";
-          };
+          Object.assign(disabledEditBtn.style, {
+            width: "8vw",
+            backgroundColor: "#fff",
+          });
+          Object.assign(disabledEditBtn, {
+            value: "개인정보 수정",
+            onmouseenter: () =>
+              (disabledEditBtn.style.backgroundColor = "#e9f5f5"),
+            onmouseleave: () =>
+              (disabledEditBtn.style.backgroundColor = "#fff"),
+          });
 
           // dot 보이기
-          doted.forEach((dot) => {
+          dots.forEach((dot) => {
             dot.classList.remove("hide-dot");
           });
         }
