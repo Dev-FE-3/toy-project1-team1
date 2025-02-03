@@ -7,6 +7,14 @@ export default class Home {
     this.timeUtil.updateTime();
     this.isWorking = window.localStorage.getItem("workState") === "working";
   }
+
+  updateDateTime = () => {
+    if (window.location.pathname === "/home") {
+      document.querySelector(".hour-min").textContent = this.timeUtil.currentTime;
+      document.querySelector("#date").textContent = this.timeUtil.currentDate;
+    }
+  }
+
   updateUI = () => {
     const startTime = window.localStorage.getItem("startTime") || "00 : 00";
     const endTime = window.localStorage.getItem("endTime") || "00 : 00";
@@ -51,7 +59,7 @@ export default class Home {
   };
 
   changeState = () => {
-    const currentTime = this.timeUtil.getCurrentTime();
+    const currentTime = this.timeUtil.currentTime;
     this.updateState(this.isWorking ? "beforeWork" : "working", currentTime);
     document.getElementById("home-modal").style.display = "none";
   };
@@ -73,6 +81,9 @@ export default class Home {
   render() {
     setTimeout(() => {
       this.homeEventHandler();
+    }, 0);
+    setInterval(()=> {
+      this.updateDateTime();
     }, 0);
     return `
     <div id="home-modal">

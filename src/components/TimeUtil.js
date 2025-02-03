@@ -8,16 +8,7 @@ export default class TimeUtil {
   updateTime() {
     setInterval(() => {
       this.currentTime = this.getCurrentTime();
-      this.putTime();
     }, 0);
-  }
-
-  putTime() {
-    this.getCurrentTime();
-    if (window.location.pathname === "/home") {
-      document.querySelector(".hour-min").textContent = this.currentTime;
-      document.querySelector("#date").textContent = this.currentDate;
-    }
   }
 
   getCurrentDate() {
