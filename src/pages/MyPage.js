@@ -1,10 +1,13 @@
 import "../styles/mypage.css";
+import {localStorageUtil} from "../components/LocalStorageUtil.js"
+import {STORAGE_KEYS, WORK_STATE} from "../components/storageConstants.js"
+
 function initializePage() {
   const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
   const disablededitbtn = document.querySelector(".disabledEditBtn");
 
   detailInfoedits.forEach((input) => {
-    const savedValue = localStorage.getItem(input.id);
+    const savedValue = localStorageUtil.get(input.id);
     if (savedValue) {
       input.value = savedValue;
     }
@@ -34,7 +37,7 @@ function initializePage() {
           input.disabled = true;
           input.style.borderColor = "transparent";
           input.style.backgroundColor = "#fff";
-          localStorage.setItem(input.id, input.value);
+          localStorageUtil.set(input.id, input.value);
         });
         const dots = document.querySelectorAll(".dot");
         dots.forEach((dot) => {
@@ -59,11 +62,11 @@ export default function myPage() {
     window.history.go(-1);
   };
   // localStorge를 활용한 근무 시간 변경
-  const isWorking = window.localStorage.getItem("workState") === "working";
+  const isWorking = localStorageUtil.get(STORAGE_KEYS.WORK_STATE) === WORK_STATE.WORKING;
   const updateState = () => {
     if (window.location.pathname === "/my-page") {
-      const startTime = window.localStorage.getItem("startTime");
-      const endTime = window.localStorage.getItem("endTime");
+      const startTime = localStorageUtil.get(STORAGE_KEYS.START_TIME);
+      const endTime = localStorageUtil.get(STORAGE_KEYS.END_TIME);
       document.getElementById("startWork").textContent = startTime;
       document.getElementById("finishWork").textContent = endTime;
       document.querySelector(".nurseWorking").textContent = isWorking
