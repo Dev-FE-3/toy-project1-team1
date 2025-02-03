@@ -1,7 +1,7 @@
 import "../styles/Home.css";
 import TimeUtil from "../components/TimeUtil.js";
 import {localStorageUtil} from "../components/LocalStorageUtil.js"
-import {STORAGE_KEYS, WORK_STATE, ACCOUNT} from "../components/storageConstants.js"
+import {STORAGE_KEYS, WORK_STATE} from "../components/storageConstants.js"
 
 export default class Home {
   constructor() {
