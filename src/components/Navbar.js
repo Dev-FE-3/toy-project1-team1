@@ -1,4 +1,5 @@
 import "../styles/main.css";
+import { setActive, updateActiveMenu } from "./SetActive.js";
 
 export default class Navbar {
   constructor(options) {
@@ -59,5 +60,12 @@ export default class Navbar {
           </ul>
         </div>
     `;
+  }
+
+  // 페이지 로드 시 활성화 상태 설정
+  initActiveMenu() {
+    const menuItems = document.querySelectorAll("nav ul li a");
+    const currentPath = window.location.pathname;
+    updateActiveMenu(menuItems, currentPath);
   }
 }

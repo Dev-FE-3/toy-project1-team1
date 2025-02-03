@@ -12,8 +12,9 @@ import board from "./pages/Board";
 import boardadmin from "./pages/Board-admin";
 import boardDataCreatePage from "./pages/BoardDataCreate";
 import staffInfo from "./pages/StaffInfo";
-import {localStorageUtil} from "./components/LocalStorageUtil.js"
-import {STORAGE_KEYS, ACCOUNT} from "./components/storageConstants.js"
+import { localStorageUtil } from "./components/LocalStorageUtil.js";
+import { STORAGE_KEYS, ACCOUNT } from "./components/storageConstants.js";
+import { setActive, updateActiveMenu } from "./components/SetActive.js";
 
 const app = () => {
   init();
@@ -33,25 +34,12 @@ const navigatePage = (event) => {
   if (anchor && anchor.href) {
     history.pushState(null, null, anchor.href);
     route();
-    updateActiveMenu();
-  }
-};
 
-const updateActiveMenu = () => {
-  const allMenuItems = document.querySelectorAll("nav ul li a");
-  const currentPath = window.location.pathname;
+    const allMenuItems = document.querySelectorAll("nav ul li a");
+    const currentPath = window.location.pathname;
 
-  // 모든 메뉴에서 active 클래스를 제거
-  allMenuItems.forEach((item) => {
-    item.classList.remove("active");
-  });
-
-  // 현재 경로에 해당하는 메뉴에 active 클래스를 추가
-  const activeMenu = Array.from(allMenuItems).find(
-    (item) => item.getAttribute("href") === currentPath,
-  );
-  if (activeMenu) {
-    activeMenu.classList.add("active");
+    // 기존 방식 대신 유틸 함수 사용
+    updateActiveMenu(allMenuItems, currentPath);
   }
 };
 
@@ -75,8 +63,10 @@ const route = () => {
 
   if (localStorageUtil.get(STORAGE_KEYS.ACCOUNT) === ACCOUNT.ADMIN) {
     nav.innerHTML = navBarMng.render();
+    navBarMng.initActiveMenu(); // 메뉴 활성화
   } else {
     nav.innerHTML = navBar.render();
+    navBar.initActiveMenu(); // 메뉴 활성화
   }
 
   switch (path) {

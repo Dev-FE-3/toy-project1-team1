@@ -140,7 +140,7 @@ export default class Home {
         </div>
         <div class="section-right">
           <div class="notice">
-            <h2>공지 게시판 <a href="/board">></a></h2>
+            <h2>공지 게시판 <a href="/board?tab=공지게시판">></a></h2>
             <div class="notice-inner">
               <div class="gallery">
                 <div class="img-box"></div>
@@ -166,7 +166,7 @@ export default class Home {
             </div>
           </div>
           <div class="file">
-            <h2>자료 게시판 <a href="/board">></a></h2>
+            <h2>자료 게시판 <a href="/board?tab=자료게시판">></a></h2>
             <ul>
               <li>
                 <p class="num">1</p>
