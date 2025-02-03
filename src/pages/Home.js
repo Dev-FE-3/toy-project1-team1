@@ -8,7 +8,7 @@ export default class Home {
     this.isWorking = window.localStorage.getItem("workState") === "working";
   }
 
-  updateDateTime = () => {
+  updateDateTime () {
     if (window.location.pathname === "/home") {
       document.querySelector(".hour-min").textContent = this.timeUtil.currentTime;
       document.querySelector("#date").textContent = this.timeUtil.currentDate;
