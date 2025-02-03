@@ -53,8 +53,7 @@
   padding: 5px 10px;
   color: #3a8c8c;
 }
-.back:hover,
-.disabledEditBtn:hover {
+.back:hover .disabledEditBtn:hover {
   background-color: #e9f5f5;
   color: #3a8c8c;
   font-weight: bold;
