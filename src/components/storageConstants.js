@@ -10,3 +10,8 @@ export const WORK_STATE = {
   WORKING : 'working',
   NOT_WORKING : 'notWorking',
 };
+
+export const ACCOUNT = {
+  ADMIN : 'admin',
+  USER : 'user',
+};

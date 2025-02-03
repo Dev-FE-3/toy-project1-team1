@@ -1,4 +1,6 @@
 import "/src/styles/login.css";
+import {localStorageUtil} from "../components/LocalStorageUtil.js"
+import {STORAGE_KEYS, ACCOUNT} from "../components/storageConstants.js"
 
 const toggleActiveBtn = (e) => {
   document.querySelectorAll(".LoginBtnWrap span").forEach((btn) => {
@@ -101,7 +103,7 @@ const checkUser = () => {
   }
 
   staffLoginBtn?.addEventListener("click", () => {
-    window.localStorage.setItem("user", "staff");
+    localStorageUtil.set(STORAGE_KEYS.ACCOUNT, ACCOUNT.USER);
     if (idInput && pwInput) {
       idInput.value = "";
       pwInput.value = "";
@@ -109,7 +111,7 @@ const checkUser = () => {
   });
 
   managerLoginBtn?.addEventListener("click", () => {
-    window.localStorage.setItem("user", "manager");
+    localStorageUtil.set(STORAGE_KEYS.ACCOUNT, ACCOUNT.ADMIN);
     if (idInput && pwInput) {
       idInput.value = "";
       pwInput.value = "";

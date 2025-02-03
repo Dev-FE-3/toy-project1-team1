@@ -12,6 +12,8 @@ import board from "./pages/Board";
 import boardadmin from "./pages/Board-admin";
 import boardDataCreatePage from "./pages/BoardDataCreate";
 import staffInfo from "./pages/StaffInfo";
+import {localStorageUtil} from "./components/LocalStorageUtil.js"
+import {STORAGE_KEYS, ACCOUNT} from "./components/storageConstants.js"
 
 const app = () => {
   init();
@@ -71,7 +73,7 @@ const route = () => {
   const navBar = new Navbar({ isAdmin: false });
   const navBarMng = new Navbar({ isAdmin: true });
 
-  if (window.localStorage.getItem("user") === "manager") {
+  if (localStorageUtil.get(STORAGE_KEYS.ACCOUNT) === ACCOUNT.ADMIN) {
     nav.innerHTML = navBarMng.render();
   } else {
     nav.innerHTML = navBar.render();
