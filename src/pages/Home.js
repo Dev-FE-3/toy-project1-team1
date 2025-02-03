@@ -1,11 +1,13 @@
 import "../styles/Home.css";
 import TimeUtil from "../components/TimeUtil.js";
+import {localStorageUtil} from "../components/LocalStorageUtil.js"
+import {STORAGE_KEYS, WORK_STATE, ACCOUNT} from "../components/storageConstants.js"
 
 export default class Home {
   constructor() {
     this.timeUtil = new TimeUtil();
     this.timeUtil.updateTime();
-    this.isWorking = window.localStorage.getItem("workState") === "working";
+    this.isWorking = localStorageUtil.get(STORAGE_KEYS.WORK_STATE) === WORK_STATE.WORKING;
   }
 
   updateDateTime () {
@@ -16,8 +18,8 @@ export default class Home {
   }
 
   updateUI = () => {
-    const startTime = window.localStorage.getItem("startTime") || "00 : 00";
-    const endTime = window.localStorage.getItem("endTime") || "00 : 00";
+    const startTime = localStorageUtil.get(STORAGE_KEYS.START_TIME) || "-";
+    const endTime = localStorageUtil.get(STORAGE_KEYS.END_TIME) || "-";
 
     document.getElementById("startWork").textContent = startTime;
     document.getElementById("finishWork").textContent = endTime;
@@ -34,17 +36,17 @@ export default class Home {
   };
 
   updateState = (newState, currentTime) => {
-    this.isWorking = newState === "working"; // 상태를 업데이트
-    window.localStorage.setItem("workState", newState);
-    window.localStorage.setItem(
-      "startTime",
+    this.isWorking = newState === WORK_STATE.WORKING; // 상태를 업데이트
+    localStorageUtil.set(STORAGE_KEYS.WORK_STATE, newState);
+    localStorageUtil.set(
+      STORAGE_KEYS.START_TIME,
       this.isWorking
         ? currentTime
-        : window.localStorage.getItem("startTime") || "00 : 00",
+        : localStorageUtil.get(STORAGE_KEYS.START_TIME) || " - ",
     );
-    window.localStorage.setItem(
-      "endTime",
-      this.isWorking ? "00 : 00" : currentTime,
+    localStorageUtil.set(
+      STORAGE_KEYS.END_TIME,
+      this.isWorking ? "-" : currentTime,
     );
 
     this.updateUI();
@@ -60,7 +62,7 @@ export default class Home {
 
   changeState = () => {
     const currentTime = this.timeUtil.currentTime;
-    this.updateState(this.isWorking ? "beforeWork" : "working", currentTime);
+    this.updateState(this.isWorking ? WORK_STATE.NOT_WORKING : WORK_STATE.WORKING, currentTime);
     document.getElementById("home-modal").style.display = "none";
   };
 
