@@ -1,6 +1,6 @@
 import "../styles/mypage.css";
-import {localStorageUtil} from "../components/LocalStorageUtil.js"
-import {STORAGE_KEYS, WORK_STATE} from "../components/storageConstants.js"
+import { localStorageUtil } from "../components/LocalStorageUtil.js";
+import { STORAGE_KEYS, WORK_STATE } from "../components/storageConstants.js";
 
 function initializePage() {
   const detailInfoedits = document.querySelectorAll(".detailInfoEdit");
@@ -62,7 +62,8 @@ export default function myPage() {
     window.history.go(-1);
   };
   // localStorge를 활용한 근무 시간 변경
-  const isWorking = localStorageUtil.get(STORAGE_KEYS.WORK_STATE) === WORK_STATE.WORKING;
+  const isWorking =
+    localStorageUtil.get(STORAGE_KEYS.WORK_STATE) === WORK_STATE.WORKING;
   const updateState = () => {
     if (window.location.pathname === "/my-page") {
       const startTime = localStorageUtil.get(STORAGE_KEYS.START_TIME);
@@ -126,7 +127,6 @@ export default function myPage() {
     }
   };
   setTimeout(() => {
-    initializePage();
     updateState();
   }, 0);
   return `
@@ -136,6 +136,7 @@ export default function myPage() {
   </div>
   <div class="myPageHeader">
     <div class="nurseImageIcon">
+  <label for="imageUpload">
       <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="window.handleFileSelect(event)"/>
       <div class="image-preview">
         <img id="placeholder" class="placeholder" ><div class="imageNone">이미지 없음</div>
@@ -149,12 +150,14 @@ export default function myPage() {
           <i class="material-icons">delete</i>
         </button>
       </div>
+    </label>
     </div>
     <div class="nurseInfo">
       <p class="nurseName">차주현</p>
       <p class="nurseLank">간호사</p>
       <div class="nurseWorking-box"><div class="state-icon"></div><div class="nurseWorking"></div></div>
     </div>
+
     <div class="workTime">
       <div class="dutyStart">
         근무시작
