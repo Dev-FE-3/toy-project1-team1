@@ -402,8 +402,22 @@ input[type="date"],
   color: #3a8c8c;
   border-radius: 0.3em;
 }
+
 .submit-btn__item button:last-child:hover {
   background-color: #e9f5f5;
   color: #3a8c8c;
   font-weight: bold;
+}
+
+.submit-btn__item button:disabled {
+  cursor: not-allowed;
+  background-color: #ddd;
+  color: #a7a7a7;
+  font-weight: bold;
+  border: none;
+}
+
+.submit-btn__item button:disabled:hover {
+  background-color: #ddd;
+  color: #a7a7a7;
 }
