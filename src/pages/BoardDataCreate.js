@@ -9,7 +9,7 @@ export default function boardDataCreatePage() {
         <h1>게시물 작성</h1>
       </div>
       <div class="board-data-create-addboard">
-        <button id="createDataBoard" class="board-data-create__btn">
+        <button id="createDataBoard" class="board-data-create__btn" disabled>
           게시물 등록
         </button>
       </div>
@@ -27,6 +27,7 @@ export default function boardDataCreatePage() {
               <option value="2">자료게시판</option>
             </select>
           </div>
+
           <div class="form-group-item">
             <input
               type="text"
@@ -67,18 +68,37 @@ export default function boardDataCreatePage() {
 
   // DOM 렌더링 후 이벤트 리스너 추가
   setTimeout(() => {
-    const createDataBoard = document.querySelector("#createDataBoard");
+    const createDataBoard = document.getElementById("createDataBoard");
+
+    const title = document.getElementById("title");
+    const writer = document.getElementById("writer");
+    const content = document.getElementById("content");
+
     const imagePreview = document.getElementById("imagePreview");
     const imageInputBtn = document.getElementById("fileButton");
 
-    const categorySelect = document.getElementById("category");
+    const category = document.getElementById("category");
     const fileButtonContainer = document.getElementById("fileButtonContainer");
 
     let selectedImageFile = null;
 
+    // form 입력 값 체크
+    const checkFormValidity = () => {
+      if (
+        title.value.trim() !== "" &&
+        writer.value.trim() !== "" &&
+        category.value !== "default" &&
+        content.value.trim() !== ""
+      ) {
+        createDataBoard.disabled = false;
+      } else {
+        createDataBoard.disabled = true;
+      }
+    };
+
     // 카테고리에 맞춰 img 태그 ON/DFF
-    const categoryHandler = () => {
-      const selectedValue = categorySelect.value;
+    const handleCategoryBtn = () => {
+      const selectedValue = category.value;
 
       if (selectedValue === "1") {
         fileButtonContainer.style.display = "block";
@@ -154,21 +174,32 @@ export default function boardDataCreatePage() {
         content.value = "";
         imagePreview.src = "";
         selectedImageFile = null;
-      } else {
-        return;
+        checkFormValidity();
       }
     };
 
+    if (title) {
+      title.addEventListener("input", checkFormValidity);
+    }
+    if (writer) {
+      writer.addEventListener("input", checkFormValidity);
+    }
+    if (category) {
+      category.addEventListener("change", checkFormValidity);
+    }
+    if (content) {
+      content.addEventListener("input", checkFormValidity);
+    }
     if (imageInputBtn) {
       imageInputBtn.addEventListener("click", addImg);
     }
-
     if (createDataBoard) {
       createDataBoard.addEventListener("click", submitData);
     }
-    if (categorySelect) {
-      categorySelect.addEventListener("change", categoryHandler);
+    if (category) {
+      category.addEventListener("change", handleCategoryBtn);
     }
+    checkFormValidity();
   }, 0);
 
   return template;

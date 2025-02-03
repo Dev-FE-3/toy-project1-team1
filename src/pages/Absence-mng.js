@@ -3,8 +3,8 @@ import { html } from "lit-html";
 import "../styles/Absence-mng.css";
 
 export default function absenceMng() {
-  let isDropClick = false;
-  let isReqClick = false;
+  let isDropdownClick = false;
+  let isModalClick = false;
   let isStartDateClick = false;
   let isEndDateClick = false;
 
@@ -17,6 +17,11 @@ export default function absenceMng() {
     const submitModal = document.getElementById("submit-continer");
     const submitModalBack = document.getElementById("submit-modal-back");
     const submitApplyBtn = document.getElementById("submit-modal-apply");
+
+    const kindSelect = document.getElementById("kind");
+    const startDateInput = document.querySelector('input[name="start-date"]');
+    const endDateInput = document.querySelector('input[name="end-date"]');
+    const reasonTextarea = document.querySelector('textarea[name="reason"]');
 
     const startDateBtn = document.querySelector(".start-day-input");
     const endtDateBtn = document.querySelector(".end-day-input");
@@ -32,11 +37,11 @@ export default function absenceMng() {
 
     // 부재 신청 내역 종류 토글 버튼
     const onClickDropBtn = () => {
-      if (isDropClick) {
-        isDropClick = false;
+      if (isDropdownClick) {
+        isDropdownClick = false;
         dorpDownMenu.style.display = "none";
       } else {
-        isDropClick = true;
+        isDropdownClick = true;
         dorpDownMenu.style.display = "";
       }
     };
@@ -66,11 +71,12 @@ export default function absenceMng() {
 
     // 부재 신청 모달 ON/OFF , 버튼 활성화 style 적용
     const onClickReqBtn = () => {
-      isReqClick = !isReqClick;
-      submitModal.style.display = isReqClick ? "flex" : "none";
-      vacationReqBtn.style.display = isReqClick
+      isModalClick = !isModalClick;
+      submitModal.style.display = isModalClick ? "flex" : "none";
+      vacationReqBtn.style.display = isModalClick
         ? vacationReqBtn.classList.add("row2__btns__active")
         : vacationReqBtn.classList.remove("row2__btns__active");
+      checkFormValidity();
     };
 
     // 부재 신청 Submit 함수(작동이 안되서 requestSubmit()를 사용함)
@@ -94,15 +100,6 @@ export default function absenceMng() {
         endDate,
         reason,
       };
-
-      console.log(data.startDate);
-      console.log(data.endDate);
-      console.log(data.reason);
-
-      if (data.startDate === "" || data.endDate === "" || data.reason === "") {
-        alert("항목을 모두 입력해 주세요.");
-        return;
-      }
 
       addRowToTable(data);
       event.target.reset();
@@ -145,6 +142,19 @@ export default function absenceMng() {
       }
     };
 
+    function checkFormValidity() {
+      const kindValue = kindSelect.value;
+      const startDateValue = startDateInput.value;
+      const endDateValue = endDateInput.value;
+      const reasonValue = reasonTextarea.value;
+
+      if (kindValue && startDateValue && endDateValue && reasonValue) {
+        submitApplyBtn.removeAttribute("disabled");
+      } else {
+        submitApplyBtn.setAttribute("disabled", "disabled");
+      }
+    }
+
     if (calendar) {
       calendar.addEventListener("click", function (event) {
         const target = event.target;
@@ -177,6 +187,18 @@ export default function absenceMng() {
     }
     if (submitModal) {
       submitModal.addEventListener("submit", handleFormSubmit);
+    }
+    if (kindSelect) {
+      kindSelect.addEventListener("change", checkFormValidity);
+    }
+    if (startDateInput) {
+      startDateInput.addEventListener("change", checkFormValidity);
+    }
+    if (endDateInput) {
+      endDateInput.addEventListener("change", checkFormValidity);
+    }
+    if (reasonTextarea) {
+      reasonTextarea.addEventListener("input", checkFormValidity);
     }
   }, 1000);
 
@@ -367,7 +389,7 @@ export default function absenceMng() {
           <div class="submit-btn">
             <div class="item submit-btn__item">
               <button type="button" id="submit-modal-back">취소</button>
-              <button type="submit" id="submit-modal-apply">휴가 신청하기</button>
+              <button type="submit" id="submit-modal-apply" disabled>휴가 신청하기</button>
             </div>
           </div>
         </div>

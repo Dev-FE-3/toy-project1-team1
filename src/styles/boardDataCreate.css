@@ -39,6 +39,14 @@
   font-weight: bold;
 }
 
+.board-data-create__btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: #f0f0f0;
+  color: #a0a0a0;
+  border: 1px solid #dcdcdc;
+}
+
 /* 폼 그룹 */
 .form-group {
   display: flex;
@@ -105,12 +113,9 @@
 .form-group-item:nth-child(2) input:focus {
   background-color: #ffffff00;
 }
+
 .form-group-item:nth-child(2) input:not(:placeholder-shown) {
   background-color: #ffffff00;
-}
-
-.form-group-item:nth-child(3) {
-  position: relative;
 }
 
 .form-group-item > label {
@@ -129,14 +134,14 @@
 }
 
 #imagePreview {
-  position: absolute;
+  position: fixed;
 
   border: none;
 
   height: 150px;
 
-  top: 420px;
-  left: -250px;
+  top: 750px;
+  left: 380px;
 }
 
 #createDataBoard {
