@@ -1,5 +1,5 @@
 import "../styles/main.css";
-import { setActive, updateActiveMenu } from "./SetActive.js";
+import { setActive, updateActiveMenu } from "../util/SetActive.js";
 
 export default class Navbar {
   constructor(options) {

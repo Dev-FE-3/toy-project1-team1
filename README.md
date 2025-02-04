@@ -107,13 +107,9 @@ lit-html 플러그인 설치하여 페이지를 컴포넌화 하여 관리 하�
 
 ```
 toy-project1-team1-hospital-intranet-project
-├─ public
-│  └─ index.html
-├─ server
 ├─ src
 │  ├─ components
-│  │  ├─ Navbar.js
-│  │  └─ TimeUtil.js
+│  │  └─ Navbar.js
 │  ├─ image
 │  │  ├─ hospital-main.jpg
 │  │  ├─ hospital.jpg
@@ -121,23 +117,20 @@ toy-project1-team1-hospital-intranet-project
 │  │  ├─ staff-2.jpg
 │  │  └─ staff-3.jpg
 │  ├─ pages
-│  │  ├─ admin
-│  │  │  ├─ Board-admin.js
-│  │  │  └─ MypageAdmin.js
-│  │  ├─ front
-│  │  │  ├─ Absence-mng.js
-│  │  │  ├─ Board.js
-│  │  │  ├─ BoardDataCreate.js
-│  │  │  └─ StaffInfo.js
+│  │  ├─ myPageAdmin
+│  │  │  ├─ MypageAdm_counter.js
+│  │  │  ├─ MypageAdm_nurse.js
+│  │  │  └─ MypageAdm_doctor.js
+│  │  ├─ Board-admin.js
+│  │  ├─ MypageAdmin.js
+│  │  ├─ Absence-mng.js
+│  │  ├─ Board.js
+│  │  ├─ BoardDataCreate.js
+│  │  ├─ StaffInfo.js
 │  │  ├─ Home.js
 │  │  ├─ Login.js
 │  │  ├─ MyPage.js
-│  │  ├─ MypageAdm_1.js
-│  │  ├─ MypageAdm_2.js
-│  │  ├─ MypageAdm_3.js
-│  │  ├─ Page.js
-│  │  ├─ PageNotFound.js
-│  │  └─ Support.js
+│  │  └─ PageNotFound.js
 │  ├─ styles
 │  │  ├─ Absence-mng.css
 │  │  ├─ board.css
@@ -147,9 +140,15 @@ toy-project1-team1-hospital-intranet-project
 │  │  ├─ main.css
 │  │  ├─ mypage.css
 │  │  ├─ mypageAdm.css
-│  │  ├─ reset.css
+│  │  ├─ staffinfo.css
+│  │  └─ reset.css
 │  ├─ constants
-│  ├─ utils
+│  │  └─ storageConstants.js
+│  ├─ util
+│  │  ├─ LocalStorageUtil.js
+│  │  ├─ SetActive.js
+│  │  ├─ TimeUtil.js
+│  │  └─ renderPage.js
 │  └─ index.js
 ├─ .gitignore
 └─ package.json
@@ -180,7 +179,7 @@ toy-project1-team1-hospital-intranet-project
 - 근무 상태 변경 버튼을 누르면 근무 상태를 근무 중 또는 근무 전으로 변경되며, 출근 시각과 퇴근 시각을 현재 시간으로 표기 합니다.
 - 표기된 근무 상태와 출근 시각과 퇴근 시각을 localStorage 에 저장 합니다.
 
-![Image](https://github.com/user-attachments/assets/06c4d0ed-10a9-45b7-b9f2-f02be30fa137)
+![Image](https://github.com/user-attachments/assets/e591228c-248c-428d-b210-7225da0c9eeb)
 
 ### 사용자용 마이페이지 (이혜림)
 

@@ -1,6 +1,6 @@
-import "../styles/mypageAdm.css";
+import "../../styles/mypageAdm.css";
 
-export default function myPageAdm_1() {
+export default function myPageAdm_counter() {
   // DOM이 완전히 로드된 후에 초기화
   function initializePage() {
     const detailInfoEdit = document.querySelectorAll(".detailInfoEdit");

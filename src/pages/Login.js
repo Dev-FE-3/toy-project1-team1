@@ -1,6 +1,6 @@
 import "/src/styles/login.css";
-import { localStorageUtil } from "../components/LocalStorageUtil.js";
-import { STORAGE_KEYS, ACCOUNT } from "../components/storageConstants.js";
+import { localStorageUtil } from "../util/LocalStorageUtil.js";
+import { STORAGE_KEYS, ACCOUNT } from "../constants/storageConstants.js";
 
 // 유효성 검사 규칙 정의
 const validators = {

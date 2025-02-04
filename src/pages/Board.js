@@ -1,5 +1,5 @@
 import "../styles/board.css";
-import { setActive } from "../components/SetActive.js";
+import { setActive } from "../util/SetActive.js";
 
 // 공지 게시판 data
 const noticeBoardItems = [

@@ -1,6 +1,6 @@
 import "../styles/mypage.css";
-import { localStorageUtil } from "../components/LocalStorageUtil.js";
-import { STORAGE_KEYS, WORK_STATE } from "../components/storageConstants.js";
+import { localStorageUtil } from "../util/LocalStorageUtil.js";
+import { STORAGE_KEYS, WORK_STATE } from "../constants/storageConstants.js";
 
 function initializePage() {
   const detailInfoedits = document.querySelectorAll(".detailInfoEdit");

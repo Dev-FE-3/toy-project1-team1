@@ -1,20 +1,20 @@
 import myPage from "./pages/MyPage";
 import login from "./pages/Login";
-import Page from "./pages/Page";
+import Page from "./util/rederPage";
 import pageNotFound from "./pages/PageNotFound";
 import absenceMng from "./pages/Absence-mng";
 import Home from "./pages/Home";
-import myPageAdm_1 from "./pages/MypageAdm_1";
-import myPageAdm_2 from "./pages/MypageAdm_2";
-import myPageAdm_3 from "./pages/MypageAdm_3";
+import myPageAdm_doctor from "./pages/myPageAdmin/MypageAdm_doctor";
+import myPageAdm_nurse from "./pages/myPageAdmin/MypageAdm_nurse";
+import myPageAdm_counter from "./pages/myPageAdmin/MypageAdm_counter";
 import Navbar from "./components/Navbar";
 import board from "./pages/Board";
 import boardadmin from "./pages/Board-admin";
 import boardDataCreatePage from "./pages/BoardDataCreate";
 import staffInfo from "./pages/StaffInfo";
-import { localStorageUtil } from "./components/LocalStorageUtil.js";
-import { STORAGE_KEYS, ACCOUNT } from "./components/storageConstants.js";
-import { setActive, updateActiveMenu } from "./components/SetActive.js";
+import { localStorageUtil } from "./util/LocalStorageUtil.js";
+import { STORAGE_KEYS, ACCOUNT } from "./constants/storageConstants.js";
+import { setActive, updateActiveMenu } from "./util/SetActive.js";
 
 const app = () => {
   init();
@@ -52,9 +52,9 @@ const route = () => {
 
   const myPagePage = new Page("#app", myPage());
   const mylogin = new Page("main", login());
-  const myPageAdmin_1 = new Page("#app", myPageAdm_1());
-  const myPageAdmin_2 = new Page("#app", myPageAdm_2());
-  const myPageAdmin_3 = new Page("#app", myPageAdm_3());
+  const myPageAdmin_1 = new Page("#app", myPageAdm_doctor());
+  const myPageAdmin_2 = new Page("#app", myPageAdm_nurse());
+  const myPageAdmin_3 = new Page("#app", myPageAdm_counter());
   const boardPage = new Page("#app", board());
   const boardAdminPage = new Page("#app", boardadmin());
   const staffInfoPage = new Page("#app", staffInfo());
