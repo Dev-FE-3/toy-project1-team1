@@ -7,12 +7,14 @@ export default class Home {
   constructor() {
     this.timeUtil = new TimeUtil();
     this.timeUtil.updateTime();
-    this.isWorking = localStorageUtil.get(STORAGE_KEYS.WORK_STATE) === WORK_STATE.WORKING;
+    this.isWorking =
+      localStorageUtil.get(STORAGE_KEYS.WORK_STATE) === WORK_STATE.WORKING;
   }
 
-  updateDateTime () {
+  updateDateTime() {
     if (window.location.pathname === "/home") {
-      document.querySelector(".hour-min").textContent = this.timeUtil.currentTime;
+      document.querySelector(".hour-min").textContent =
+        this.timeUtil.currentTime;
       document.querySelector("#date").textContent = this.timeUtil.currentDate;
     }
   }
@@ -24,15 +26,17 @@ export default class Home {
     document.getElementById("startWork").textContent = startTime;
     document.getElementById("finishWork").textContent = endTime;
 
-    document.querySelector(".work-time-button").textContent = this.isWorking
-      ? "근무 종료"
-      : "근무 시작";
-    document.querySelector(".state-icon").style.backgroundColor = this.isWorking
-      ? "#3a8c8c"
-      : "#d2e7e7";
-    document.querySelector(".state-text").textContent = this.isWorking
-      ? "근무 중"
-      : "근무 전";
+    const buttonBg = document.querySelector(".toggle");
+    const workStateText = document.querySelector(".work-state-text");
+    const buttonHead = document.querySelector(".button-head");
+
+    workStateText.textContent = this.isWorking ? "근무 중" : "근무 전";
+    workStateText.style.color = this.isWorking ? "#3a8c8c" : "#999";
+
+    buttonBg.classList.toggle("bg-on", this.isWorking);
+    buttonBg.classList.toggle("bg-off", !this.isWorking);
+    buttonHead.classList.toggle("head-right", this.isWorking);
+    buttonHead.classList.toggle("head-left", !this.isWorking);
   };
 
   updateState = (newState, currentTime) => {
@@ -62,7 +66,10 @@ export default class Home {
 
   changeState = () => {
     const currentTime = this.timeUtil.currentTime;
-    this.updateState(this.isWorking ? WORK_STATE.NOT_WORKING : WORK_STATE.WORKING, currentTime);
+    this.updateState(
+      this.isWorking ? WORK_STATE.NOT_WORKING : WORK_STATE.WORKING,
+      currentTime,
+    );
     document.getElementById("home-modal").style.display = "none";
   };
 
@@ -76,17 +83,19 @@ export default class Home {
       document.getElementById("home-modal").style.display = "none";
     });
     document
-      .querySelector(".work-time-button")
-      .addEventListener("click", this.modal);
+      .querySelector(".toggle")
+      .addEventListener("click", (event) => {
+        this.modal();
+      });
   };
 
   render() {
     setTimeout(() => {
       this.homeEventHandler();
     }, 0);
-    setInterval(()=> {
+    setInterval(() => {
       this.updateDateTime();
-    }, 0);
+    }, 1000);
     return `
     <div id="home-modal">
       <div class="home-modal-box">
@@ -115,23 +124,25 @@ export default class Home {
               <div class="info-box">
                 <p class="name">차주현</p>
                 <p class="work">간호사</p>
-                <div class="work-state">
-                  <div class="state-icon"></div>
-                  <span class="state-text">근무 전</span>
-                </div>
+                
               </div>
             </div>
             <div class="work-time-check">
               <div>
                 근무 시작
-                <p id ="startWork">00 : 00</p>
+                <p id ="startWork">-</p>
               </div>
               <div>
                 근무 종료
-                <p id ="finishWork">00 : 00</p>
+                <p id ="finishWork">-</p>
               </div>
             </div>
-            <button class="work-time-button">근무 시작</button>
+            <div class="change-work_state-box">
+                <div class="toggle">
+                  <div class="button-head"></div>
+              </div>
+              <p class="work-state-text">근무 중</p>
+            </div>
           </div>
           <div class="doctor-schedule">
             <h2>휴진</h2>

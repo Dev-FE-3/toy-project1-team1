@@ -20,6 +20,7 @@ h3 {
 #home-modal {
   display: none;
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
@@ -159,19 +160,6 @@ h3 {
   font-weight: 500;
   color: #666;
 }
-.profile > .personal-info > .info-box > .work-state {
-  display: flex;
-  gap: 1rem;
-  color: #666;
-  font-size: 14px;
-}
-.state-icon {
-  width: 1rem;
-  height: 1rem;
-  background-color: #b2b2b2;
-  border-radius: 50%;
-  margin: auto 0;
-}
 .profile > .work-time-check {
   border-top: 2px solid #d2e7e7;
   display: flex;
@@ -187,23 +175,53 @@ h3 {
 .profile > .work-time-check > div > p {
   margin-top: 1rem;
   font-size: 24px;
-}
-.profile > .work-time-button {
-  font-size: 18px;
-  padding: 7px 7px;
-  width: 6.5rem;
-  background-color: #e9f5f5;
-  border: 1px solid #d2e7e7;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #3a8c8c;
-  transition: 0.3s;
+  width: 70px;
 }
 
-.profile > .work-time-button:hover {
+.change-work_state-box {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.change-work_state-box >.toggle {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+.toggle{
+  transition: background-color 0.5s ease-in-out;
+}
+.button-head {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background-color: #ffffff;
+  position: absolute;
+  transition: right 0.5s ease-in-out;
+}
+.bg-on {
+  background-color: #3a8c8c;
+}
+.bg-off {
   background-color: #d2e7e7;
 }
-
+.head-left {
+  right: 55%;
+}
+.head-right {
+  right: 5%;
+}
+.work-state-text {
+  font-weight: bold;
+}
 /*Notice*/
 .notice {
   width: 100%;
