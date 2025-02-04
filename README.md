@@ -170,7 +170,7 @@ toy-project1-team1-hospital-intranet-project
 - 사용자로 로그인 탭 클릭시 사용자 전용 페이지로 이동합니다.
 - 아이디는 4자 이상 20자 이하, 비밀번호는 최소 8자 이상이어야 합니다.
 
-![Image](https://github.com/user-attachments/assets/6dcb191f-ccef-466e-9e21-752f2d182063)
+![Image](https://github.com/user-attachments/assets/92b141b1-0ee4-462e-93c9-9dc8970af379)
 
 ### 사용자용 페이지 초기화면 (조유나)
 
@@ -179,7 +179,7 @@ toy-project1-team1-hospital-intranet-project
 - 근무 상태 변경 버튼을 누르면 근무 상태를 근무 중 또는 근무 전으로 변경되며, 출근 시각과 퇴근 시각을 현재 시간으로 표기 합니다.
 - 표기된 근무 상태와 출근 시각과 퇴근 시각을 localStorage 에 저장 합니다.
 
-![Image](https://github.com/user-attachments/assets/e591228c-248c-428d-b210-7225da0c9eeb)
+![Image](https://github.com/user-attachments/assets/31b61410-b0bc-4d85-852e-df3c460fe669)
 
 ### 사용자용 마이페이지 (이혜림)
 
